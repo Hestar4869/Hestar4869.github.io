@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="简单介绍一下JavaScript内置对象，使用最多的有以下4个：  window: 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。 document：负责操作浏览器载入的文档（html文件），从属window。 history：可以代替后退（前进）按钮访问历史记录，从属window。 location：访问地址栏，也从属window。1. window对象window对象作用如下。  1">
+<meta name="description" content="简单介绍一下JavaScript内置对象，使用最多的有以下4个：  window: 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。 document：负责操作浏览器载入的文档（html文件），从属window。 history：可以代替后退（前进）按钮访问历史记录，从属window。 location：访问地址栏，也从属window。  1. window对象window对象作用如下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post">
+<meta property="og:title" content="Javascript基础">
 <meta property="og:url" content="http://example.com/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hestar&#39;s Blog">
-<meta property="og:description" content="简单介绍一下JavaScript内置对象，使用最多的有以下4个：  window: 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。 document：负责操作浏览器载入的文档（html文件），从属window。 history：可以代替后退（前进）按钮访问历史记录，从属window。 location：访问地址栏，也从属window。1. window对象window对象作用如下。  1">
+<meta property="og:description" content="简单介绍一下JavaScript内置对象，使用最多的有以下4个：  window: 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。 document：负责操作浏览器载入的文档（html文件），从属window。 history：可以代替后退（前进）按钮访问历史记录，从属window。 location：访问地址栏，也从属window。  1. window对象window对象作用如下。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png">
 <meta property="og:image" content="http://example.com/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-41-43.png">
 <meta property="og:image" content="http://example.com/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-42-03.png">
 <meta property="article:published_time" content="2022-03-01T12:15:48.000Z">
-<meta property="article:modified_time" content="2022-03-01T13:12:00.815Z">
+<meta property="article:modified_time" content="2022-03-01T15:36:00.508Z">
 <meta property="article:author" content="Hestar">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png">
@@ -136,7 +136,7 @@
 
 
 
-  <title>post | Hestar's Blog</title>
+  <title>Javascript基础 | Hestar's Blog</title>
   
 
 
@@ -201,16 +201,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
@@ -231,12 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            Sitemap
+            Commonweal 404
           </a>
         </li>
       
@@ -324,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">post</h1>
+          <h1 class="post-title" itemprop="name headline">Javascript基础</h1>
         
 
         <div class="post-meta">
@@ -432,8 +422,9 @@
 <li><strong>window:</strong> 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。</li>
 <li><strong>document</strong>：负责操作浏览器载入的文档（html文件），从属window。</li>
 <li><strong>history</strong>：可以代替后退（前进）按钮访问历史记录，从属window。</li>
-<li><strong>location</strong>：访问地址栏，也从属window。<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2>window对象作用如下。</li>
+<li><strong>location</strong>：访问地址栏，也从属window。</li>
 </ol>
+<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><p>window对象作用如下。</p>
 <h3 id="1-1-出现提示框"><a href="#1-1-出现提示框" class="headerlink" title="1.1 出现提示框"></a>1.1 出现提示框</h3><p>window对象可以跳出提示框。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;内容&quot;</span>)：出现消息框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;内容&quot;</span>)：出现确认框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;内容&quot;</span>):出现输入框</span><br></pre></td></tr></table></figure>
 <p><strong>实例：</strong></p>
@@ -480,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/" rel="next" title="post">
-                <i class="fa fa-chevron-left"></i> post
+              <a href="/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/" rel="next" title="概述">
+                <i class="fa fa-chevron-left"></i> 概述
               </a>
             
           </div>
@@ -611,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-window%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">1. window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 出现提示框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%89%93%E5%8D%A1%E3%80%81%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 打卡、关闭窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 定时器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-history%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">2. history对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-document%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.</span> <span class="nav-text">3. document对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%9C%A8%E7%BD%91%E9%A1%B5%E4%B8%8A%E8%BE%93%E5%87%BA"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 在网页上输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%AE%BE%E7%BD%AE%E7%BD%91%E9%A1%B5%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 设置网页的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%AE%BF%E9%97%AE%E6%96%87%E6%A1%A3%E5%85%83%E7%B4%A0%EF%BC%8C%E7%89%B9%E5%88%AB%E6%98%AF%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 访问文档元素，特别是表单元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-location%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">4. location对象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-window%E5%AF%B9%E8%B1%A1"><span class="nav-text">1. window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%87%BA%E7%8E%B0%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="nav-text">1.1 出现提示框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%89%93%E5%8D%A1%E3%80%81%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="nav-text">1.2 打卡、关闭窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">1.3 定时器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-history%E5%AF%B9%E8%B1%A1"><span class="nav-text">2. history对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-document%E5%AF%B9%E8%B1%A1"><span class="nav-text">3. document对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%9C%A8%E7%BD%91%E9%A1%B5%E4%B8%8A%E8%BE%93%E5%87%BA"><span class="nav-text">3.1 在网页上输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%AE%BE%E7%BD%AE%E7%BD%91%E9%A1%B5%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">3.2 设置网页的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%AE%BF%E9%97%AE%E6%96%87%E6%A1%A3%E5%85%83%E7%B4%A0%EF%BC%8C%E7%89%B9%E5%88%AB%E6%98%AF%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="nav-text">3.3 访问文档元素，特别是表单元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-location%E5%AF%B9%E8%B1%A1"><span class="nav-text">4. location对象</span></a></li></ol></div>
             
 
           </div>
