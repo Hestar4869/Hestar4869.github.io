@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="物理层基本概念 位置： 物理层是网络体系结构中的最底层 功能：规定如何再连接各个计算机之间比特流的传输   物理层常用标准点对点通信线路广播通信线路：一条公共通信线路连接多个节点 物理层数据通信波特率和比特率之间的关系信道的最大数据传输速率无噪声有限带宽信道的最大数据传输率公式 奈奎斯特定理  最大数据传输率 &#x3D; 2H log2V (bps) H指带宽  随机噪声出现的大小用信噪比（信号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理层">
+<meta property="og:url" content="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/index.html">
+<meta property="og:site_name" content="Hestar&#39;s Blog">
+<meta property="og:description" content="物理层基本概念 位置： 物理层是网络体系结构中的最底层 功能：规定如何再连接各个计算机之间比特流的传输   物理层常用标准点对点通信线路广播通信线路：一条公共通信线路连接多个节点 物理层数据通信波特率和比特率之间的关系信道的最大数据传输速率无噪声有限带宽信道的最大数据传输率公式 奈奎斯特定理  最大数据传输率 &#x3D; 2H log2V (bps) H指带宽  随机噪声出现的大小用信噪比（信号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png">
+<meta property="article:published_time" content="2022-03-08T05:58:09.000Z">
+<meta property="article:modified_time" content="2022-03-11T07:39:59.531Z">
+<meta property="article:author" content="Hestar">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png">
+
+<link rel="canonical" href="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>物理层 | Hestar's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hestar's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hestar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hestar's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          物理层
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-08 13:58:09" itemprop="dateCreated datePublished" datetime="2022-03-08T13:58:09+08:00">2022-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-11 15:39:59" itemprop="dateModified" datetime="2022-03-11T15:39:59+08:00">2022-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="物理层基本概念"><a href="#物理层基本概念" class="headerlink" title="物理层基本概念"></a>物理层基本概念</h2><ol>
+<li><strong>位置</strong>： 物理层是网络体系结构中的最底层</li>
+<li><strong>功能</strong>：规定如何再连接各个计算机之间比特流的传输</li>
+<li></li>
+</ol>
+<h3 id="物理层常用标准"><a href="#物理层常用标准" class="headerlink" title="物理层常用标准"></a>物理层常用标准</h3><p><strong>点对点通信线路</strong><br><strong>广播通信线路</strong>：一条公共通信线路连接多个节点</p>
+<h2 id="物理层数据通信"><a href="#物理层数据通信" class="headerlink" title="物理层数据通信"></a>物理层数据通信</h2><h3 id="波特率和比特率之间的关系"><a href="#波特率和比特率之间的关系" class="headerlink" title="波特率和比特率之间的关系"></a>波特率和比特率之间的关系</h3><h3 id="信道的最大数据传输速率"><a href="#信道的最大数据传输速率" class="headerlink" title="信道的最大数据传输速率"></a>信道的最大数据传输速率</h3><p>无噪声有限带宽信道的最大数据传输率公式</p>
+<p>奈奎斯特定理</p>
+<ul>
+<li>最大数据传输率 &#x3D; 2H log<sub>2</sub>V (bps)</li>
+<li>H指带宽</li>
+</ul>
+<p>随机噪声出现的大小用信噪比（信号功率S与噪声功率N之比）来衡量， 10log<sub>10</sub>S&#x2F;N,单位分贝</p>
+<p>香农定理</p>
+<ul>
+<li>带宽为H赫兹，信噪比为S&#x2F;N的任意信道的最大数据传输率为: Hlog<sub>2</sub>(1+S&#x2F;N)（bps）</li>
+<li>此式由信息论获得，具有普遍意义</li>
+</ul>
+<h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p>源点 -&gt; 发送器 -&gt; 传输系统 -&gt; 接收器 -&gt; 目标<br>PC   -&gt; 调制解调器 -&gt; 公用电话网 -&gt; 调制解调器 -&gt; PC机<br>数字比特流  -&gt;  模拟信号   -&gt;   模拟信号   -&gt;  数字比特流</p>
+<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p>串行和并行传输</p>
+<ul>
+<li>串行传输： 指数据在一个信道上按位依次传输的方式</li>
+<li><ul>
+<li>所需线路少，投资省，线路利用率搞</li>
+</ul>
+</li>
+<li><ul>
+<li>收发之间，适合远距离传输</li>
+</ul>
+</li>
+<li>并行传输：</li>
+<li>- </li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>按照数据信号在信道上的<strong>传送方向与时间</strong>的关系可分为：单工（类似广播）、半双工（一方占用信道）、全双工</p>
+<p>按照<strong>发&#x2F;收连两端实现同步</strong>的方法，传输方式可分为两类： 异步传输和同步传输。</p>
+<ul>
+<li>异步：发送器和接收器的时钟不同步</li>
+<li>同步：发送器和接收器的时钟是同步的</li>
+</ul>
+<h3 id="数据编码技术"><a href="#数据编码技术" class="headerlink" title="数据编码技术"></a>数据编码技术</h3><p>研究数据在信号传输过程中如何进行编码（变换）<br>常用的几种编码方式：</p>
+<ol>
+<li>不归零制码（NRZ: Non-Return to Zero）</li>
+</ol>
+<ul>
+<li>原理</li>
+</ul>
+<ol start="2">
+<li>曼彻斯特码（Manchester）,也称相位编码。分逢1跳变和逢0跳变。</li>
+<li>差分曼彻斯特码（Diffential Manchster）</li>
+</ol>
+<h3 id="频带传输"><a href="#频带传输" class="headerlink" title="频带传输"></a>频带传输</h3><p>三种调制技术：载波Asin(wt+)的三个特性幅度、频率、相位</p>
+<ul>
+<li>调幅(ASK)：</li>
+<li>调频(FSK):</li>
+<li>调相(PSK):</li>
+</ul>
+<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>传输介质是指发送器与接收器之间的物理通路可分为两大类：</p>
+<ul>
+<li>导引型传输介质：指电磁波被导向沿着某一媒体传播，包括</li>
+<li><ul>
+<li>双绞线、同轴电缆</li>
+</ul>
+</li>
+<li>非导引型传输介质：并不沿着某一确定通道传播</li>
+</ul>
+<h2 id="无线与卫星通信"><a href="#无线与卫星通信" class="headerlink" title="无线与卫星通信"></a>无线与卫星通信</h2><h3 id="无线通信的基本概念"><a href="#无线通信的基本概念" class="headerlink" title="无线通信的基本概念"></a>无线通信的基本概念</h3><h3 id="无线通信系统分类"><a href="#无线通信系统分类" class="headerlink" title="无线通信系统分类"></a>无线通信系统分类</h3><h3 id="卫星通信的基本概念"><a href="#卫星通信的基本概念" class="headerlink" title="卫星通信的基本概念"></a>卫星通信的基本概念</h3><p>卫星通信的基本特点<br>传播时延长</p>
+<h2 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h2><p>信道资源是有限的，实际网络中，多对用户往往需要利用信道资源传输信息，不同的信号同时在同一信道中传输会产生严重的相互干扰，导致传输失败<br><strong>复用</strong>：技术的目的是：允许用户使用一个共享信道进行通信，避免相互干扰，降低成本，提高利用率。<br><img src="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png" alt="复用示意图"></p>
+<h3 id="频分复用fdm"><a href="#频分复用（FDM）" class="headerlink" title="频分复用（FDM）"></a>频分复用（FDM）</h3><p>频分复用是一种讲多路基带信号调制到不同</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="prev" title="链路层">
+      <i class="fa fa-chevron-left"></i> 链路层
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/" rel="next" title="面向对象的基本特征">
+      面向对象的基本特征 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">物理层基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E5%B8%B8%E7%94%A8%E6%A0%87%E5%87%86"><span class="nav-number">1.1.</span> <span class="nav-text">物理层常用标准</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1"><span class="nav-number">2.</span> <span class="nav-text">物理层数据通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A2%E7%89%B9%E7%8E%87%E5%92%8C%E6%AF%94%E7%89%B9%E7%8E%87%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.1.</span> <span class="nav-text">波特率和比特率之间的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E9%80%9F%E7%8E%87"><span class="nav-number">2.2.</span> <span class="nav-text">信道的最大数据传输速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">数据通信系统模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%96%B9%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">传输方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="nav-number">2.5.</span> <span class="nav-text">数据编码技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%91%E5%B8%A6%E4%BC%A0%E8%BE%93"><span class="nav-number">2.6.</span> <span class="nav-text">频带传输</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8"><span class="nav-number">3.</span> <span class="nav-text">传输介质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1"><span class="nav-number">4.</span> <span class="nav-text">无线与卫星通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">无线通信的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E5%88%86%E7%B1%BB"><span class="nav-number">4.2.</span> <span class="nav-text">无线通信系统分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">4.3.</span> <span class="nav-text">卫星通信的基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">5.</span> <span class="nav-text">多路复用技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8fdm"><span class="nav-number">5.1.</span> <span class="nav-text">频分复用（FDM）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hestar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hestar</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">18k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">17 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/02/24/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Python基础知识</title>
     <url>/2022/02/26/Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="11-整型"><a href="#1-1-整型" class="headerlink" title="1.1 整型"></a>1.1 整型</h3><p>如<code>1</code>，<code>424</code>，<code>3344</code>等</p>
@@ -29,6 +11,10 @@
 <li><p><strong>索引</strong>：返回字符串中单个字符 <code>&lt;字符串&gt;[M]</code></p>
 </li>
 <li><p><strong>切片</strong> ：返回字符串中一段字符子串 <code>&lt;字符串&gt;[M:N]</code></p>
+</li>
+<li><ul>
+<li><strong>切片的详细运用</strong><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">lang=<span class="string">&#x27;python&#x27;</span></span><br><span class="line">lang[<span class="number">0</span>] <span class="comment"># p</span></span><br><span class="line">lang[<span class="number">3</span>] <span class="comment"># h</span></span><br><span class="line">lang[<span class="number">1</span>:<span class="number">4</span>] <span class="comment"># yth 该方式包括开头不包括结尾</span></span><br><span class="line">lang[<span class="number">1</span>:] <span class="comment"># ython 默认截取到字符串的末尾</span></span><br><span class="line">lang[:<span class="number">3</span>] <span class="comment"># pyt 默认从字符串开头开始截取</span></span><br><span class="line">lang[:] <span class="comment"># python 默认返回整个字符串，浅拷贝</span></span><br><span class="line">lang[-<span class="number">2</span>:] <span class="comment"># on 当头索引为负数，指从字符串尾部开始计数</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
 </ul>
 <h4 id="133-字符串操作符"><a href="#1-3-3-字符串操作符" class="headerlink" title="1.3.3 字符串操作符"></a>1.3.3 字符串操作符</h4><table>
@@ -51,7 +37,10 @@
 <td>如果 x 是 s 的字串，返回 true，否则返回 false</td>
 </tr>
 </tbody></table>
-<h3 id="14-列表类型"><a href="#1-4-列表类型" class="headerlink" title="1.4 列表类型"></a>1.4 列表类型</h3><ul>
+<h4 id="134-字符串处理函数"><a href="#1-3-4-字符串处理函数" class="headerlink" title="1.3.4 字符串处理函数"></a>1.3.4 字符串处理函数</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">len</span>(x) <span class="comment">#长度，返回字符串x的长度</span></span><br><span class="line">    <span class="built_in">len</span>(<span class="string">&quot;2123aj&quot;</span>) <span class="comment"># 6</span></span><br><span class="line"><span class="built_in">str</span>(x) <span class="comment">#任意类型x对应的字符串形式</span></span><br><span class="line">    <span class="built_in">str</span>(<span class="number">1.23</span>) <span class="comment"># &quot;1.23&quot;</span></span><br><span class="line"><span class="built_in">hex</span>(x) <span class="comment">#整数x的十六进制（小写形式）字符串</span></span><br><span class="line"><span class="built_in">oct</span>(x) <span class="comment">#整数x的八进制（小写形式）字符串</span></span><br><span class="line">    <span class="built_in">hex</span>(<span class="number">425</span>) <span class="comment"># &quot;0x1a9&quot;</span></span><br><span class="line">    <span class="built_in">oct</span>(<span class="number">425</span>) <span class="comment"># &quot;0o651&quot;</span></span><br><span class="line"><span class="built_in">chr</span>(u) <span class="comment">#u为Unicode编码，返回起对应的字符</span></span><br><span class="line"><span class="built_in">ord</span>(x) <span class="comment">#x为字符，返回其对应的Unicode编码</span></span><br></pre></td></tr></table></figure>
+<h4 id="135-字符串处理方法"><a href="#1-3-5-字符串处理方法" class="headerlink" title="1.3.5 字符串处理方法"></a>1.3.5 字符串处理方法</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">str</span>.lower() <span class="comment">#返回字符串的副本，全部字符小写</span></span><br><span class="line">            <span class="comment">#&quot;AbCdEfGh&quot;.lower()结果为&quot;abcdefgh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.upper() <span class="comment">#返回字符串的副本，全部字符大写</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.split(sep=<span class="literal">None</span>) <span class="comment">#返回一个列表，由str根据sep被分隔的部分组成</span></span><br><span class="line">                    <span class="comment">#&quot;A,B,C&quot;.split(&quot;,&quot;)结果为[&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.count(sub) <span class="comment">#返回子串sub在str中出现的次数</span></span><br><span class="line">               <span class="comment">#&quot;an apple a day&quot;.count(&quot;a&quot;)结果为4</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.replace(old,new) <span class="comment">#返回字符串str副本，所有old子串被替换为new</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.center(width[,fillchar]) <span class="comment">#字符串str根据宽度width居中， fillchar可选</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.strip(chars) <span class="comment">#从str中去掉在其左侧和右侧chars中列出的字符</span></span><br><span class="line">                 <span class="comment"># &quot;= python =&quot;.strip(&quot; =np&quot;)结果为&quot;ytho&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span>.join(<span class="built_in">iter</span>) <span class="comment">#在iter变量除最后元素外每个元素后增加一个str</span></span><br></pre></td></tr></table></figure>
+<p>&#x2F;&#x2F;TODO</p>
+<h4 id="136-字符串的格式化"><a href="#1-3-6-字符串的格式化" class="headerlink" title="1.3.6 字符串的格式化"></a>1.3.6 字符串的格式化</h4><h3 id="14-列表类型"><a href="#1-4-列表类型" class="headerlink" title="1.4 列表类型"></a>1.4 列表类型</h3><ul>
 <li>列表使用[ ]表示，才用逗号( , )分隔各元素。<code>[&#39;F&#39;,&#39;F&#39;]</code>表示两个元素</li>
 <li>使用保留字<code>in</code>判断一个字符是否在列表中</li>
 </ul>
@@ -158,7 +147,7 @@
       </categories>
   </entry>
   <entry>
-    <title>概述</title>
+    <title>计算机网络概述</title>
     <url>/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<h2 id="1-互联网的组成"><a href="#1-互联网的组成" class="headerlink" title="1. 互联网的组成"></a>1. 互联网的组成</h2><p>互联网的拓扑结构虽然非常复杂，但从其工作方式上看，可以划分为以下两大块：</p>
 <ul>
@@ -181,6 +170,873 @@
 <h4 id="123-分组交换"><a href="#1-2-3-分组交换" class="headerlink" title="1.2.3 分组交换"></a>1.2.3 分组交换</h4>]]></content>
       <categories>
         <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>函数</title>
+    <url>/2022/03/03/Python/%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="函数的定义与使用"><a href="#函数的定义与使用" class="headerlink" title="函数的定义与使用"></a>函数的定义与使用</h2><p>定义：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> &lt;函数名&gt; (&lt;参数&gt;) :</span><br><span class="line">    &lt;函数体&gt;</span><br><span class="line">    <span class="keyword">return</span> &lt;返回值&gt;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title>组合数据类型</title>
+    <url>/2022/03/03/Python/%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="1-集合"><a href="#1-集合" class="headerlink" title="1. 集合"></a>1. 集合</h2><h3 id="11-集合类型的定义"><a href="#1-1-集合类型的定义" class="headerlink" title="1.1 集合类型的定义"></a>1.1 集合类型的定义</h3><p>集合是多个元素的<strong>无序</strong>组合</p>
+<ul>
+<li>集合用大括号<code>&#123;&#125;</code>表示，元素间用逗号<code>,</code>分隔</li>
+<li>建立集合类型用<code>&#123;&#125;</code>或<code>set()</code></li>
+</ul>
+<p>例如：<code> A=&#123; &quot;python&quot; , 123 , (&quot;python&quot;,123) &#125;</code></p>
+<h3 id="12-集合间的运算"><a href="#1-2-集合间的运算" class="headerlink" title="1.2 集合间的运算"></a>1.2 集合间的运算</h3><p>交、并、补、差</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>操作符及应用</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S | T</td>
+<td>返回一个新集合，包括在集合S和T中的所有元素</td>
+</tr>
+<tr>
+<td>S - T</td>
+<td>返回一个新集合，包括S但不在T中的元素</td>
+</tr>
+<tr>
+<td>S &amp; T</td>
+<td>返回一个新集合，包括同时在S和T中的元素</td>
+</tr>
+<tr>
+<td>S ^ T</td>
+<td>返回一个新集合，包括S和T中的非相同元素</td>
+</tr>
+<tr>
+<td>S&lt;&#x3D;T或S&lt; T</td>
+<td>返回True&#x2F;False，判断S和T的子集关系</td>
+</tr>
+<tr>
+<td>S&gt;&#x3D;T或S&gt;T</td>
+<td>返回True&#x2F;False，判断S和T的包含关系</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A=&#123;<span class="string">&quot;p&quot;</span>,<span class="string">&quot;y&quot;</span>,<span class="number">123</span>&#125;</span><br><span class="line">B=<span class="built_in">set</span>(<span class="string">&quot;pypy123)</span></span><br><span class="line"><span class="string">A-B #&#123;123&#125;</span></span><br><span class="line"><span class="string">B-A #&#123;&#x27;3&#x27;,&#x27;1&#x27;,&#x27;2&#x27;&#125;</span></span><br><span class="line"><span class="string">A&amp;B #&#123;&#x27;p&#x27;,&#x27;y&#x27;&#125;</span></span><br><span class="line"><span class="string">A|B #&#123;&#x27;p&#x27;,&#x27;y&#x27;,&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,123&#125;</span></span><br><span class="line"><span class="string">A^B #&#123;&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,123&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="13-集合处理函数"><a href="#1-3-集合处理函数" class="headerlink" title="1.3 集合处理函数"></a>1.3 集合处理函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">S.add(x)     <span class="comment">#如果x不在集合S中，将x增加到S</span></span><br><span class="line">S.discard(x) <span class="comment">#移除S中的元素x，如果x不在集合S中，不报错</span></span><br><span class="line">S.remove(x)  <span class="comment">#移除S中元素x，如果x不在集合S中，产生KeyError异常</span></span><br><span class="line">S.clear(x)   <span class="comment">#移除S中所有元素</span></span><br><span class="line">S.pop()      <span class="comment">#随机返回S的一个元素，更新S，若S为空产生KeyError异常</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-序列"><a href="#2-序列" class="headerlink" title="2. 序列"></a>2. 序列</h2><p>序列是<strong>具有先后关系</strong>[^lorem]的一组元素。序列类型包括字符串、列表、元组、集合、字典。<br>[^lorem]:与集合不同，集合是无序元素集合</p>
+<ul>
+<li>序列是一维元素向量，元素类型可以不同</li>
+<li>类似数学元素序列：s<sub>0</sub>,s<sub>1</sub>,s<sub>2</sub></li>
+<li>元素间由序号引导，通过下标访问序列的特定元素</li>
+</ul>
+<h2 id="3-元组"><a href="#3-元组" class="headerlink" title="3. 元组"></a>3. 元组</h2><p>元组是序列的一种扩展。</p>
+<ul>
+<li>元组是一种序列类型，<strong>一旦创建就不能被修改</strong></li>
+<li>使用小括号<code>( )</code>或<code>tuple</code>创建，元素间用逗号分隔</li>
+<li>继承了序列的所有操作方法</li>
+<li>可以使用或不适用小括号，例如：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>    <span class="comment">#返回一个元组</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-列表"><a href="#4-列表" class="headerlink" title="4. 列表"></a>4. 列表</h2><p>列表是序列类型的一种扩展，十分常用。</p>
+<ul>
+<li>列表是一种序列类型，<strong>创建后可以被随意修改</strong></li>
+<li>使用方括号<code>[]</code>或<code>list()</code>创建，元素间用逗号隔开</li>
+<li>方括号<code>[]</code>真正创建一个列表，赋值仅传递引用</li>
+</ul>
+<h3 id="41-列表类型操作"><a href="#4-1-列表类型操作" class="headerlink" title="4.1 列表类型操作"></a>4.1 列表类型操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls[i] = x <span class="comment">#替换列表ls第i元素</span></span><br><span class="line">ls[i:j:k] = lt <span class="comment">#用替换ls切片后所对应元素的子列表</span></span><br><span class="line"><span class="keyword">del</span> ls[i] <span class="comment">#删除列表ls第i个元素</span></span><br><span class="line"><span class="keyword">del</span> ls[i:j:k] <span class="comment">#删除ls切片后的元素</span></span><br><span class="line">ls += lt <span class="comment">#更新列表</span></span><br></pre></td></tr></table></figure>
+<h3 id="42-列表类型操作函数和方法"><a href="#4-2-列表类型操作函数和方法" class="headerlink" title="4.2 列表类型操作函数和方法"></a>4.2 列表类型操作函数和方法</h3><h2 id="5-字典"><a href="#5-字典" class="headerlink" title="5. 字典"></a>5. 字典</h2><p>字典类型是<strong>映射</strong>的体现</p>
+<ul>
+<li>键值对：键是数据索引的扩展</li>
+<li>字典是键值对的集合，键值对之间<strong>无序</strong></li>
+<li>采用大括号<code>&#123;&#125;</code>和<code>dict()</code>创建，键值对用冒号<code>:</code>表示<br><code>&#123;&lt;键名&gt;:&lt;值&gt;&#125;</code></li>
+</ul>
+<h3 id="51-字典类型操作函数和方法"><a href="#5-1-字典类型操作函数和方法" class="headerlink" title="5.1 字典类型操作函数和方法"></a>5.1 字典类型操作函数和方法</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">del</span> d[k] <span class="comment">#删除字典d中键k对应的数据值</span></span><br><span class="line">k <span class="keyword">in</span> d <span class="comment">#判断键k是否在字典d中，如果在，返回True</span></span><br><span class="line">d.keys() <span class="comment">#返回字典d中所有键信息</span></span><br><span class="line">d.values() <span class="comment">#返回字典d中所有值的信息</span></span><br><span class="line">d.items() <span class="comment">#返回字典d中所有的键值对信息</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>链路层</title>
+    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%93%BE%E8%B7%AF%E5%B1%82/</url>
+    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>数据链路层在协议栈中的位置<br>向下：：<br>向上：</p>
+<p>功能：</p>
+<ul>
+<li><strong>封装成帧（Framing）</strong>：将比特流划分成“帧”的主要目的是为了检测和纠正物理层在比特传输中的可能出现的错误，数据链路层功能需借助“帧”的各个域来实现</li>
+<li><strong>差错控制（Error Control）</strong>：要处理传输中出现的差错，如位错误、丢失</li>
+<li><strong>流量控制（FLow Control）</strong>：确保发送方的发送速率，不大于接收方的处理速率</li>
+</ul>
+<p>服务：</p>
+<h2 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h2><p>关键问题： 接收方必须能从物理层接受的比特流中明确区分出一帧的开始和结束。这个问题被称为<strong>帧同步或帧界定</strong></p>
+<ul>
+<li>选择何种<strong>定界符</strong>，定界符出现在数据部分如何处理。</li>
+</ul>
+<p>封装成帧方式：</p>
+<ol>
+<li><strong>字节计数法</strong>：帧开始的数，表示该帧有多长。<strong>仅能用于无差错传输的情形</strong>，不健壮，很少使用。<br> <strong>3</strong> 1 2 3 <strong>4</strong> 1234</li>
+<li><strong>带字符填充的定界符法</strong>：定界符（FLAG），一个特殊的字节，比如<code>0111 1110</code>，即<code>0x7e</code>，<strong>用于区分前后两个不同的帧</strong>。<ul>
+<li>发送方：检查有效载荷，进行字节填充，若在有效荷载中<strong>发现定界符</strong>，则在前加入<strong>转义字节</strong></li>
+<li>接收方：去除头部的Flag后，对有效荷载进行检测，<strong>收到ESC转义字节后</strong>，将后一字节<strong>无条件成为有效载荷</strong>。找到真正的定界符后，进行处理，得到处理后的真正有效荷载。</li>
+</ul>
+</li>
+<li><strong>带比特填充的定界符法</strong>：<ul>
+<li>发送方检查有效载荷，若在有效载荷中出现连续5个1，则直接插入一个0比特</li>
+<li>接收方处理，若出现连续的<strong>5个1</strong>，若下一比特为0，则为有效载荷，直接丢弃0比特；若下一比特为1，则为定界符，一帧结束</li>
+</ul>
+</li>
+</ol>
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><p><strong>信道的噪声导致数据传输问题</strong></p>
+<ul>
+<li>差错：数据发生错误</li>
+<li></li>
+<li>丢失：接收方未收到</li>
+<li>乱序：先发后到，后发先到</li>
+<li>重复，一次发送，多次接受</li>
+</ul>
+<p><strong>解决方案</strong>：差错检测与纠正，确认重传</p>
+<h3 id="如何解决信道传输差错问题"><a href="#如何解决信道传输差错问题：" class="headerlink" title="如何解决信道传输差错问题："></a>如何解决信道传输差错问题：</h3><ul>
+<li>通常采用<strong>增加冗余信息</strong>（或称校验信息）的策略</li>
+</ul>
+<p>目标：保证一定差错检测和纠错能力的前提下，如何减少冗余信息</p>
+<h3 id="差错检测和纠正概述"><a href="#差错检测和纠正概述" class="headerlink" title="差错检测和纠正概述"></a>差错检测和纠正概述</h3><p>检错码</p>
+<ul>
+<li>在被发送的数据块中，包含一些荣誉信息，但这些信息只能是接收方</li>
+</ul>
+<h2 id="基本的数据链路层协议"><a href="#基本的数据链路层协议" class="headerlink" title="基本的数据链路层协议"></a>基本的数据链路层协议</h2>]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>物理层</title>
+    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/</url>
+    <content><![CDATA[<h2 id="物理层基本概念"><a href="#物理层基本概念" class="headerlink" title="物理层基本概念"></a>物理层基本概念</h2><ol>
+<li><strong>位置</strong>： 物理层是网络体系结构中的最底层</li>
+<li><strong>功能</strong>：规定如何再连接各个计算机之间比特流的传输</li>
+<li></li>
+</ol>
+<h3 id="物理层常用标准"><a href="#物理层常用标准" class="headerlink" title="物理层常用标准"></a>物理层常用标准</h3><p><strong>点对点通信线路</strong><br><strong>广播通信线路</strong>：一条公共通信线路连接多个节点</p>
+<h2 id="物理层数据通信"><a href="#物理层数据通信" class="headerlink" title="物理层数据通信"></a>物理层数据通信</h2><h3 id="波特率和比特率之间的关系"><a href="#波特率和比特率之间的关系" class="headerlink" title="波特率和比特率之间的关系"></a>波特率和比特率之间的关系</h3><h3 id="信道的最大数据传输速率"><a href="#信道的最大数据传输速率" class="headerlink" title="信道的最大数据传输速率"></a>信道的最大数据传输速率</h3><p>无噪声有限带宽信道的最大数据传输率公式</p>
+<p>奈奎斯特定理</p>
+<ul>
+<li>最大数据传输率 &#x3D; 2H log<sub>2</sub>V (bps)</li>
+<li>H指带宽</li>
+</ul>
+<p>随机噪声出现的大小用信噪比（信号功率S与噪声功率N之比）来衡量， 10log<sub>10</sub>S&#x2F;N,单位分贝</p>
+<p>香农定理</p>
+<ul>
+<li>带宽为H赫兹，信噪比为S&#x2F;N的任意信道的最大数据传输率为: Hlog<sub>2</sub>(1+S&#x2F;N)（bps）</li>
+<li>此式由信息论获得，具有普遍意义</li>
+</ul>
+<h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p>源点 -&gt; 发送器 -&gt; 传输系统 -&gt; 接收器 -&gt; 目标<br>PC   -&gt; 调制解调器 -&gt; 公用电话网 -&gt; 调制解调器 -&gt; PC机<br>数字比特流  -&gt;  模拟信号   -&gt;   模拟信号   -&gt;  数字比特流</p>
+<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p>串行和并行传输</p>
+<ul>
+<li>串行传输： 指数据在一个信道上按位依次传输的方式</li>
+<li><ul>
+<li>所需线路少，投资省，线路利用率搞</li>
+</ul>
+</li>
+<li><ul>
+<li>收发之间，适合远距离传输</li>
+</ul>
+</li>
+<li>并行传输：</li>
+<li>- </li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>按照数据信号在信道上的<strong>传送方向与时间</strong>的关系可分为：单工（类似广播）、半双工（一方占用信道）、全双工</p>
+<p>按照<strong>发&#x2F;收连两端实现同步</strong>的方法，传输方式可分为两类： 异步传输和同步传输。</p>
+<ul>
+<li>异步：发送器和接收器的时钟不同步</li>
+<li>同步：发送器和接收器的时钟是同步的</li>
+</ul>
+<h3 id="数据编码技术"><a href="#数据编码技术" class="headerlink" title="数据编码技术"></a>数据编码技术</h3><p>研究数据在信号传输过程中如何进行编码（变换）<br>常用的几种编码方式：</p>
+<ol>
+<li>不归零制码（NRZ: Non-Return to Zero）</li>
+</ol>
+<ul>
+<li>原理</li>
+</ul>
+<ol start="2">
+<li>曼彻斯特码（Manchester）,也称相位编码。分逢1跳变和逢0跳变。</li>
+<li>差分曼彻斯特码（Diffential Manchster）</li>
+</ol>
+<h3 id="频带传输"><a href="#频带传输" class="headerlink" title="频带传输"></a>频带传输</h3><p>三种调制技术：载波Asin(wt+)的三个特性幅度、频率、相位</p>
+<ul>
+<li>调幅(ASK)：</li>
+<li>调频(FSK):</li>
+<li>调相(PSK):</li>
+</ul>
+<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>传输介质是指发送器与接收器之间的物理通路可分为两大类：</p>
+<ul>
+<li>导引型传输介质：指电磁波被导向沿着某一媒体传播，包括</li>
+<li><ul>
+<li>双绞线、同轴电缆</li>
+</ul>
+</li>
+<li>非导引型传输介质：并不沿着某一确定通道传播</li>
+</ul>
+<h2 id="无线与卫星通信"><a href="#无线与卫星通信" class="headerlink" title="无线与卫星通信"></a>无线与卫星通信</h2><h3 id="无线通信的基本概念"><a href="#无线通信的基本概念" class="headerlink" title="无线通信的基本概念"></a>无线通信的基本概念</h3><h3 id="无线通信系统分类"><a href="#无线通信系统分类" class="headerlink" title="无线通信系统分类"></a>无线通信系统分类</h3><h3 id="卫星通信的基本概念"><a href="#卫星通信的基本概念" class="headerlink" title="卫星通信的基本概念"></a>卫星通信的基本概念</h3><p>卫星通信的基本特点<br>传播时延长</p>
+<h2 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h2><p>信道资源是有限的，实际网络中，多对用户往往需要利用信道资源传输信息，不同的信号同时在同一信道中传输会产生严重的相互干扰，导致传输失败<br><strong>复用</strong>：技术的目的是：允许用户使用一个共享信道进行通信，避免相互干扰，降低成本，提高利用率。<br><img src="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png" alt="复用示意图"></p>
+<h3 id="频分复用fdm"><a href="#频分复用（FDM）" class="headerlink" title="频分复用（FDM）"></a>频分复用（FDM）</h3><p>频分复用是一种讲多路基带信号调制到不同</p>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面向对象的基本特征</title>
+    <url>/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/</url>
+    <content><![CDATA[<p>Java中的面向对象基本特征是：封装、继承、多态</p>
+<h2 id="封装encapsulation"><a href="#封装（Encapsulation）" class="headerlink" title="封装（Encapsulation）"></a>封装（Encapsulation）</h2><p>包、访问控制符</p>
+<h3 id="11-包"><a href="#1-1-包" class="headerlink" title="1.1 包"></a>1.1 包</h3><ol>
+<li>包的封装：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> pack.sonpack. </span><br></pre></td></tr></table></figure>
+将该文件下的类放入pack.sonpack包</li>
+<li>包的使用<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pack.sonpack.*</span><br></pre></td></tr></table></figure>
+即引用pack.sonpack下所有的类。<strong>引入包时并不会将子包中的类一起引入</strong></li>
+</ol>
+<h3 id="12-访问控制符"><a href="#1-2-访问控制符" class="headerlink" title="1.2 访问控制符"></a>1.2 访问控制符</h3><p><strong>private:</strong> 仅能在类内访问<br><strong>default:</strong> private + 同一个包内访问<br><strong>protected:</strong> default + 包外子类访问<br><strong>public:</strong> protected + 包外非子类访问</p>
+<h2 id="继承inherition"><a href="#继承（inherition）" class="headerlink" title="继承（inherition）"></a>继承（inherition）</h2><p>C++： class 子类 : [访问控制符] 父类 {}<br>Java: class 子类 extends 父类 {}</p>
+<p>重写的作用：针对某些子类进行个性化设计<br>继承的本质：</p>
+<ul>
+<li>从现象上看，子类实例化之前，系统为这个子类对象单独实例化一个相应的父类对象。（每个子类构造函数调用之前，父类构造函数都会自动调用）</li>
+<li>从本质上：子类和父类就是一种组合关系，只是底层用继承的编译器使得其使用起来更加方便</li>
+</ul>
+<p>组合关系，从强到弱：<br>最强：继承</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>父类中的非私有成员都可以在子类全范围内重用。</p>
+<p>次之：成员级别组合，A类定义为B类的成员，A和B的生命周期相同</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A a=<span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">    <span class="comment">//其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    B(<span class="type">int</span> w)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;父类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> <span class="keyword">extends</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A(<span class="type">int</span> w)&#123;</span><br><span class="line">        <span class="built_in">super</span>(w);    <span class="comment">/*必须写在第一行*/</span></span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多态polymorphism"><a href="#多态（Polymorphism）" class="headerlink" title="多态（Polymorphism）"></a>多态（Polymorphism）</h2><p>静态多态性：重载（Overload）。<strong>同一个</strong>函数名称，在<strong>不同实参</strong>传入情况下，呈现<strong>不同功能</strong><br>静态：一个函数名称，但是还是要编写多个函数体</p>
+<p>动态多态性：<strong>父类引用可以指向子类对象</strong>，例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dialog show&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        Dialog d=<span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">        <span class="comment">//C++: Dialog *d=new FontDialog();</span></span><br><span class="line">        <span class="comment">//C++: 父类指针指向子类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>性质</strong>：父类引用调用重写成员时，调用的是重写子类成员</p>
+<p><strong>推论</strong>：</p>
+<ol>
+<li><p>函数定义父类形参，以子类对象作为实参传入</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(Dialog d)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">fun(<span class="keyword">new</span> <span class="title class_">FontDialog</span>())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数定义返回父类形参，以子类对象实际返回</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line">Dialog <span class="title function_">fun</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">Dialog d=fun();</span><br></pre></td></tr></table></figure>
+<p>多态性体现在：一个父类引用，在不同子类对象被指向的情况下，完成相应子类的功能。</p>
+</li>
+</ol>
+<p>该思想是软件支持“<strong>不修改源代码的情况下，能够二次开发</strong>”以及“<strong>模块可拼装</strong>”的基础。将两个业务类的关系变远，这就叫做软件工程中的“低耦合”。</p>
+<h3 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h3><p>抽象函数：在函数签名增加<code>abstract</code>关键字，该函数原则上要被重写，（可以理解为用来<strong>规范编程</strong>，确保某些方法必须要重写）。</p>
+<ol>
+<li>含有抽象函数的类，叫<strong>抽象类</strong>，用<code>abstract</code>来修饰</li>
+<li>抽象函数必须被子类重写，除非该子类也是个抽象类</li>
+<li>抽象函数没有函数体（类似于C++中的纯虚函数）</li>
+<li>抽象类<strong>不能被实例化</strong></li>
+</ol>
+<p>练习：</p>
+<ol>
+<li>抽象类中可否有普通函数？<strong>可以</strong></li>
+<li>抽象类中可否写构造函数？<strong>可以</strong></li>
+<li>抽象类不能被实例化，那它的构造函数和普通函数有什么用？ <strong>构造函数可以在子类中初始化某些变量；普通函数可以被子类重用</strong></li>
+<li>抽象函数必须被重写吗？ <strong>不一定，如果子类也是个抽象类的话</strong></li>
+</ol>
+<blockquote>
+<p>抽象类、抽象函数是一种：<strong>标准化手段</strong> 。</p>
+</blockquote>
+<h3 id="接口interface"><a href="#接口（interface）" class="headerlink" title="接口（interface）"></a>接口（interface）</h3><p>interface和抽象类类似，只不过<strong>它里面所有函数只能是抽象函数，所有的变量只能是常量</strong>。</p>
+<p>性质：</p>
+<ol>
+<li>接口中所有的函数都说抽象函数，变量只能是常量。<code>abstract</code>可以省略</li>
+<li>接口中所有的成员的都是<code>public</code>。所以<code>public</code>也可以省略</li>
+<li>接口中所有的变量都是常量,并且是静态常量</li>
+<li>一个类最多只能继承1个抽象类，但是可以实现（implements）多个接口，用逗号隔开。</li>
+</ol>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><ul>
+<li>在类前面加final，该类不能有子类</li>
+<li>成员函数前加final，该函数不能被重写</li>
+<li>成员变量前加final，为常量，必须事先赋值，不能再次赋值</li>
+</ul>
+<h2 id="object类"><a href="#object类" class="headerlink" title="object类"></a>object类</h2><p>在Java中定义一个类时，如果没有用extends明确标明直接父类，那么该类默认继承object类。</p>
+<p><strong>Java中任何一个类都是object的子类</strong></p>
+<p>该类有两个小作用：</p>
+<ol>
+<li>object类中，有一个toString方法，可以给子类一个以字符串展示的机会</li>
+<li>object类中，有一个equals方法，可以给予子类对象一个可以比较的机会<ul>
+<li>两个对象除非，指向同一个内存，否则，&#x3D;&#x3D;判断，为false </li>
+<li>若要判断两个对象内容是否相等，应该使用equals方法</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>操作系统用户界面</title>
+    <url>/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/</url>
+    <content><![CDATA[<h2 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h2><h3 id="bios"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>实模式（实地址模式 ，REAL MODE）:</p>
+<ul>
+<li>程序按照8086寻址方法访问0h~FFFFFh(1MB)空间</li>
+<li>寻址方式：物理地址（20位）&#x3D; 段地址 ：偏移地址</li>
+<li>CPU单任务运行</li>
+</ul>
+<p>保护模式（内存保护模式，PROTECT MODE）</p>
+<ul>
+<li>寻址方式：段</li>
+<li>虚拟地址，进程，封闭空间</li>
+<li>应用程序和操作系统的运行环境都被<strong>保护</strong></li>
+<li>CPU支持多任务</li>
+</ul>
+<p>实模式存取的1M空间：</p>
+<ul>
+<li>前面640K：00000~9FFFF 基本内存</li>
+<li>中间128K：A0000~BFFFF 显卡显存</li>
+<li>末尾256K：C0000~FFFFF <strong>BIOS</strong></li>
+<li><ul>
+<li>C0000~C7FFF:显示卡BIOS</li>
+</ul>
+</li>
+<li><ul>
+<li>C8000~CBFFF:IDE控制器BIOS</li>
+</ul>
+</li>
+<li><ul>
+<li>F0000~FFFFF：最后64KB，<strong>系统BIOS</strong><h2 id="操作系统生成"><a href="#操作系统生成" class="headerlink" title="操作系统生成"></a>操作系统生成</h2>满足特定硬件环境和用户需要，<strong>组装</strong>和<strong>构建</strong>操作系统过程</li>
+</ul>
+</li>
+</ul>
+<p>操作系统生成的主要步骤</p>
+<ul>
+<li>根据硬件环境&#x2F;用户要求配置功能模块和构造参数</li>
+<li><strong>构建OS的映像</strong></li>
+</ul>
+<p>操作系统的生成前提：</p>
+<ul>
+<li>操作系统有可拆装模块构成</li>
+<li>有交互式工具</li>
+<li>有映像构建（build）工具<h2 id="操作系统用户界面"><a href="#操作系统用户界面" class="headerlink" title="操作系统用户界面"></a>操作系统用户界面</h2><h3 id="用户界面的概念"><a href="#用户界面的概念" class="headerlink" title="用户界面的概念"></a>用户界面的概念</h3>定义：OS提供给用户操作计算机的机制，又称用户接口</li>
+</ul>
+<p>分类：</p>
+<ul>
+<li>操作界面</li>
+<li><ul>
+<li><strong>图形用户接口</strong>（GUI，Graphic User Interface）：窗口，图标，菜单，按钮，鼠标（消息，事件）</li>
+</ul>
+</li>
+<li><ul>
+<li><strong>键盘命令</strong>（COMMAND）：在控制台环境下接受键盘输入的命令，分为普通命令、批处理程序、shell</li>
+</ul>
+</li>
+<li>系统调用（System Call,系统功能调用，程序界面）</li>
+</ul>
+<h3 id="shell脚本编程"><a href="#Shell脚本编程" class="headerlink" title="Shell脚本编程"></a>Shell脚本编程</h3><p>脚本（Script）通过类似程序的方式执行具有一定逻辑顺序的<strong>命令序列</strong>完成较复杂的功能和人机交互。</p>
+<ul>
+<li>脚本程序保存在<strong>文本文件</strong>中</li>
+<li>脚本程序是Shell命令语句的集合</li>
+<li>Shell脚本程序由Shell环境解释执行</li>
+<li>执行Shell脚本文件需要具有可执行属性（x）.</li>
+<li><ul>
+<li><code>Chmod +x MyScript.sh</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>定义：操作系统<strong>内核</strong>为应用程序提供的<strong>服务&#x2F;函数</strong></p>
+<p>特点：</p>
+<ul>
+<li>一般涉及和性资源或硬件的操作，</li>
+<li>且运行于<strong>核态</strong></li>
+<li>每个系统调用具有唯一编号：ID</li>
+<li>调用程序过程会产生<strong>中断</strong>:自愿中断</li>
+<li>高级程序语言中使用隐式的系统调用</li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>操作系统的逻辑结构</title>
+    <url>/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>操作系统的逻辑结构指<strong>OS的设计和实现思路</strong>,可分为以下三种：</p>
+<ol>
+<li>整体式结构：以<strong>模块</strong>为基本单位<ul>
+<li>特点：</li>
+<li><ul>
+<li>模块设计、编码和调试独立</li>
+</ul>
+</li>
+<li><ul>
+<li>模块调用自由</li>
+</ul>
+</li>
+<li><ul>
+<li>魔魁啊通信多以<strong>全局变量</strong>形式完成</li>
+</ul>
+</li>
+<li>缺点：</li>
+<li><ul>
+<li>信息传递随意，维护和更新困难</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>层次式结构：例如TCP&#x2F;IP协议栈。p所有功能模块按照<strong>调用次序</strong>排成若干层，相邻层间只有<strong>单向依赖</strong>或<strong>单向调用</strong><br><img src="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/2022-03-14-11-03-53.png" alt="操作系统的层次结构"></li>
+<li>微内核结构（客户&#x2F;服务器结构）：操作系统 &#x3D; 微内核 + 核外服务器<ul>
+<li>微内核:足够小，提供OS最基本的核心功能和服务</li>
+<li>核外服务器：完成OS的绝大部分服务器功能</li>
+</ul>
+</li>
+</ol>
+<h2 id="cpu的态"><a href="#CPU的态" class="headerlink" title="CPU的态"></a>CPU的态</h2><p>CPU的工作状态，对资源和指令使用权限的描述</p>
+<h3 id="特权指令"><a href="#特权指令" class="headerlink" title="特权指令"></a>特权指令</h3><p>不能被用户随意的使用，只能由CPU亲自使用</p>
+<ul>
+<li>由用户态转到核态</li>
+<li>LGDT&#x2F;LIDT：装载特殊寄存器</li>
+<li>CLTS：清除任务开关标志</li>
+<li>STI&#x2F;CTI：允许和禁止中断</li>
+<li>HALT：停止CPU的工作</li>
+<li>从核态转回用户态</li>
+</ul>
+<h3 id="态的分类"><a href="#态的分类" class="headerlink" title="态的分类"></a>态的分类</h3><p>核态（Kernel mode)</p>
+<ul>
+<li>能够访问所有资源和执行所有指令</li>
+<li>管理程序OS内核</li>
+</ul>
+<p>用户态（User mode）</p>
+<ul>
+<li>仅能访问部分资源，其他资源受限</li>
+<li>用户程序</li>
+</ul>
+<p>管态（superVisor mode）</p>
+<h2 id="中断机制"><a href="#中断机制" class="headerlink" title="中断机制"></a>中断机制</h2><p><strong>中断，指CPU对突发的外部事件的反应过程或机制</strong>。CPU收到<strong>外部信号</strong>（中断信号）后，停止当前工作，专区专利该事件，处理完毕后回到原来工作的<strong>中断处</strong>（断点）继续原来的工作。</p>
+<p><strong>引入中断的目的：</strong></p>
+<ul>
+<li>实现并发活动</li>
+<li>实现实时处理</li>
+<li>故障自动处理</li>
+</ul>
+<p><strong>中断响应的实质：</strong></p>
+<ul>
+<li>交换指令执行地址</li>
+<li>交换CPU的态</li>
+<li>工作</li>
+<li><ul>
+<li>现场保护和恢复</li>
+</ul>
+</li>
+<li><ul>
+<li>参数传递（通信）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>死锁</title>
+    <url>/2022/03/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81/</url>
+    <content><![CDATA[<h2 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h2><p>哲学家就餐问题：五个哲学家围坐在圆桌旁边，有5只筷子。哲学家：思考-学习-吃饭<br>吃法使用两只筷子：</p>
+<ul>
+<li>拿一双筷子才能吃</li>
+<li>每次只能区一只筷子</li>
+<li>只取身边的筷子</li>
+<li>吃完放下筷子</li>
+</ul>
+<p><strong>死锁定义</strong>：两个或多个进程无限期的等待永远不会发生的条件的一种系统状态。(结果：每个进程都永远阻塞)</p>
+<p>例如：每个哲学家都无限期的等待邻座放下筷子，而邻座没有吃完之前不会放下筷子，而邻座缺一只筷子永远都无法吃完。</p>
+<h2 id="死锁的起因"><a href="#死锁的起因" class="headerlink" title="死锁的起因"></a>死锁的起因</h2><ul>
+<li><strong>系统资源有限：</strong>资源数目不足，进程对资源的竞争而产生死锁。</li>
+<li><strong>并发进程的推进顺序不当：</strong>进程请求资源或释放资源顺序不当</li>
+</ul>
+<h2 id="死锁的防范策略"><a href="#死锁的防范策略" class="headerlink" title="死锁的防范策略"></a>死锁的防范策略</h2><p>死锁的必要条件：</p>
+<ul>
+<li>互斥条件：进程互斥使用资源，资源具有独占性</li>
+<li>不剥夺条件：进程在访问完资源前不能被其他进程强行剥夺</li>
+<li>部分分配条件：进程边运行边申请资源，临时需要临时分配</li>
+<li>环路条件：多个进程构成环路：环中每个进程已占用的资源被前一进程申请，而自己所申请资源又被环中后一进程占用着</li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>进程管理</title>
+    <url>/2022/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h2><h3 id="进程基本概念"><a href="#进程基本概念" class="headerlink" title="进程基本概念"></a>进程基本概念</h3><p>描述和管理程序的过程——进程</p>
+<ul>
+<li>进程是程序在某个数据集合上的一次运行活动</li>
+<li>数据集合：软硬件环境，多个进程共存&#x2F;共享的环境</li>
+</ul>
+<p>进程的特征：</p>
+<ul>
+<li>动态性：</li>
+<li>并发性:</li>
+<li>异步性：进程按各自速度向前推进</li>
+<li>独立性：进程是系统分配资源和调度CPU的单位</li>
+</ul>
+<p>进程与程序的区别：</p>
+<ol>
+<li>动态与静态<ul>
+<li>进程是动态的：程序的一次执行过程</li>
+<li>程序是静态的：一组指令的有序集合</li>
+</ul>
+</li>
+<li>暂存与长存<ul>
+<li>进程是暂存的：在内存驻留</li>
+<li>程序是长存的：在介质上长期保存</li>
+</ul>
+</li>
+<li>程序和进程的对应<ul>
+<li>一个程序可能由多个进程<h3 id="12-进程的状态"><a href="#1-2-进程的状态" class="headerlink" title="1.2 进程的状态"></a>1.2 进程的状态</h3>运行状态（Running）</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>进程已经<strong>占有CPU</strong>，在CPU上运行</li>
+</ul>
+<p>就绪状态（Ready）</p>
+<ul>
+<li><strong>具备运行条件</strong>但由于无CPU，暂时不能运行</li>
+</ul>
+<p>阻塞状态（Block）</p>
+<ul>
+<li>因为<strong>等待某项服务</strong>完成或信号不能运行的状态</li>
+<li>如等待：系统调用，IO操作，合作进程信号</li>
+</ul>
+<p>进程状态的变迁：</p>
+<ol>
+<li>就绪-&gt;运行：进程调度</li>
+<li>运行-&gt;就绪：时间片到，被抢占</li>
+<li>运行-&gt;阻塞：请求服务，等待信号</li>
+<li>阻塞-&gt;就绪：服务完成；信号到来<br><img src="/2022/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/2022-03-15-20-20-01.png" alt="进程状态变迁"></li>
+</ol>
+<h3 id="13-进程控制块pcb"><a href="#1-3-进程控制块PCB" class="headerlink" title="1.3 进程控制块PCB"></a>1.3 进程控制块PCB</h3><p>进程控制块（Process Control Block PCB）</p>
+<ul>
+<li>描述进程状态、资源，和与相关进程关系的<strong>数据结构</strong></li>
+<li>PCB是进程的标志</li>
+<li>创建进程是创建PCB，进程撤销后PCB同时撤销</li>
+</ul>
+<h2 id="2-进程控制"><a href="#2-进程控制" class="headerlink" title="2. 进程控制"></a>2. 进程控制</h2><p>进程控制的概念</p>
+<ul>
+<li><strong>在进程生存全期间，对其全部行为的控制</strong></li>
+<li>四个典型的控制行为：创建进程，阻塞进程，撤销进程，唤醒进程</li>
+</ul>
+<p>原语：</p>
+<ul>
+<li>由若干指令构成的具有特定功能的函数</li>
+<li>具有<strong>原子性</strong>，其操作不可分割<h3 id="21-创建进程"><a href="#2-1-创建进程：" class="headerlink" title="2.1 创建进程："></a>2.1 创建进程：</h3>功能：创建一个具有指定标识PID表示的进程<br>参数：进程标识、优先级、进程起始地址、CPU初始状态、资源清单等。</li>
+</ul>
+<p>创建进程的过程：</p>
+<ul>
+<li>出啊构建一个空白的PCB</li>
+<li>获得并赋予进程标识符ID</li>
+<li>为进程分配空间</li>
+<li>初始化PCB</li>
+<li>插入相应的进程队列</li>
+</ul>
+<h3 id="22-撤销进程"><a href="#2-2-撤销进程" class="headerlink" title="2.2 撤销进程"></a>2.2 撤销进程</h3><h3 id="23-阻塞进程"><a href="#2-3-阻塞进程" class="headerlink" title="2.3 阻塞进程"></a>2.3 阻塞进程</h3><h2 id="3-线程tread"><a href="#3-线程（Tread）" class="headerlink" title="3. 线程（Tread）"></a>3. 线程（Tread）</h2><ul>
+<li>线程是可由CPU直接运行的实体</li>
+<li>一个进程可以创建多个线程</li>
+<li>多个线程共享CPU，可以实现并发运行<blockquote>
+<p>同时画圆和画方的例子</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>单线程程序</strong>：整个进程只有一个线程。Windows程序缺省只有一个线程（主线程，main线程）。<br><strong>多线程程序</strong>：整个进程只有有两个线程。主线程和至少一个用户线程。</p>
+<h2 id="4-临界区和锁"><a href="#4-临界区和锁" class="headerlink" title="4. 临界区和锁"></a>4. 临界区和锁</h2><h3 id="41-临界区与临界资源"><a href="#4-1-临界区与临界资源" class="headerlink" title="4.1 临界区与临界资源"></a>4.1 临界区与临界资源</h3><p><strong>临界资源（Critical Resource</strong>）：一次只允许一个进程独占访问（使用的）的资源<br><strong>临界区（Critical Section）</strong>：进程中访问临界资源的程序段</p>
+<p>访问特点：</p>
+<ul>
+<li>具有排他性</li>
+<li>并发进程不能同时进入临界区</li>
+</ul>
+<p><strong>设计临界区访问机制的四个原则</strong>:</p>
+<ul>
+<li>忙则等待：当临界区忙时，其他进程必须在临界区外等待</li>
+<li>空闲让进：当无进程处于临界区时，任何<strong>有权进程</strong>可进入临界区</li>
+<li>有限等待：进程进入临界区的请求应在<strong>有限时间</strong>内得到满足</li>
+<li><ul>
+<li>所以临界区不能设置太多或者太小，应该刚好包括有限资源，以方便其他等待的进程能<strong>尽可能的达到</strong>接近临界区的位置</li>
+</ul>
+</li>
+<li>让权等待：等待进程放弃CPU，让其他进程有机会得到CPU（？）</li>
+</ul>
+<h3 id="42-锁机制"><a href="#4-2-锁机制" class="headerlink" title="4.2 锁机制"></a>4.2 锁机制</h3><p>基本原理：</p>
+<ul>
+<li>设置一个<strong>标志</strong>S;</li>
+<li><ul>
+<li>表明临界资源<strong>可用</strong>还是<strong>不可用</strong></li>
+</ul>
+</li>
+<li><strong>进入</strong>临界区之前检查标志是否可用</li>
+<li><ul>
+<li>若为不可用状态：进程在临界区之外等待</li>
+</ul>
+</li>
+<li><ul>
+<li>若为可用状态：访问临界资源，且将标志修改为不可用</li>
+</ul>
+</li>
+<li><strong>退出</strong>临界区时将标志修改为可用状态</li>
+</ul>
+<h2 id="5-同步和p-v操作"><a href="#5-同步和P-V操作" class="headerlink" title="5. 同步和P-V操作"></a>5. 同步和P-V操作</h2><h3 id="51-同步和互斥的概念"><a href="#5-1-同步和互斥的概念" class="headerlink" title="5.1 同步和互斥的概念"></a>5.1 同步和互斥的概念</h3><p>互斥：多个进程由于<strong>共享了独占性资源</strong>，必须协调各进程对资源的存取顺序：确保没有任何两个或以上的进程<strong>同时进行存取操作</strong>。</p>
+<ul>
+<li>互斥和资源共享相关</li>
+<li>资源：临界资源</li>
+<li>存取操作区域：临界区域</li>
+</ul>
+<p>同步：若干<strong>合作进程</strong>为了完成一个共同的任务，需要相互协调运行步伐，一个进程<strong>开始某个操作</strong>之前必须要求另一个进程<strong>已经完成</strong>某个操作，否则前面的进程只能<strong>等待</strong></p>
+<h3 id="52-p-v操作概念"><a href="#5-2-P-V操作概念" class="headerlink" title="5.2 P-V操作概念"></a>5.2 P-V操作概念</h3><p>信号灯的概念：是一种卓有成效的<strong>进程同步机制</strong>。</p>
+<p>进程在运行过程中<strong>受信号灯的状态控制</strong>，并能<strong>改变信号灯状态</strong></p>
+<ul>
+<li>进程受控制：信号灯的状态可以<strong>阻塞</strong>或<strong>唤醒</strong>进程</li>
+<li>改变信号灯：信号灯的<strong>状态</strong>可以被进程<strong>改变</strong></li>
+</ul>
+<h3 id="53-p-v操作解决互斥问题"><a href="#5-3-P-V操作解决互斥问题" class="headerlink" title="5.3 P-V操作解决互斥问题"></a>5.3 P-V操作解决互斥问题</h3><p><strong>实质是实现对临界区的互斥访问</strong>，允许最多1个进程处于临界区</p>
+<p><code>mutex=1</code><br>应用过程：</p>
+<ul>
+<li>进入临界区之前先执行P操作  （上锁）</li>
+<li>离开临界区之后再执行V操作  （开锁）</li>
+</ul>
+<h3 id="54-p-v操作解决同步问题"><a href="#5-4-P-V操作解决同步问题" class="headerlink" title="5.4 P-V操作解决同步问题"></a>5.4 P-V操作解决同步问题</h3><p>同步机制实质：</p>
+<ul>
+<li>运行条件不满足时，能让进程<strong>暂停</strong></li>
+<li>运行条件满足时，能让进程立即<strong>继续</strong></li>
+</ul>
+<p>P-V操作应用于进程同步的基本思路</p>
+<ul>
+<li>暂停当前进程：在<strong>关键操作之前</strong>执行<strong>P</strong>操作</li>
+<li><ul>
+<li>必要时可暂停</li>
+</ul>
+</li>
+<li>继续进程：在<strong>关键操作之后</strong>执行<strong>V</strong>操作</li>
+<li><ul>
+<li>必要时唤醒合作进程</li>
+</ul>
+</li>
+<li>定义<strong>有意义</strong>的信号量<strong>S</strong>，并设置合适的<strong>初值</strong></li>
+<li><ul>
+<li>信号量S能明确的表示<strong>运行条件</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="55-经典同步问题"><a href="#5-5-经典同步问题" class="headerlink" title="5.5 经典同步问题"></a>5.5 经典同步问题</h3><p>生产者和消费者问题：一群<strong>生产者</strong>向一群<strong>消费者</strong>提供<strong>产品（数据）</strong>，共享缓冲区。</p>
+<h2 id="6-windows和linux同步机制"><a href="#6-Windows和Linux同步机制" class="headerlink" title="6. Windows和Linux同步机制"></a>6. Windows和Linux同步机制</h2><h2 id="7-进程通信"><a href="#7-进程通信" class="headerlink" title="7. 进程通信"></a>7. 进程通信</h2><h3 id="71-匿名管道通信"><a href="#7-1-匿名管道通信" class="headerlink" title="7.1 匿名管道通信"></a>7.1 匿名管道通信</h3><p><strong>管道定义(pipe)：</strong>管道是进程间的一种通信机制。一个进程（A）可以通过管道把数据传输给另一个进程（B）。A向管道输入数据，B从管道读取数据。<br>A -&gt; (输入数据)-&gt; 管道 -&gt; (读取数据) -&gt; B</p>
+<h3 id="linux信号通信"><a href="#Linux信号通信" class="headerlink" title="Linux信号通信"></a>Linux信号通信</h3><p>信号的概念：</p>
+<ul>
+<li>信号是Linux进程间一种重要的<strong>通信机制</strong></li>
+<li>信号是向进程发送的<strong>一个通知</strong>，通知某个事件已发送</li>
+<li>收到信号的进程可以<strong>立即执行</strong>指定的操作</li>
+<li>信号的发出可以是进程，也可以是系统（含硬件）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>语法分析</title>
+    <url>/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="语法分析器功能"><a href="#语法分析器功能" class="headerlink" title="语法分析器功能"></a>语法分析器功能</h2><p>在<strong>词法分析</strong>出的单词符号串基础上分析并判别程序的结构<strong>是否符合语法规则</strong></p>
+<h2 id="语法分析器分类"><a href="#语法分析器分类" class="headerlink" title="语法分析器分类"></a>语法分析器分类</h2><p>可分为<strong>自上而下分析法</strong>和<strong>自下而上分析法</strong>。</p>
+<p>程序 -&gt; 下<br>语言 -&gt; 开始符<br>文法 -&gt; 上</p>
+<p>自上而下分析：<strong>是从文法的开始符号出发，试图推导出句子。</strong> 它要解决的关键问题是在对某一个非终结符进行推导时，选择以它为左部的多个产生式的中的哪一个。 <strong><em>推导</em></strong></p>
+<p>自下而上分析：<strong>是从输入符号串出发，试图归约到文法的开始符号。</strong> 分析过程中，每次选择与某个产生式右部符号串相同的一个子串进行归约。它要解决的关键问题是如何确定一个可归约的子串。 <strong><em>归约</em></strong></p>
+<h2 id="自上而下分析法"><a href="#自上而下分析法" class="headerlink" title="自上而下分析法"></a>自上而下分析法</h2><p>问题：</p>
+<ol>
+<li><strong>回溯问题</strong></li>
+<li>虚假匹配问题</li>
+<li>最终报告分析不成功，难于知道输入的语法具体错误在哪</li>
+<li></li>
+<li><h2 id="自下而上分析法"><a href="#自下而上分析法" class="headerlink" title="自下而上分析法"></a>自下而上分析法</h2></li>
+</ol>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java语言核心包</title>
+    <url>/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/</url>
+    <content><![CDATA[<h2 id="javalang包"><a href="#java-lang包" class="headerlink" title="java.lang包"></a>java.lang包</h2><p>时Java中最基础的核心包，里面包含……</p>
+<h3 id="javalangmath"><a href="#Java-lang-Math" class="headerlink" title="Java.lang.Math"></a>Java.lang.Math</h3><h3 id="javalangstring"><a href="#Java-lang-String" class="headerlink" title="Java.lang.String"></a>Java.lang.String</h3><p>直接赋值时，系统为了节省内存，用的是<strong>池机制</strong></p>
+<p><strong>如何判断字符串内容是否相等？</strong></p>
+<ul>
+<li>显然，不能使用 &#x3D;&#x3D; </li>
+<li>所以需要使用equals进行判断。</li>
+</ul>
+<h3 id="javalangstringbuffer类"><a href="#Java-lang-StringBuffer类" class="headerlink" title="Java.lang.StringBuffer类"></a>Java.lang.StringBuffer类</h3><p>负责字符串处理，是自变型字符串，操作之后，自己变化。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s1.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s1不变</span></span><br><span class="line">StringBuffer s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s2.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s2为“中南大学”</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="javautil包"><a href="#Java-util包" class="headerlink" title="Java.util包"></a>Java.util包</h2><p>最重要的是：Java集合框架（变长数组）<br>三类：</p>
+<ol>
+<li><p>List类：一维变长数组，元素有位置，可重复</p>
+<ul>
+<li>ArrayList：底层用数组存储</li>
+<li>LinkedList:底层用链表存储</li>
+<li>Vector：实现了多线程的安全</li>
+</ul>
+</li>
+<li><p>Set类：一维变长数组，元素无位置信息，不可重复</p>
+</li>
+<li><p>Map类：二维变长数组</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>post</title>
+    <url>/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>存储管理</title>
+    <url>/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="存储管理的功能"><a href="#存储管理的功能" class="headerlink" title="存储管理的功能"></a>存储管理的功能</h2><h3 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h3><p>把程序中的地址（虚拟地址&#x2F;逻辑地址）变成内存的真实地址（实地址）的过程<br>地址重定位，地址重映射</p>
+<h4 id="固定地址映射"><a href="#固定地址映射" class="headerlink" title="固定地址映射"></a>固定地址映射</h4><ul>
+<li>固定地址映射：<strong>编程或编译时</strong>确定逻辑地址和物理地址映射关系。</li>
+</ul>
+<p>特点：程序<strong>加载时</strong>必须放在内存中，容易产生冲突，运行失败</p>
+<h4 id="静态地址映射"><a href="#静态地址映射" class="headerlink" title="静态地址映射"></a>静态地址映射</h4><p>定义：程序<strong>装入时</strong>有操作系统完成逻辑地址到物理地址的映射</p>
+<p>基本概念：</p>
+<ul>
+<li>逻辑地址 VA（virtual addr）</li>
+<li>装入基址 BA （base addr）</li>
+<li>物理地址 MA （Memory addr）<br> MA &#x3D; BA + VA</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>程序运行之前确定映射关系</li>
+<li>程序<strong>装入后不能移动</strong></li>
+<li><ul>
+<li>如果移动必须放回原来位置</li>
+</ul>
+</li>
+<li>程序占用<strong>连续的</strong>内存空间</li>
+</ul>
+<h4 id="动态地址映射"><a href="#动态地址映射" class="headerlink" title="动态地址映射"></a>动态地址映射</h4><p>定义：在程序执行过程中把逻辑地址转换为物理地址。例如：MOV AX，[500]; 访问500单元时。映射过程与静态地址映射相同</p>
+<p>特点：</p>
+<ul>
+<li>程序占用的内存空间可动态变化，要求即使更新基址</li>
+<li>程序不要求占用连续的内存空间，每段放置基址BA系统应该知道</li>
+<li>便于多个进程共享代码</li>
+</ul>
+<h3 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h3><h3 id="内存分配功能"><a href="#内存分配功能" class="headerlink" title="内存分配功能"></a>内存分配功能</h3><p>为程序运行分配足够的内存空间<br>需要解决的问题：</p>
+<ul>
+<li>放置策略：程序调入内存时将其放置在哪个内存区</li>
+<li>调入策略：何时把药运行的代码和药访问的数据调入内存</li>
+<li>淘汰策略：内存空间不够时，腾出空间</li>
+</ul>
+<h3 id="存储保护功能"><a href="#存储保护功能" class="headerlink" title="存储保护功能"></a>存储保护功能</h3><p>保证在内存中的多道程序只能在给定的存储区域内活动并互不干扰：防止访问越界，防止访问越权</p>
+<p>方法：界址寄存器</p>
+<ul>
+<li>在cpu中设置一对下线寄存器和上限寄存器存放程序在内存中的下限地址和上限地址</li>
+</ul>
+<h2 id="物理内存管理"><a href="#物理内存管理" class="headerlink" title="物理内存管理"></a>物理内存管理</h2><h3 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h3><h4 id="单一区存储管理不分区存储管理"><a href="#单一区存储管理（不分区存储管理）" class="headerlink" title="单一区存储管理（不分区存储管理）"></a>单一区存储管理（不分区存储管理）</h4><p>用户去不分区，完全被一个程序占用</p>
+<h4 id="分区存储管理"><a href="#分区存储管理-1" class="headerlink" title="分区存储管理"></a>分区存储管理</h4><ul>
+<li>把用户区内存划分为若干大小不等的分区，供不同程序使用</li>
+<li>适合单用户单任务系统</li>
+</ul>
+<p>固定分区：每个分区位置固定，不再改变。系统要维护分区表<br>动态分区：存在内存碎片</p>
+<p>下面具体讨论如何在动态分区保证内存碎片合理利用</p>
+<h3 id="空闲区表如何排序放置策略"><a href="#空闲区表如何排序——放置策略" class="headerlink" title="空闲区表如何排序——放置策略"></a>空闲区表如何排序——放置策略</h3><p>放置策略（空闲区表排序原则）</p>
+<ul>
+<li>首次适应算法：按空闲区位置（首址）排序递增排序</li>
+<li>：按空闲区位置（首址）递减排序</li>
+<li>最佳适应算法：按空闲区大小的递增排序</li>
+<li>最坏适应算法：按空闲区大小的递减排序</li>
+</ul>
+<h3 id="分区的回收"><a href="#分区的回收" class="headerlink" title="分区的回收"></a>分区的回收</h3><p>功能：回收程序释放分区（释放区），登记到空闲区表中，以便再分配</p>
+<p>回收算法：</p>
+<ul>
+<li>要考虑释放区与现有空闲区<strong>是否相邻</strong>？</li>
+<li>若释放去与现有空闲区不相邻，则直接插入空闲区表</li>
+<li>若释放去与现有空闲区相邻，则于空闲区合并后更新空闲区表</li>
+</ul>
+<h3 id="内存覆盖技术"><a href="#内存覆盖技术" class="headerlink" title="内存覆盖技术"></a>内存覆盖技术</h3><p>目的：在<strong>较小的</strong>内存空间中运行较大的程序</p>
+<p>内存分区：</p>
+<ul>
+<li>常驻区：被某段单独切固定的占用，可划分为多个</li>
+<li>覆盖区：能被多端共用（覆盖），可划分为多个</li>
+</ul>
+<p>缺点：编程复杂，程序员划分程序模块并确定覆盖关系</p>
+<h3 id="内存交换技术"><a href="#内存交换技术" class="headerlink" title="内存交换技术"></a>内存交换技术</h3><p>原理：内存不够时把进程写到磁盘，当进程要运行时重新写回内存</p>
+<h3 id="内存碎片"><a href="#内存碎片" class="headerlink" title="内存碎片"></a>内存碎片</h3><p>过小的空闲区，难实际利用。内存碎片会降低内存区的利用率。</p>
+<blockquote>
+<p><strong>动态分区时，最佳适应法最容易产生碎片</strong><br>因为内存反复分配和分隔，容易产生较小的难以利用的内存碎片</p>
+</blockquote>
+<p>碎片问题的解决：</p>
+<ol>
+<li>规定门限值：分隔空闲区时，若剩余部分小于门限值，则此空闲区不进行分隔，而是全部分配给用户。（不算多此一举吗？）</li>
+<li>内存拼接技术：将所有空闲区集中一起构成一个大的空闲区</li>
+<li>解除程序占用<strong>连续内存</strong>才能运行的限制：让程序运行在不连续的内存地址。</li>
+</ol>
+<h2 id="虚拟内存管理"><a href="#虚拟内存管理-1" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h2><p>基本目标：</p>
+<ul>
+<li>使得大的程序能在较小的内存中运行</li>
+<li>使得多个程序能在较小的内存中运行</li>
+<li>使得多个程序并发运行时地址不冲突</li>
+<li>使得内存利用效率高：无碎片，共享方便</li>
+</ul>
+<p>实现思路：在程序运行时，只把当前必要的很小一部分代码和数据装入内存中，其余代码和数据需要时再装入。不再运行的代码和数据及时从内存删除。</p>
+<p>典型虚拟内存管理方式：</p>
+<ul>
+<li>页式虚拟存储管理</li>
+<li>段式虚拟存储管理</li>
+<li>段页式虚拟存储管理</li>
+</ul>
+<h3 id="页式虚拟内存管理的概念"><a href="#页式虚拟内存管理的概念" class="headerlink" title="页式虚拟内存管理的概念"></a>页式虚拟内存管理的概念</h3><p>概念：把进程空间和内存空间划成等大小的小片</p>
+<ul>
+<li>进程的小片—— <strong>页</strong>（虚拟页或页面）</li>
+<li>内存的小片—— **（物理页）</li>
+</ul>
+<p>进程装入和使用内存的原则：</p>
+<ul>
+<li>内存以<strong>页框</strong>为单位分配使用</li>
+<li>进程以<strong>页</strong>为单位装入内存</li>
+</ul>
+<h4 id="页表和页式地址的映射"><a href="#页表和页式地址的映射" class="headerlink" title="页表和页式地址的映射"></a>页表和页式地址的映射</h4><p>虚拟地址（VA）可以分解成<strong>页号</strong>P和<strong>页内偏移</strong>W<br>页号（P）: VA所处页的编号&#x3D;VA&#x2F;页的大小<br>页内偏移：VA在所处页中的偏移&#x3D;VA % 页的大小</p>
+<p>页面映射表：记录<strong>页</strong>与<strong>页框</strong>之间的<strong>对应关系</strong></p>
+<h3 id="快表技术和页面共享技术"><a href="#快表技术和页面共享技术" class="headerlink" title="快表技术和页面共享技术"></a>快表技术和页面共享技术</h3><h4 id="快表机制cache"><a href="#快表机制（Cache）" class="headerlink" title="快表机制（Cache）"></a>快表机制（Cache）</h4><p>快表概念：</p>
+<ul>
+<li>慢表：页表放在内存中</li>
+<li>快表：页表放在cache中</li>
+</ul>
+<h4 id="页面共享技术"><a href="#页面共享技术" class="headerlink" title="页面共享技术"></a>页面共享技术</h4><p>页面共享原理：</p>
+<ul>
+<li>在不同进程的页表中填上<strong>相同的页框号</strong>，多个进程能访问相同的内存空间，从而实现<strong>页面共享</strong>。</li>
+<li><strong>共享页面</strong>在内存只有<strong>一份</strong>真实存储，节省内存</li>
+</ul>
+<h3 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h3><p><img src="/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/2022-03-30-20-15-30.png" alt="缺页的情况"></p>
+<p>扩充有<strong>中断位</strong>和辅存地址的页表</p>
+<p>缺页中断：在地址映射过程中，当所要访问的目的页不在内存时，则系统产生异常中断 —— 缺页中断</p>
+<h3 id="页面淘汰策略"><a href="#页面淘汰策略" class="headerlink" title="页面淘汰策略"></a>页面淘汰策略</h3><p>淘汰策略：选择淘汰哪一页的规则称为淘汰策略</p>
+<p>页面抖动：页面在内存和辅存间频繁交换的现象。“抖动”会导致系统效率下降</p>
+<p>好的淘汰策略：具有较低的缺页率，页面抖动较少<br>常用的淘汰算法：</p>
+<ul>
+<li>最佳算法（OPT算法）:淘汰以后<strong>不再需要</strong>或<strong>最远的将来</strong>才会用到的页面。理论最佳，实际无法实现</li>
+<li>先进先出淘汰算法（FIFO算法）：淘汰在<strong>内存中停留时间最长</strong>的页面。</li>
+<li>最久未使用淘汰算法（LRU算法）：淘汰<strong>最长时间未被使用</strong>的页面。</li>
+<li>最不经常使用算法（LFU算法）：选择到当前时间为止被访问次数最少的页面。</li>
+</ul>
+<h3 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h3><p>进程分段：把进程按<strong>逻辑意义</strong>划分位多个段，每段有段名，进程由多段组成</p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
       </categories>
   </entry>
 </search>
