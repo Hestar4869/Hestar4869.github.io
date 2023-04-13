@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java:基础知识</title>
-    <url>/2022/02/26/Java/Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="java的三个版本"><a href="#Java的三个版本" class="headerlink" title="Java的三个版本"></a>Java的三个版本</h2><p>在多年的发展中，java的应用产生了三个开发版本：</p>
-<ol>
-<li>JavaSE: Java Standard Edition，Java技术标准版，以界面程序，Java小程序和其它一些典型的应用为目标。</li>
-<li>JavaEE: Java Enterprise Edition，Java技术企业版，以服务器端程序和企业软件的开发为目标。</li>
-<li>JavaME: Java Micro Edition，Java技术微型版，为小型设备，独立设备，互联移动设备，嵌入式设备程序开发而设计。</li>
-</ol>
-<p>我们常用的是JavaSE</p>
-<h2 id="jvm-jre-jdk的区别"><a href="#JVM、JRE、JDK的区别" class="headerlink" title="JVM、JRE、JDK的区别"></a>JVM、JRE、JDK的区别</h2><ul>
-<li>JVM: Java Virtual Machine，即Java虚拟机。</li>
-<li>JRE: Java Runtime Environment，指Java运行环境。JRE包括JVM和Java核心类库。</li>
-<li>JDK: Java Development Kit，指Java开发工具包，包括JRE和Java开发工具（javac.exe&#x2F;jar.exe）。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>lab0</title>
     <url>/2022/04/05/CS144/lab0/</url>
     <content><![CDATA[<p>主要是两部分：</p>
@@ -49,19 +29,20 @@
       </categories>
   </entry>
   <entry>
-    <title>Java多线程开发</title>
-    <url>/2022/04/04/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<p>进程（Process）：操作系统中能够“同时”运行的多个应用程序，实际上在底层是“分时”（时间片轮转）<br>线程（Thread）：一个应用程序中，能够“同时”运行的多个任务，比如：在线播放（一边下载，一边播放），实际上，在底层是“分时”（时间片轮转）。</p>
-<p>针对Java语言，我们讲解线程，如果是讲解进程，在操作系统中。</p>
-<p>实现线程的两种方法：</p>
+    <title>Java:基础知识</title>
+    <url>/2022/02/26/Java/Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="java的三个版本"><a href="#Java的三个版本" class="headerlink" title="Java的三个版本"></a>Java的三个版本</h2><p>在多年的发展中，java的应用产生了三个开发版本：</p>
 <ol>
-<li><p>让需要实现线程的类，继承java.lang.Thread类，将需要实现线程的代码，放在从Thread类中重写的run函数内。最后开启线程，用线程对象的start()方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步：继承Thread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Downloader</span> <span class="keyword">extends</span> <span class="title class_">java</span>.lang.Thread&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    Downloader d=<span class="keyword">new</span> <span class="title class_">Downloader</span>();</span><br><span class="line">    d.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题：用了多线程，多个任务完成得比以前快，是不是说明多线程让CPU运行更快了呢？不是。只是让CPU的利用率提高了。</p>
-</li>
-<li><p>让需要实现的线程的类，实现java.lang.Runnable接口；将需要实现的类实现Runnable接口，重写run函数。然后实例化线程，将类的对象传入线程的构造函数，再调用线程的start方法。</p>
-</li>
+<li>JavaSE: Java Standard Edition，Java技术标准版，以界面程序，Java小程序和其它一些典型的应用为目标。</li>
+<li>JavaEE: Java Enterprise Edition，Java技术企业版，以服务器端程序和企业软件的开发为目标。</li>
+<li>JavaME: Java Micro Edition，Java技术微型版，为小型设备，独立设备，互联移动设备，嵌入式设备程序开发而设计。</li>
 </ol>
+<p>我们常用的是JavaSE</p>
+<h2 id="jvm-jre-jdk的区别"><a href="#JVM、JRE、JDK的区别" class="headerlink" title="JVM、JRE、JDK的区别"></a>JVM、JRE、JDK的区别</h2><ul>
+<li>JVM: Java Virtual Machine，即Java虚拟机。</li>
+<li>JRE: Java Runtime Environment，指Java运行环境。JRE包括JVM和Java核心类库。</li>
+<li>JDK: Java Development Kit，指Java开发工具包，包括JRE和Java开发工具（javac.exe&#x2F;jar.exe）。</li>
+</ul>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -124,6 +105,34 @@
       </categories>
   </entry>
   <entry>
+    <title>Java多线程开发</title>
+    <url>/2022/04/04/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<p>进程（Process）：操作系统中能够“同时”运行的多个应用程序，实际上在底层是“分时”（时间片轮转）<br>线程（Thread）：一个应用程序中，能够“同时”运行的多个任务，比如：在线播放（一边下载，一边播放），实际上，在底层是“分时”（时间片轮转）。</p>
+<p>针对Java语言，我们讲解线程，如果是讲解进程，在操作系统中。</p>
+<p>实现线程的两种方法：</p>
+<ol>
+<li><p>让需要实现线程的类，继承java.lang.Thread类，将需要实现线程的代码，放在从Thread类中重写的run函数内。最后开启线程，用线程对象的start()方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步：继承Thread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Downloader</span> <span class="keyword">extends</span> <span class="title class_">java</span>.lang.Thread&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    Downloader d=<span class="keyword">new</span> <span class="title class_">Downloader</span>();</span><br><span class="line">    d.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题：用了多线程，多个任务完成得比以前快，是不是说明多线程让CPU运行更快了呢？不是。只是让CPU的利用率提高了。</p>
+</li>
+<li><p>让需要实现的线程的类，实现java.lang.Runnable接口；将需要实现的类实现Runnable接口，重写run函数。然后实例化线程，将类的对象传入线程的构造函数，再调用线程的start方法。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java画图</title>
+    <url>/2022/04/25/Java/Java%E7%94%BB%E5%9B%BE/</url>
+    <content><![CDATA[<p>用控件组成的界面，一般叫做：高级界面<br>纯粹用绘图方式组成界面，一般叫做：低级界面</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Java语言核心包</title>
     <url>/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/</url>
     <content><![CDATA[<h2 id="javalang包"><a href="#java-lang包" class="headerlink" title="java.lang包"></a>java.lang包</h2><p>时Java中最基础的核心包，里面包含……</p>
@@ -154,25 +163,6 @@
       <categories>
         <category>Java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Java画图</title>
-    <url>/2022/04/25/Java/Java%E7%94%BB%E5%9B%BE/</url>
-    <content><![CDATA[<p>用控件组成的界面，一般叫做：高级界面<br>纯粹用绘图方式组成界面，一般叫做：低级界面</p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>用TCP开发网络应用程序</title>
-    <url>/2022/05/02/Java/%E7%94%A8TCP%E5%BC%80%E5%8F%91%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<p>TCP:传输控制协议 面向连接 　打电话<br>UDP：数据包协议　面向数据包　发短信<br>网络应用程序：微信、QQ</p>
-<p>基础概念：<br>C&#x2F;S模式：客户端&#x2F;服务器 客户安装应用程序，和服务器通信<br>B&#x2F;S模式：浏览器&#x2F;服务器 客户端安装浏览器，和服务器通信</p>
-]]></content>
-      <tags>
-        <tag>categories</tag>
-      </tags>
   </entry>
   <entry>
     <title>用Swing开发GUI程序</title>
@@ -206,6 +196,16 @@
       <categories>
         <category>Java</category>
       </categories>
+  </entry>
+  <entry>
+    <title>用TCP开发网络应用程序</title>
+    <url>/2022/05/02/Java/%E7%94%A8TCP%E5%BC%80%E5%8F%91%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<p>TCP:传输控制协议 面向连接 　打电话<br>UDP：数据包协议　面向数据包　发短信<br>网络应用程序：微信、QQ</p>
+<p>基础概念：<br>C&#x2F;S模式：客户端&#x2F;服务器 客户安装应用程序，和服务器通信<br>B&#x2F;S模式：浏览器&#x2F;服务器 客户端安装浏览器，和服务器通信</p>
+]]></content>
+      <tags>
+        <tag>categories</tag>
+      </tags>
   </entry>
   <entry>
     <title>面向对象的基本特征</title>
@@ -401,30 +401,41 @@ A --> D(IPv4地址结构 sin_addr)</pre>
       </categories>
   </entry>
   <entry>
-    <title>turtle库的简单使用</title>
-    <url>/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="turtle库基本介绍"><a href="#turtle库基本介绍" class="headerlink" title="turtle库基本介绍"></a>turtle库基本介绍</h2><p>turtle库是turtle绘图体系的python实现。<br>可以将turtle理解为一直”海龟”，它在窗体的正中心，在画布上游走，走过的轨迹形成了绘制的图形。”海龟”由程序控制，可以变换颜色，该改变宽度等。</p>
-<h2 id="turtle绘图窗体布局"><a href="#turtle绘图窗体布局" class="headerlink" title="turtle绘图窗体布局"></a>turtle绘图窗体布局</h2><p>整个windows桌面窗口是一个窗体，桌面的左上角的坐标为<code>(0,0)</code>，turtle绘图的窗体是另一个窗体，左上角坐标为<code>(startx,starty)</code><br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-05-55.png" alt="turtle的绘图窗体"></p>
-<p>我们使用<code>turle.setup(width,height,startx,starty)</code>来设置窗体大小以及位置，若<code>startx</code>和<code>starty</code>参数未指定，则默认居中。</p>
-<h2 id="turtle运动控制函数"><a href="#turtle运动控制函数" class="headerlink" title="turtle运动控制函数"></a>turtle运动控制函数</h2><h3 id="31-turtle空间坐标体系"><a href="#3-1-turtle空间坐标体系" class="headerlink" title="3.1 turtle空间坐标体系"></a>3.1 turtle空间坐标体系</h3><h4 id="311-绝对坐标"><a href="#3-1-1-绝对坐标" class="headerlink" title="3.1.1 绝对坐标"></a>3.1.1 绝对坐标</h4><p>相应的可使用<code>turtle.goto()</code>函数来控制<code>turtle</code>的移动方向，移动时的坐标为<strong>绝对坐标</strong><br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-11-17.png" alt="绝对坐标"></p>
-<h4 id="312-海龟坐标"><a href="#3-1-2-海龟坐标" class="headerlink" title="3.1.2 海龟坐标"></a>3.1.2 海龟坐标</h4><p>以海龟当前所在位置作为坐标轴。有<code>turtle.circle()</code>，<code>turtle.bk()</code>，<code>turtle.fd()</code>三个函数控制海龟移动<br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-16-24.png" alt="相对坐标"></p>
-<h3 id="32-turtle角度坐标体系"><a href="#3-2-turtle角度坐标体系" class="headerlink" title="3.2 turtle角度坐标体系"></a>3.2 turtle角度坐标体系</h3><h3 id="321-绝对角度"><a href="#3-2-1-绝对角度" class="headerlink" title="3.2.1 绝对角度"></a>3.2.1 绝对角度</h3><p>可用<code>turtle.set(angle)</code>改变海龟行进方向，<code>angele</code>为绝对角度。<code>seth()</code>仅改变方向但不行进</p>
-<p><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-20-48.png" alt="绝对角度"></p>
-<h3 id="322-海龟角度"><a href="#3-2-2-海龟角度" class="headerlink" title="3.2.2 海龟角度"></a>3.2.2 海龟角度</h3><p><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-23-35.png" alt="海龟角度"></p>
-<h2 id="turtle画笔控制函数"><a href="#turtle画笔控制函数" class="headerlink" title="turtle画笔控制函数"></a>turtle画笔控制函数</h2><ul>
-<li><code>turtle.penup()</code>:画笔抬起</li>
-<li><code>turtle.pendown()</code>:画笔放下，与<code>penup()</code>成对出现</li>
-<li><code>turtle.pensize()</code>:画笔宽度</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>turtle库的海龟绘图法</li>
-<li>turtle.setup()调整绘图窗体在电脑屏幕中的布局</li>
-<li>画布上以中心为原点的空间坐标系：绝对坐标&amp;海龟坐标</li>
-<li>画布上以空间x轴为0度的角度坐标系：绝对角度&amp;海龟角度</li>
-</ul>
+    <title>Javascript基础</title>
+    <url>/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>简单介绍一下JavaScript内置对象，使用最多的有以下4个：</p>
+<ol>
+<li><strong>window:</strong> 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。</li>
+<li><strong>document</strong>：负责操作浏览器载入的文档（html文件），从属window。</li>
+<li><strong>history</strong>：可以代替后退（前进）按钮访问历史记录，从属window。</li>
+<li><strong>location</strong>：访问地址栏，也从属window。</li>
+</ol>
+<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><p>window对象作用如下。</p>
+<h3 id="11-出现提示框"><a href="#1-1-出现提示框" class="headerlink" title="1.1 出现提示框"></a>1.1 出现提示框</h3><p>window对象可以跳出提示框。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;内容&quot;</span>)：出现消息框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;内容&quot;</span>)：出现确认框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;内容&quot;</span>):出现输入框</span><br></pre></td></tr></table></figure>
+<p><strong>实例：</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//消息框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;我是消息框&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//确认框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;你确认要确认吗？&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//输入框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;麻烦输入一下&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>结果：</strong></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png" alt="消息框"></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-41-43.png" alt="确认框"></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-42-03.png" alt="输入框"></p>
+<h3 id="12-打卡-关闭窗口"><a href="#1-2-打卡、关闭窗口" class="headerlink" title="1.2 打卡、关闭窗口"></a>1.2 打卡、关闭窗口</h3><p>window对象还用于控制窗口的状态和开&#x2F;关。打开窗口使用<code>window.open()</code>函数，关闭窗口使用<code>window.close()</code>，控制窗口状态可以设置改变<code>window.statue</code>属性。</p>
+<h3 id="13-定时器"><a href="#1-3-定时器" class="headerlink" title="1.3 定时器"></a>1.3 定时器</h3><p>window对象负责管理和控制页面的定时器，定时器的作用是让某个函数隔一段时间之后运行一次，格式如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">timer=<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="string">&quot;需要运行的函数&quot;</span>,<span class="string">&quot;时间（毫秒计）&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="built_in">clearTimeout</span>(timer);<span class="comment">//清楚定时器</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-history对象"><a href="#2-history对象" class="headerlink" title="2. history对象"></a>2. history对象</h2><p>history对象包含用户的浏览历史等信息，使用这个对象是因为它可以代替前进（后退）按钮访问历史记录，该对象从属window。</p>
+<p>常用的函数如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">history.<span class="title function_">back</span>():返回上一页，相当于单击浏览器上的后退按钮。</span><br><span class="line">history.<span class="title function_">forward</span>():返回下一页，相当于单击浏览器上的前进按钮。</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(n):n为整数，正数表示向前前进n格页面，负数表示后退。</span><br></pre></td></tr></table></figure>
+<h2 id="3-document对象"><a href="#3-document对象" class="headerlink" title="3. document对象"></a>3. document对象</h2><p>document对象同样从属window，功能如下。</p>
+<h3 id="31-在网页上输出"><a href="#3-1-在网页上输出" class="headerlink" title="3.1 在网页上输出"></a>3.1 在网页上输出</h3><p>在网页输出方面，最常见的函数是<code>writeln()</code>。</p>
+<h3 id="32-设置网页的属性"><a href="#3-2-设置网页的属性" class="headerlink" title="3.2 设置网页的属性"></a>3.2 设置网页的属性</h3><p>使用document对象可以进行一些简单网页属性的设置，例如页面的标题、颜色等，并且可以得到网页的某些属性，例如地址。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">title</span>:获取当前网页标题</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>:获取当前网页的地址</span><br></pre></td></tr></table></figure>
+<h3 id="33-访问文档元素特别是表单元素"><a href="#3-3-访问文档元素，特别是表单元素" class="headerlink" title="3.3 访问文档元素，特别是表单元素"></a>3.3 访问文档元素，特别是表单元素</h3><p>使用document对象可以访问文档中的元素（例如图片、表单、表单中的控件），前提是元素的name属性是确定的。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;txt1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    text=<span class="variable language_">document</span>.<span class="property">form1</span>.<span class="property">txt1</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-location对象"><a href="#4-location对象" class="headerlink" title="4. location对象"></a>4. location对象</h2><p>location对象可以访问浏览器的地址栏，它也从属window，其最常见的功能就是转到另一个网页，跳转方法是修改location对象的href属性。</p>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>JavaWeb</category>
       </categories>
   </entry>
   <entry>
@@ -489,41 +500,30 @@ A --> D(IPv4地址结构 sin_addr)</pre>
       </categories>
   </entry>
   <entry>
-    <title>Javascript基础</title>
-    <url>/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p>简单介绍一下JavaScript内置对象，使用最多的有以下4个：</p>
-<ol>
-<li><strong>window:</strong> 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。</li>
-<li><strong>document</strong>：负责操作浏览器载入的文档（html文件），从属window。</li>
-<li><strong>history</strong>：可以代替后退（前进）按钮访问历史记录，从属window。</li>
-<li><strong>location</strong>：访问地址栏，也从属window。</li>
-</ol>
-<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><p>window对象作用如下。</p>
-<h3 id="11-出现提示框"><a href="#1-1-出现提示框" class="headerlink" title="1.1 出现提示框"></a>1.1 出现提示框</h3><p>window对象可以跳出提示框。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;内容&quot;</span>)：出现消息框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;内容&quot;</span>)：出现确认框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;内容&quot;</span>):出现输入框</span><br></pre></td></tr></table></figure>
-<p><strong>实例：</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//消息框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;我是消息框&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//确认框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;你确认要确认吗？&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//输入框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;麻烦输入一下&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>结果：</strong></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png" alt="消息框"></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-41-43.png" alt="确认框"></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-42-03.png" alt="输入框"></p>
-<h3 id="12-打卡-关闭窗口"><a href="#1-2-打卡、关闭窗口" class="headerlink" title="1.2 打卡、关闭窗口"></a>1.2 打卡、关闭窗口</h3><p>window对象还用于控制窗口的状态和开&#x2F;关。打开窗口使用<code>window.open()</code>函数，关闭窗口使用<code>window.close()</code>，控制窗口状态可以设置改变<code>window.statue</code>属性。</p>
-<h3 id="13-定时器"><a href="#1-3-定时器" class="headerlink" title="1.3 定时器"></a>1.3 定时器</h3><p>window对象负责管理和控制页面的定时器，定时器的作用是让某个函数隔一段时间之后运行一次，格式如下。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">timer=<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="string">&quot;需要运行的函数&quot;</span>,<span class="string">&quot;时间（毫秒计）&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="built_in">clearTimeout</span>(timer);<span class="comment">//清楚定时器</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-history对象"><a href="#2-history对象" class="headerlink" title="2. history对象"></a>2. history对象</h2><p>history对象包含用户的浏览历史等信息，使用这个对象是因为它可以代替前进（后退）按钮访问历史记录，该对象从属window。</p>
-<p>常用的函数如下。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">history.<span class="title function_">back</span>():返回上一页，相当于单击浏览器上的后退按钮。</span><br><span class="line">history.<span class="title function_">forward</span>():返回下一页，相当于单击浏览器上的前进按钮。</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(n):n为整数，正数表示向前前进n格页面，负数表示后退。</span><br></pre></td></tr></table></figure>
-<h2 id="3-document对象"><a href="#3-document对象" class="headerlink" title="3. document对象"></a>3. document对象</h2><p>document对象同样从属window，功能如下。</p>
-<h3 id="31-在网页上输出"><a href="#3-1-在网页上输出" class="headerlink" title="3.1 在网页上输出"></a>3.1 在网页上输出</h3><p>在网页输出方面，最常见的函数是<code>writeln()</code>。</p>
-<h3 id="32-设置网页的属性"><a href="#3-2-设置网页的属性" class="headerlink" title="3.2 设置网页的属性"></a>3.2 设置网页的属性</h3><p>使用document对象可以进行一些简单网页属性的设置，例如页面的标题、颜色等，并且可以得到网页的某些属性，例如地址。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">title</span>:获取当前网页标题</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>:获取当前网页的地址</span><br></pre></td></tr></table></figure>
-<h3 id="33-访问文档元素特别是表单元素"><a href="#3-3-访问文档元素，特别是表单元素" class="headerlink" title="3.3 访问文档元素，特别是表单元素"></a>3.3 访问文档元素，特别是表单元素</h3><p>使用document对象可以访问文档中的元素（例如图片、表单、表单中的控件），前提是元素的name属性是确定的。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;txt1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    text=<span class="variable language_">document</span>.<span class="property">form1</span>.<span class="property">txt1</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4-location对象"><a href="#4-location对象" class="headerlink" title="4. location对象"></a>4. location对象</h2><p>location对象可以访问浏览器的地址栏，它也从属window，其最常见的功能就是转到另一个网页，跳转方法是修改location对象的href属性。</p>
+    <title>turtle库的简单使用</title>
+    <url>/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="turtle库基本介绍"><a href="#turtle库基本介绍" class="headerlink" title="turtle库基本介绍"></a>turtle库基本介绍</h2><p>turtle库是turtle绘图体系的python实现。<br>可以将turtle理解为一直”海龟”，它在窗体的正中心，在画布上游走，走过的轨迹形成了绘制的图形。”海龟”由程序控制，可以变换颜色，该改变宽度等。</p>
+<h2 id="turtle绘图窗体布局"><a href="#turtle绘图窗体布局" class="headerlink" title="turtle绘图窗体布局"></a>turtle绘图窗体布局</h2><p>整个windows桌面窗口是一个窗体，桌面的左上角的坐标为<code>(0,0)</code>，turtle绘图的窗体是另一个窗体，左上角坐标为<code>(startx,starty)</code><br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-05-55.png" alt="turtle的绘图窗体"></p>
+<p>我们使用<code>turle.setup(width,height,startx,starty)</code>来设置窗体大小以及位置，若<code>startx</code>和<code>starty</code>参数未指定，则默认居中。</p>
+<h2 id="turtle运动控制函数"><a href="#turtle运动控制函数" class="headerlink" title="turtle运动控制函数"></a>turtle运动控制函数</h2><h3 id="31-turtle空间坐标体系"><a href="#3-1-turtle空间坐标体系" class="headerlink" title="3.1 turtle空间坐标体系"></a>3.1 turtle空间坐标体系</h3><h4 id="311-绝对坐标"><a href="#3-1-1-绝对坐标" class="headerlink" title="3.1.1 绝对坐标"></a>3.1.1 绝对坐标</h4><p>相应的可使用<code>turtle.goto()</code>函数来控制<code>turtle</code>的移动方向，移动时的坐标为<strong>绝对坐标</strong><br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-11-17.png" alt="绝对坐标"></p>
+<h4 id="312-海龟坐标"><a href="#3-1-2-海龟坐标" class="headerlink" title="3.1.2 海龟坐标"></a>3.1.2 海龟坐标</h4><p>以海龟当前所在位置作为坐标轴。有<code>turtle.circle()</code>，<code>turtle.bk()</code>，<code>turtle.fd()</code>三个函数控制海龟移动<br><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-16-24.png" alt="相对坐标"></p>
+<h3 id="32-turtle角度坐标体系"><a href="#3-2-turtle角度坐标体系" class="headerlink" title="3.2 turtle角度坐标体系"></a>3.2 turtle角度坐标体系</h3><h3 id="321-绝对角度"><a href="#3-2-1-绝对角度" class="headerlink" title="3.2.1 绝对角度"></a>3.2.1 绝对角度</h3><p>可用<code>turtle.set(angle)</code>改变海龟行进方向，<code>angele</code>为绝对角度。<code>seth()</code>仅改变方向但不行进</p>
+<p><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-20-48.png" alt="绝对角度"></p>
+<h3 id="322-海龟角度"><a href="#3-2-2-海龟角度" class="headerlink" title="3.2.2 海龟角度"></a>3.2.2 海龟角度</h3><p><img src="/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/2022-02-26-19-23-35.png" alt="海龟角度"></p>
+<h2 id="turtle画笔控制函数"><a href="#turtle画笔控制函数" class="headerlink" title="turtle画笔控制函数"></a>turtle画笔控制函数</h2><ul>
+<li><code>turtle.penup()</code>:画笔抬起</li>
+<li><code>turtle.pendown()</code>:画笔放下，与<code>penup()</code>成对出现</li>
+<li><code>turtle.pensize()</code>:画笔宽度</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>turtle库的海龟绘图法</li>
+<li>turtle.setup()调整绘图窗体在电脑屏幕中的布局</li>
+<li>画布上以中心为原点的空间坐标系：绝对坐标&amp;海龟坐标</li>
+<li>画布上以空间x轴为0度的角度坐标系：绝对角度&amp;海龟角度</li>
+</ul>
 ]]></content>
       <categories>
-        <category>JavaWeb</category>
+        <category>Python</category>
       </categories>
   </entry>
   <entry>
@@ -1190,6 +1190,27 @@ A --> D(IPv4地址结构 sin_addr)</pre>
       </categories>
   </entry>
   <entry>
+    <title>语法分析</title>
+    <url>/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h2 id="语法分析器功能"><a href="#语法分析器功能" class="headerlink" title="语法分析器功能"></a>语法分析器功能</h2><p>在<strong>词法分析</strong>出的单词符号串基础上分析并判别程序的结构<strong>是否符合语法规则</strong></p>
+<h2 id="语法分析器分类"><a href="#语法分析器分类" class="headerlink" title="语法分析器分类"></a>语法分析器分类</h2><p>可分为<strong>自上而下分析法</strong>和<strong>自下而上分析法</strong>。</p>
+<p>程序 -&gt; 下<br>语言 -&gt; 开始符<br>文法 -&gt; 上</p>
+<p>自上而下分析：<strong>是从文法的开始符号出发，试图推导出句子。</strong> 它要解决的关键问题是在对某一个非终结符进行推导时，选择以它为左部的多个产生式的中的哪一个。 <strong><em>推导</em></strong></p>
+<p>自下而上分析：<strong>是从输入符号串出发，试图归约到文法的开始符号。</strong> 分析过程中，每次选择与某个产生式右部符号串相同的一个子串进行归约。它要解决的关键问题是如何确定一个可归约的子串。 <strong><em>归约</em></strong></p>
+<h2 id="自上而下分析法"><a href="#自上而下分析法" class="headerlink" title="自上而下分析法"></a>自上而下分析法</h2><p>问题：</p>
+<ol>
+<li><strong>回溯问题</strong></li>
+<li>虚假匹配问题</li>
+<li>最终报告分析不成功，难于知道输入的语法具体错误在哪</li>
+<li></li>
+<li><h2 id="自下而上分析法"><a href="#自下而上分析法" class="headerlink" title="自下而上分析法"></a>自下而上分析法</h2></li>
+</ol>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
     <title>计算机网络概述</title>
     <url>/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<h2 id="1-互联网的组成"><a href="#1-互联网的组成" class="headerlink" title="1. 互联网的组成"></a>1. 互联网的组成</h2><p>互联网的拓扑结构虽然非常复杂，但从其工作方式上看，可以划分为以下两大块：</p>
@@ -1344,27 +1365,6 @@ A --> D(IPv4地址结构 sin_addr)</pre>
 <h2 id="基本的数据链路层协议"><a href="#基本的数据链路层协议" class="headerlink" title="基本的数据链路层协议"></a>基本的数据链路层协议</h2>]]></content>
       <categories>
         <category>计算机网络</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>语法分析</title>
-    <url>/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h2 id="语法分析器功能"><a href="#语法分析器功能" class="headerlink" title="语法分析器功能"></a>语法分析器功能</h2><p>在<strong>词法分析</strong>出的单词符号串基础上分析并判别程序的结构<strong>是否符合语法规则</strong></p>
-<h2 id="语法分析器分类"><a href="#语法分析器分类" class="headerlink" title="语法分析器分类"></a>语法分析器分类</h2><p>可分为<strong>自上而下分析法</strong>和<strong>自下而上分析法</strong>。</p>
-<p>程序 -&gt; 下<br>语言 -&gt; 开始符<br>文法 -&gt; 上</p>
-<p>自上而下分析：<strong>是从文法的开始符号出发，试图推导出句子。</strong> 它要解决的关键问题是在对某一个非终结符进行推导时，选择以它为左部的多个产生式的中的哪一个。 <strong><em>推导</em></strong></p>
-<p>自下而上分析：<strong>是从输入符号串出发，试图归约到文法的开始符号。</strong> 分析过程中，每次选择与某个产生式右部符号串相同的一个子串进行归约。它要解决的关键问题是如何确定一个可归约的子串。 <strong><em>归约</em></strong></p>
-<h2 id="自上而下分析法"><a href="#自上而下分析法" class="headerlink" title="自上而下分析法"></a>自上而下分析法</h2><p>问题：</p>
-<ol>
-<li><strong>回溯问题</strong></li>
-<li>虚假匹配问题</li>
-<li>最终报告分析不成功，难于知道输入的语法具体错误在哪</li>
-<li></li>
-<li><h2 id="自下而上分析法"><a href="#自下而上分析法" class="headerlink" title="自下而上分析法"></a>自下而上分析法</h2></li>
-</ol>
-]]></content>
-      <categories>
-        <category>操作系统</category>
       </categories>
   </entry>
 </search>
