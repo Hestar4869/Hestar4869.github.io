@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/27/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">post</a>
+            <a href="/2023/03/27/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">socket编程</a>
         </h2>
 
         <div class="post-meta">
@@ -169,7 +169,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-31 09:32:58" itemprop="dateCreated datePublished" datetime="2022-03-31T09:32:58+08:00">2022-03-31</time>
+              <time title="创建时间：2023-03-27 13:26:32" itemprop="dateCreated datePublished" datetime="2023-03-27T13:26:32+08:00">2023-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-13 19:03:32" itemprop="dateModified" datetime="2023-04-13T19:03:32+08:00">2023-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Linux网络编程</span></a>
+                </span>
             </span>
 
           <br>
@@ -178,7 +194,176 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-socket地址"><a href="#1-socket地址" class="headerlink" title="1. socket地址"></a>1. socket地址</h2><h3 id="11-网络字节序和主机字节序"><a href="#1-1-网络字节序和主机字节序" class="headerlink" title="1.1 网络字节序和主机字节序"></a>1.1 网络字节序和主机字节序</h3><p>首先计算机中存储数据分<strong>小端存储</strong>和<strong>大端存储</strong>，大端存储是将一个整数的高位字节存在低位地址内存中，小端存储相反。</p>
+<p>由于最初不同主机具有不同的字节序，为了统一网络传输的标准，将<strong>大端字节序设为网络字节序</strong>，所以所有的主机在从网络中发送数据时，需要进行字节序转换，将主机字节序转换成网络字节序。</p>
+<p>Linux提供了如下4种函数来完成主机字节序和网络字节序的转换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="comment">// host to net </span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">htonl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> hostlong )</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> <span class="title function_">htons</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> hostshort )</span>;</span><br><span class="line"><span class="comment">// net to host</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">ntohl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> netlong )</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> <span class="title function_">ntohs</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> netshort )</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-socket地址结构"><a href="#1-2-socket地址结构" class="headerlink" title="1.2 socket地址结构"></a>1.2 socket地址结构</h3><p>TCP&#x2F;IP协议族有<code>sockaddr_in</code>和<code>sockaddr_in6</code>两种专用socket地址结构体，它们分别用于IPv4和IPv6。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">    <span class="comment">// 地址族：AF_INET</span></span><br><span class="line">    <span class="type">sa_family_t</span> sin_family;</span><br><span class="line">    <span class="comment">// 端口号，要用网络字节序表示</span></span><br><span class="line">    <span class="type">u_int16_t</span> sin_port;</span><br><span class="line">    <span class="comment">// IPv4地址结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IPv4地址结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span>&#123;</span></span><br><span class="line">    <span class="type">u_int32_t</span> s_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个<code>sockaddr_in</code>结构有3个部分：</p>
+<pre class="mermaid">graph LR
+A(sockaddr_in) --> B(地址族 sin_family)
+A --> C(端口号 sin_port)
+A --> D(IPv4地址结构 sin_addr)</pre>
+
+<p>​    <code>sa_family</code>成员是地址族类型的变量，地址族（address family）通常与协议族（protocol family）类型对应：</p>
+<table>
+<thead>
+<tr>
+<th align="center">协议族</th>
+<th align="center">地址族</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PF_UNIX</td>
+<td align="center">AF_UNIX</td>
+<td align="center">UNIX本地域协议族</td>
+</tr>
+<tr>
+<td align="center">PF_INET</td>
+<td align="center">AF_INET</td>
+<td align="center">TCP&#x2F;IPv4协议族</td>
+</tr>
+<tr>
+<td align="center">PF_INET6</td>
+<td align="center">AF_INET6</td>
+<td align="center">TCP&#x2F;IPv6协议族</td>
+</tr>
+</tbody></table>
+<h3 id="13-ip地址转换函数"><a href="#1-3-IP地址转换函数" class="headerlink" title="1.3 IP地址转换函数"></a>1.3 IP地址转换函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;arp/inet.h&gt;</span></span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	Convert from presentation format of an Internet number in buffer</span></span><br><span class="line"><span class="comment">   starting at src to the binary network format and store result for</span></span><br><span class="line"><span class="comment">   interface type AF in buffer starting at dst.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">inet_pton</span><span class="params">( <span class="type">int</span> af , <span class="type">const</span> <span class="type">char</span> *src , <span class="type">void</span>* dst)</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* <span class="title function_">inet_ntop</span><span class="params">( <span class="type">int</span> af , <span class="type">const</span> <span class="type">void</span>* src , <span class="type">char</span>* dst , <span class="type">socklen_t</span> cnt)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-socket创建"><a href="#2-socket创建" class="headerlink" title="2. socket创建"></a>2. socket创建</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// domain为协议族变量，如PF_INET</span></span><br><span class="line"><span class="comment">// type指定服务类型，有SOCK_STREAM和SOCK_UGRAM</span></span><br><span class="line"><span class="comment">// protocol一般为0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain , <span class="type">int</span> type , <span class="type">int</span> protocol)</span>; </span><br></pre></td></tr></table></figure>
+
+<p>在Linux中一切皆为文件，所以socket创建后为一个可读、可写、可控制的文件描述符fd。</p>
+<h2 id="3-socket命名"><a href="#3-socket命名" class="headerlink" title="3. socket命名"></a>3. socket命名</h2><p>创建socket时，我们给它指定了地址族，但是并没有指定使用该地址族的具体socket地址，所以我们需要将一个socket与一个具体的socket地址绑定。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">bind</span><span class="params">(<span class="type">int</span> sockfd , <span class="type">const</span> <span class="keyword">struct</span> sockaddr* my_addr , <span class="type">socklen_t</span> addrlen)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在服务器程序中，我们通常要命名socket，因为只有命名后客户端才能知道如何连接它。客户端通常不需要命名socket，而是采用匿名方式，使用操作系统自动分配的socket地址。</p>
+<h2 id="4-socket监听"><a href="#4-socket监听" class="headerlink" title="4. socket监听"></a>4. socket监听</h2><p>socket命名后，如果需要接收客户端的连接，需要通过系统调用来创建一个<strong>监听队列</strong>，该队列中存放所有待处理socket连接的客户连接。该队列可以规定长度，确认同一时间内容，监听队列中能存放多少连接，当队列满后，对于其他请求的socket会拒绝建立连接。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="comment">// backlog参数是指处于完全连接状态（ESTABLISHED）的socket上限</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">listen</span><span class="params">( <span class="type">int</span> sockfd,<span class="type">int</span> backlog)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-接收连接"><a href="#5-接收连接" class="headerlink" title="5. 接收连接"></a>5. 接收连接</h2><p>socket建立监听状态后，成功连接的客户端socket被存储在监听队列中，我们可以通过accept()方法按顺序取出。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sockfd参数是执行过listen系统调用的监听socket</span></span><br><span class="line"><span class="comment">// addr参数用来获取被连接接受的远端socket地址</span></span><br><span class="line"><span class="comment">// 返回一个新的连接socket</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">accept</span><span class="params">(<span class="type">int</span> sockfd , <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> *addrlen)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>现考虑如下问题</strong>：如果监听队列中处于ESTABLISHED状态的连接对应的客户端出现网络异常，或者提前退出，那么服务器对这个连接执行的accept调用是否成功？</p>
+<p>成功，accept仍会返回一个socket连接。<strong>accept只是从监听队列中取出连接</strong>，TCP协议三次握手的建立成功与否在于操作系统的进行，当成功建立连接时，操作系统会将成功的连接放入监听队列等待取出使用，而不论连接处于何种状态，更不关心任何网络状况</p>
+<h2 id="6-发起连接"><a href="#6-发起连接" class="headerlink" title="6. 发起连接"></a>6. 发起连接</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 成功时返回0，失败时返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *serv_addr, <span class="type">socklen_t</span> addrlen</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-关闭连接"><a href="#7-关闭连接" class="headerlink" title="7. 关闭连接"></a>7. 关闭连接</h2><p>关闭一个连接实际上就是关闭该连接对应的socket，这可以通过如下关闭普通文件描述符的系统调用来完成。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fd参数是待关闭的socket</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> sockfd)</span></span><br></pre></td></tr></table></figure>
+
+<p>不过，<strong>close系统调用并非总是立即关闭一个连接</strong>，而是将fd的引用计数-1。只有当fd的引用计数为0时，才能真正关闭连接。多进程程序中，一次fork系统调用默认将父进程打开的socket的引用计数+1，因此我们必须在父进程和子进程中都对该socket执行close调用才能将连接关闭。</p>
+<p>​    <strong>个人理解</strong>：在Linux系统中，父进程和子进程共享某些资源，这些资源也包括打开的文件描述符，那么为了能够让子进程也使用文件描述符，那么文件描述符的关闭就应该由父子进程同时决定，否则会造成资源调度的问题。所以规定只有fd引用归零是完全销毁文件描述符，而这需要父子进程都不在需要使用fd之后，即父子进程都对fd执行close调用。</p>
+<p>​    <strong>如果无论如何都要立即终止连接</strong>，可以使用<code>shutdown</code>系统调用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// howto参数决定了shutdown的行为</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">shutdown</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> howto)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th align="center">shutdown可选值</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SHUT_RD</td>
+<td align="center">关闭sockfd上读的这一半。应用程序不能再针对socket文件描述符执行读操作，并且该socket接受缓冲区中的数据都被丢弃</td>
+</tr>
+<tr>
+<td align="center">SHUT_WR</td>
+<td align="center">关闭sockfd上写的这一半。sockfd的发送缓冲区中的数据会在真正关闭连接之前全部发送出去，应用程序不可再对该socket文件描述符执行写操作</td>
+</tr>
+<tr>
+<td align="center">SHUT_RDWR</td>
+<td align="center">同时关闭读和写</td>
+</tr>
+</tbody></table>
+<p><img src="/2023/03/27/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E7%BC%96%E7%A8%8B/image-20230413190331919.png" alt="image-20230413190331919"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/02/Java/%E7%94%A8TCP%E5%BC%80%E5%8F%91%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hestar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hestar's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/02/Java/%E7%94%A8TCP%E5%BC%80%E5%8F%91%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">用TCP开发网络应用程序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-02 19:02:41 / 修改时间：19:14:04" itemprop="dateCreated datePublished" datetime="2022-05-02T19:02:41+08:00">2022-05-02</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>127</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -197,7 +382,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>TCP:传输控制协议 面向连接 　打电话<br>UDP：数据包协议　面向数据包　发短信<br>网络应用程序：微信、QQ</p>
+<p>基础概念：<br>C&#x2F;S模式：客户端&#x2F;服务器 客户安装应用程序，和服务器通信<br>B&#x2F;S模式：浏览器&#x2F;服务器 客户端安装浏览器，和服务器通信</p>
+
       
     </div>
 
@@ -216,7 +403,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/25/Java/Java%E7%94%BB%E5%9B%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -230,7 +417,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">存储管理</a>
+            <a href="/2022/04/25/Java/Java%E7%94%BB%E5%9B%BE/" class="post-title-link" itemprop="url">Java画图</a>
         </h2>
 
         <div class="post-meta">
@@ -239,23 +426,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-30 16:40:59" itemprop="dateCreated datePublished" datetime="2022-03-30T16:40:59+08:00">2022-03-30</time>
+              <time title="创建时间：2022-04-25 19:03:01 / 修改时间：19:05:39" itemprop="dateCreated datePublished" datetime="2022-04-25T19:03:01+08:00">2022-04-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-31 09:24:15" itemprop="dateModified" datetime="2022-03-31T09:24:15+08:00">2022-03-31</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -265,14 +446,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>39</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -284,134 +465,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="存储管理的功能"><a href="#存储管理的功能" class="headerlink" title="存储管理的功能"></a>存储管理的功能</h2><h3 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h3><p>把程序中的地址（虚拟地址&#x2F;逻辑地址）变成内存的真实地址（实地址）的过程<br>地址重定位，地址重映射</p>
-<h4 id="固定地址映射"><a href="#固定地址映射" class="headerlink" title="固定地址映射"></a>固定地址映射</h4><ul>
-<li>固定地址映射：<strong>编程或编译时</strong>确定逻辑地址和物理地址映射关系。</li>
-</ul>
-<p>特点：程序<strong>加载时</strong>必须放在内存中，容易产生冲突，运行失败</p>
-<h4 id="静态地址映射"><a href="#静态地址映射" class="headerlink" title="静态地址映射"></a>静态地址映射</h4><p>定义：程序<strong>装入时</strong>有操作系统完成逻辑地址到物理地址的映射</p>
-<p>基本概念：</p>
-<ul>
-<li>逻辑地址 VA（virtual addr）</li>
-<li>装入基址 BA （base addr）</li>
-<li>物理地址 MA （Memory addr）<br> MA &#x3D; BA + VA</li>
-</ul>
-<p>特点：</p>
-<ul>
-<li>程序运行之前确定映射关系</li>
-<li>程序<strong>装入后不能移动</strong></li>
-<li><ul>
-<li>如果移动必须放回原来位置</li>
-</ul>
-</li>
-<li>程序占用<strong>连续的</strong>内存空间</li>
-</ul>
-<h4 id="动态地址映射"><a href="#动态地址映射" class="headerlink" title="动态地址映射"></a>动态地址映射</h4><p>定义：在程序执行过程中把逻辑地址转换为物理地址。例如：MOV AX，[500]; 访问500单元时。映射过程与静态地址映射相同</p>
-<p>特点：</p>
-<ul>
-<li>程序占用的内存空间可动态变化，要求即使更新基址</li>
-<li>程序不要求占用连续的内存空间，每段放置基址BA系统应该知道</li>
-<li>便于多个进程共享代码</li>
-</ul>
-<h3 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h3><h3 id="内存分配功能"><a href="#内存分配功能" class="headerlink" title="内存分配功能"></a>内存分配功能</h3><p>为程序运行分配足够的内存空间<br>需要解决的问题：</p>
-<ul>
-<li>放置策略：程序调入内存时将其放置在哪个内存区</li>
-<li>调入策略：何时把药运行的代码和药访问的数据调入内存</li>
-<li>淘汰策略：内存空间不够时，腾出空间</li>
-</ul>
-<h3 id="存储保护功能"><a href="#存储保护功能" class="headerlink" title="存储保护功能"></a>存储保护功能</h3><p>保证在内存中的多道程序只能在给定的存储区域内活动并互不干扰：防止访问越界，防止访问越权</p>
-<p>方法：界址寄存器</p>
-<ul>
-<li>在cpu中设置一对下线寄存器和上限寄存器存放程序在内存中的下限地址和上限地址</li>
-</ul>
-<h2 id="物理内存管理"><a href="#物理内存管理" class="headerlink" title="物理内存管理"></a>物理内存管理</h2><h3 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h3><h4 id="单一区存储管理不分区存储管理"><a href="#单一区存储管理（不分区存储管理）" class="headerlink" title="单一区存储管理（不分区存储管理）"></a>单一区存储管理（不分区存储管理）</h4><p>用户去不分区，完全被一个程序占用</p>
-<h4 id="分区存储管理"><a href="#分区存储管理-1" class="headerlink" title="分区存储管理"></a>分区存储管理</h4><ul>
-<li>把用户区内存划分为若干大小不等的分区，供不同程序使用</li>
-<li>适合单用户单任务系统</li>
-</ul>
-<p>固定分区：每个分区位置固定，不再改变。系统要维护分区表<br>动态分区：存在内存碎片</p>
-<p>下面具体讨论如何在动态分区保证内存碎片合理利用</p>
-<h3 id="空闲区表如何排序放置策略"><a href="#空闲区表如何排序——放置策略" class="headerlink" title="空闲区表如何排序——放置策略"></a>空闲区表如何排序——放置策略</h3><p>放置策略（空闲区表排序原则）</p>
-<ul>
-<li>首次适应算法：按空闲区位置（首址）排序递增排序</li>
-<li>：按空闲区位置（首址）递减排序</li>
-<li>最佳适应算法：按空闲区大小的递增排序</li>
-<li>最坏适应算法：按空闲区大小的递减排序</li>
-</ul>
-<h3 id="分区的回收"><a href="#分区的回收" class="headerlink" title="分区的回收"></a>分区的回收</h3><p>功能：回收程序释放分区（释放区），登记到空闲区表中，以便再分配</p>
-<p>回收算法：</p>
-<ul>
-<li>要考虑释放区与现有空闲区<strong>是否相邻</strong>？</li>
-<li>若释放去与现有空闲区不相邻，则直接插入空闲区表</li>
-<li>若释放去与现有空闲区相邻，则于空闲区合并后更新空闲区表</li>
-</ul>
-<h3 id="内存覆盖技术"><a href="#内存覆盖技术" class="headerlink" title="内存覆盖技术"></a>内存覆盖技术</h3><p>目的：在<strong>较小的</strong>内存空间中运行较大的程序</p>
-<p>内存分区：</p>
-<ul>
-<li>常驻区：被某段单独切固定的占用，可划分为多个</li>
-<li>覆盖区：能被多端共用（覆盖），可划分为多个</li>
-</ul>
-<p>缺点：编程复杂，程序员划分程序模块并确定覆盖关系</p>
-<h3 id="内存交换技术"><a href="#内存交换技术" class="headerlink" title="内存交换技术"></a>内存交换技术</h3><p>原理：内存不够时把进程写到磁盘，当进程要运行时重新写回内存</p>
-<h3 id="内存碎片"><a href="#内存碎片" class="headerlink" title="内存碎片"></a>内存碎片</h3><p>过小的空闲区，难实际利用。内存碎片会降低内存区的利用率。</p>
-<blockquote>
-<p><strong>动态分区时，最佳适应法最容易产生碎片</strong><br>因为内存反复分配和分隔，容易产生较小的难以利用的内存碎片</p>
-</blockquote>
-<p>碎片问题的解决：</p>
-<ol>
-<li>规定门限值：分隔空闲区时，若剩余部分小于门限值，则此空闲区不进行分隔，而是全部分配给用户。（不算多此一举吗？）</li>
-<li>内存拼接技术：将所有空闲区集中一起构成一个大的空闲区</li>
-<li>解除程序占用<strong>连续内存</strong>才能运行的限制：让程序运行在不连续的内存地址。</li>
-</ol>
-<h2 id="虚拟内存管理"><a href="#虚拟内存管理-1" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h2><p>基本目标：</p>
-<ul>
-<li>使得大的程序能在较小的内存中运行</li>
-<li>使得多个程序能在较小的内存中运行</li>
-<li>使得多个程序并发运行时地址不冲突</li>
-<li>使得内存利用效率高：无碎片，共享方便</li>
-</ul>
-<p>实现思路：在程序运行时，只把当前必要的很小一部分代码和数据装入内存中，其余代码和数据需要时再装入。不再运行的代码和数据及时从内存删除。</p>
-<p>典型虚拟内存管理方式：</p>
-<ul>
-<li>页式虚拟存储管理</li>
-<li>段式虚拟存储管理</li>
-<li>段页式虚拟存储管理</li>
-</ul>
-<h3 id="页式虚拟内存管理的概念"><a href="#页式虚拟内存管理的概念" class="headerlink" title="页式虚拟内存管理的概念"></a>页式虚拟内存管理的概念</h3><p>概念：把进程空间和内存空间划成等大小的小片</p>
-<ul>
-<li>进程的小片—— <strong>页</strong>（虚拟页或页面）</li>
-<li>内存的小片—— **（物理页）</li>
-</ul>
-<p>进程装入和使用内存的原则：</p>
-<ul>
-<li>内存以<strong>页框</strong>为单位分配使用</li>
-<li>进程以<strong>页</strong>为单位装入内存</li>
-</ul>
-<h4 id="页表和页式地址的映射"><a href="#页表和页式地址的映射" class="headerlink" title="页表和页式地址的映射"></a>页表和页式地址的映射</h4><p>虚拟地址（VA）可以分解成<strong>页号</strong>P和<strong>页内偏移</strong>W<br>页号（P）: VA所处页的编号&#x3D;VA&#x2F;页的大小<br>页内偏移：VA在所处页中的偏移&#x3D;VA % 页的大小</p>
-<p>页面映射表：记录<strong>页</strong>与<strong>页框</strong>之间的<strong>对应关系</strong></p>
-<h3 id="快表技术和页面共享技术"><a href="#快表技术和页面共享技术" class="headerlink" title="快表技术和页面共享技术"></a>快表技术和页面共享技术</h3><h4 id="快表机制cache"><a href="#快表机制（Cache）" class="headerlink" title="快表机制（Cache）"></a>快表机制（Cache）</h4><p>快表概念：</p>
-<ul>
-<li>慢表：页表放在内存中</li>
-<li>快表：页表放在cache中</li>
-</ul>
-<h4 id="页面共享技术"><a href="#页面共享技术" class="headerlink" title="页面共享技术"></a>页面共享技术</h4><p>页面共享原理：</p>
-<ul>
-<li>在不同进程的页表中填上<strong>相同的页框号</strong>，多个进程能访问相同的内存空间，从而实现<strong>页面共享</strong>。</li>
-<li><strong>共享页面</strong>在内存只有<strong>一份</strong>真实存储，节省内存</li>
-</ul>
-<h3 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h3><p><img src="/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/2022-03-30-20-15-30.png" alt="缺页的情况"></p>
-<p>扩充有<strong>中断位</strong>和辅存地址的页表</p>
-<p>缺页中断：在地址映射过程中，当所要访问的目的页不在内存时，则系统产生异常中断 —— 缺页中断</p>
-<h3 id="页面淘汰策略"><a href="#页面淘汰策略" class="headerlink" title="页面淘汰策略"></a>页面淘汰策略</h3><p>淘汰策略：选择淘汰哪一页的规则称为淘汰策略</p>
-<p>页面抖动：页面在内存和辅存间频繁交换的现象。“抖动”会导致系统效率下降</p>
-<p>好的淘汰策略：具有较低的缺页率，页面抖动较少<br>常用的淘汰算法：</p>
-<ul>
-<li>最佳算法（OPT算法）:淘汰以后<strong>不再需要</strong>或<strong>最远的将来</strong>才会用到的页面。理论最佳，实际无法实现</li>
-<li>先进先出淘汰算法（FIFO算法）：淘汰在<strong>内存中停留时间最长</strong>的页面。</li>
-<li>最久未使用淘汰算法（LRU算法）：淘汰<strong>最长时间未被使用</strong>的页面。</li>
-<li>最不经常使用算法（LFU算法）：选择到当前时间为止被访问次数最少的页面。</li>
-</ul>
-<h3 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h3><p>进程分段：把进程按<strong>逻辑意义</strong>划分位多个段，每段有段名，进程由多段组成</p>
+          <p>用控件组成的界面，一般叫做：高级界面<br>纯粹用绘图方式组成界面，一般叫做：低级界面</p>
 
       
     </div>
@@ -431,7 +485,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/11/Java/%E7%94%A8Swing%E5%BC%80%E5%8F%91GUI%E7%A8%8B%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -445,7 +499,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/" class="post-title-link" itemprop="url">Java语言核心包</a>
+            <a href="/2022/04/11/Java/%E7%94%A8Swing%E5%BC%80%E5%8F%91GUI%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">用Swing开发GUI程序</a>
         </h2>
 
         <div class="post-meta">
@@ -455,14 +509,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-21 20:05:06" itemprop="dateCreated datePublished" datetime="2022-03-21T20:05:06+08:00">2022-03-21</time>
+              <time title="创建时间：2022-04-11 19:03:47" itemprop="dateCreated datePublished" datetime="2022-04-11T19:03:47+08:00">2022-04-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-23 20:30:32" itemprop="dateModified" datetime="2022-03-23T20:30:32+08:00">2022-03-23</time>
+                <time title="修改时间：2022-04-21 08:59:37" itemprop="dateModified" datetime="2022-04-21T08:59:37+08:00">2022-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -480,7 +534,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>488</span>
+              <span>426</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -499,29 +553,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="javalang包"><a href="#java-lang包" class="headerlink" title="java.lang包"></a>java.lang包</h2><p>时Java中最基础的核心包，里面包含……</p>
-<h3 id="javalangmath"><a href="#Java-lang-Math" class="headerlink" title="Java.lang.Math"></a>Java.lang.Math</h3><h3 id="javalangstring"><a href="#Java-lang-String" class="headerlink" title="Java.lang.String"></a>Java.lang.String</h3><p>直接赋值时，系统为了节省内存，用的是<strong>池机制</strong></p>
-<p><strong>如何判断字符串内容是否相等？</strong></p>
-<ul>
-<li>显然，不能使用 &#x3D;&#x3D; </li>
-<li>所以需要使用equals进行判断。</li>
-</ul>
-<h3 id="javalangstringbuffer类"><a href="#Java-lang-StringBuffer类" class="headerlink" title="Java.lang.StringBuffer类"></a>Java.lang.StringBuffer类</h3><p>负责字符串处理，是自变型字符串，操作之后，自己变化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s1.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s1不变</span></span><br><span class="line">StringBuffer s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s2.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s2为“中南大学”</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="javautil包"><a href="#Java-util包" class="headerlink" title="Java.util包"></a>Java.util包</h2><p>最重要的是：Java集合框架（变长数组）<br>三类：</p>
+          <p>Swing；Java中的一个报，负责开发GUI程序<br>GUI：图形用户界面，一般指可视化桌面系统中的应用程序<br>Windows视窗：从字符界面拓展到图形界面</p>
+<p>常见图形界面基本结构：</p>
 <ol>
-<li><p>List类：一维变长数组，元素有位置，可重复</p>
+<li>界面（容器、窗口</li>
+<li>控件（界面上的元素组件，如按钮、文本框等）</li>
+<li>事件响应（相应功能）</li>
+<li>渲染（颜色、字体）</li>
+</ol>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>提供整个界面空间。</p>
+<ol>
+<li>框架界面：javax.swing.JFrame</li>
+<li>窗口界面：javax.swing.JWindow</li>
+<li>对话框界面：javax.swing.JDialog</li>
+</ol>
+<h2 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h2><p>Java中，容器还有：面板 javax.swing.JPanal 一般我们在界面</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>任何控件都可以设置背景颜色和前景颜色。</p>
 <ul>
-<li>ArrayList：底层用数组存储</li>
-<li>LinkedList:底层用链表存储</li>
-<li>Vector：实现了多线程的安全</li>
+<li>背景颜色：setBackgrounp</li>
+<li>前景颜色：setForegrounp</li>
 </ul>
-</li>
-<li><p>Set类：一维变长数组，元素无位置信息，不可重复</p>
-</li>
-<li><p>Map类：二维变长数组</p>
-</li>
+<ol>
+<li>颜色：java.awt.Color</li>
+<li>字体：Java.awt.Font,但凡是有字的控件，都有setFont</li>
+<li>图标：java.awt.Icon,并不是所有控件可以放图标。很多控件都可以设置图标，如按钮、静态文本等。但比如文本框就不能</li>
 </ol>
 
       
@@ -542,7 +597,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/11/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E7%9A%84%E6%8D%95%E8%8E%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -556,7 +611,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">死锁</a>
+            <a href="/2022/04/11/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E7%9A%84%E6%8D%95%E8%8E%B7/" class="post-title-link" itemprop="url">网络流量的捕获</a>
         </h2>
 
         <div class="post-meta">
@@ -567,7 +622,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-17 19:24:52 / 修改时间：19:58:11" itemprop="dateCreated datePublished" datetime="2022-03-17T19:24:52+08:00">2022-03-17</time>
+              <time title="创建时间：2022-04-11 10:47:54 / 修改时间：10:55:01" itemprop="dateCreated datePublished" datetime="2022-04-11T10:47:54+08:00">2022-04-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -575,7 +630,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">信息安全实验</span></a>
                 </span>
             </span>
 
@@ -585,7 +640,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>386</span>
+              <span>127</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -604,280 +659,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="死锁概念"><a href="#死锁概念" class="headerlink" title="死锁概念"></a>死锁概念</h2><p>哲学家就餐问题：五个哲学家围坐在圆桌旁边，有5只筷子。哲学家：思考-学习-吃饭<br>吃法使用两只筷子：</p>
-<ul>
-<li>拿一双筷子才能吃</li>
-<li>每次只能区一只筷子</li>
-<li>只取身边的筷子</li>
-<li>吃完放下筷子</li>
-</ul>
-<p><strong>死锁定义</strong>：两个或多个进程无限期的等待永远不会发生的条件的一种系统状态。(结果：每个进程都永远阻塞)</p>
-<p>例如：每个哲学家都无限期的等待邻座放下筷子，而邻座没有吃完之前不会放下筷子，而邻座缺一只筷子永远都无法吃完。</p>
-<h2 id="死锁的起因"><a href="#死锁的起因" class="headerlink" title="死锁的起因"></a>死锁的起因</h2><ul>
-<li><strong>系统资源有限：</strong>资源数目不足，进程对资源的竞争而产生死锁。</li>
-<li><strong>并发进程的推进顺序不当：</strong>进程请求资源或释放资源顺序不当</li>
-</ul>
-<h2 id="死锁的防范策略"><a href="#死锁的防范策略" class="headerlink" title="死锁的防范策略"></a>死锁的防范策略</h2><p>死锁的必要条件：</p>
-<ul>
-<li>互斥条件：进程互斥使用资源，资源具有独占性</li>
-<li>不剥夺条件：进程在访问完资源前不能被其他进程强行剥夺</li>
-<li>部分分配条件：进程边运行边申请资源，临时需要临时分配</li>
-<li>环路条件：多个进程构成环路：环中每个进程已占用的资源被前一进程申请，而自己所申请资源又被环中后一进程占用着</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hestar">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hestar's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">进程管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-15 20:07:02" itemprop="dateCreated datePublished" datetime="2022-03-15T20:07:02+08:00">2022-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-17 15:12:47" itemprop="dateModified" datetime="2022-03-17T15:12:47+08:00">2022-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h2><h3 id="进程基本概念"><a href="#进程基本概念" class="headerlink" title="进程基本概念"></a>进程基本概念</h3><p>描述和管理程序的过程——进程</p>
-<ul>
-<li>进程是程序在某个数据集合上的一次运行活动</li>
-<li>数据集合：软硬件环境，多个进程共存&#x2F;共享的环境</li>
-</ul>
-<p>进程的特征：</p>
-<ul>
-<li>动态性：</li>
-<li>并发性:</li>
-<li>异步性：进程按各自速度向前推进</li>
-<li>独立性：进程是系统分配资源和调度CPU的单位</li>
-</ul>
-<p>进程与程序的区别：</p>
-<ol>
-<li>动态与静态<ul>
-<li>进程是动态的：程序的一次执行过程</li>
-<li>程序是静态的：一组指令的有序集合</li>
-</ul>
-</li>
-<li>暂存与长存<ul>
-<li>进程是暂存的：在内存驻留</li>
-<li>程序是长存的：在介质上长期保存</li>
-</ul>
-</li>
-<li>程序和进程的对应<ul>
-<li>一个程序可能由多个进程<h3 id="12-进程的状态"><a href="#1-2-进程的状态" class="headerlink" title="1.2 进程的状态"></a>1.2 进程的状态</h3>运行状态（Running）</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>进程已经<strong>占有CPU</strong>，在CPU上运行</li>
-</ul>
-<p>就绪状态（Ready）</p>
-<ul>
-<li><strong>具备运行条件</strong>但由于无CPU，暂时不能运行</li>
-</ul>
-<p>阻塞状态（Block）</p>
-<ul>
-<li>因为<strong>等待某项服务</strong>完成或信号不能运行的状态</li>
-<li>如等待：系统调用，IO操作，合作进程信号</li>
-</ul>
-<p>进程状态的变迁：</p>
-<ol>
-<li>就绪-&gt;运行：进程调度</li>
-<li>运行-&gt;就绪：时间片到，被抢占</li>
-<li>运行-&gt;阻塞：请求服务，等待信号</li>
-<li>阻塞-&gt;就绪：服务完成；信号到来<br><img src="/2022/03/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/2022-03-15-20-20-01.png" alt="进程状态变迁"></li>
-</ol>
-<h3 id="13-进程控制块pcb"><a href="#1-3-进程控制块PCB" class="headerlink" title="1.3 进程控制块PCB"></a>1.3 进程控制块PCB</h3><p>进程控制块（Process Control Block PCB）</p>
-<ul>
-<li>描述进程状态、资源，和与相关进程关系的<strong>数据结构</strong></li>
-<li>PCB是进程的标志</li>
-<li>创建进程是创建PCB，进程撤销后PCB同时撤销</li>
-</ul>
-<h2 id="2-进程控制"><a href="#2-进程控制" class="headerlink" title="2. 进程控制"></a>2. 进程控制</h2><p>进程控制的概念</p>
-<ul>
-<li><strong>在进程生存全期间，对其全部行为的控制</strong></li>
-<li>四个典型的控制行为：创建进程，阻塞进程，撤销进程，唤醒进程</li>
-</ul>
-<p>原语：</p>
-<ul>
-<li>由若干指令构成的具有特定功能的函数</li>
-<li>具有<strong>原子性</strong>，其操作不可分割<h3 id="21-创建进程"><a href="#2-1-创建进程：" class="headerlink" title="2.1 创建进程："></a>2.1 创建进程：</h3>功能：创建一个具有指定标识PID表示的进程<br>参数：进程标识、优先级、进程起始地址、CPU初始状态、资源清单等。</li>
-</ul>
-<p>创建进程的过程：</p>
-<ul>
-<li>出啊构建一个空白的PCB</li>
-<li>获得并赋予进程标识符ID</li>
-<li>为进程分配空间</li>
-<li>初始化PCB</li>
-<li>插入相应的进程队列</li>
-</ul>
-<h3 id="22-撤销进程"><a href="#2-2-撤销进程" class="headerlink" title="2.2 撤销进程"></a>2.2 撤销进程</h3><h3 id="23-阻塞进程"><a href="#2-3-阻塞进程" class="headerlink" title="2.3 阻塞进程"></a>2.3 阻塞进程</h3><h2 id="3-线程tread"><a href="#3-线程（Tread）" class="headerlink" title="3. 线程（Tread）"></a>3. 线程（Tread）</h2><ul>
-<li>线程是可由CPU直接运行的实体</li>
-<li>一个进程可以创建多个线程</li>
-<li>多个线程共享CPU，可以实现并发运行<blockquote>
-<p>同时画圆和画方的例子</p>
+          <h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>混杂模式：工作在混杂模式下的网卡接受所有流过网卡的帧，无论目的地址是否为本机地址。</p>
+<blockquote>
+<p>一般计算机网卡都工作在非混杂模式下，此时网卡只接受来自网络端口的目的地址指向自己的数据。当网卡工作在混杂模式下是，网卡将来自接口的所有数据都捕获并交给相应的驱动程序</p>
 </blockquote>
-</li>
-</ul>
-<p><strong>单线程程序</strong>：整个进程只有一个线程。Windows程序缺省只有一个线程（主线程，main线程）。<br><strong>多线程程序</strong>：整个进程只有有两个线程。主线程和至少一个用户线程。</p>
-<h2 id="4-临界区和锁"><a href="#4-临界区和锁" class="headerlink" title="4. 临界区和锁"></a>4. 临界区和锁</h2><h3 id="41-临界区与临界资源"><a href="#4-1-临界区与临界资源" class="headerlink" title="4.1 临界区与临界资源"></a>4.1 临界区与临界资源</h3><p><strong>临界资源（Critical Resource</strong>）：一次只允许一个进程独占访问（使用的）的资源<br><strong>临界区（Critical Section）</strong>：进程中访问临界资源的程序段</p>
-<p>访问特点：</p>
-<ul>
-<li>具有排他性</li>
-<li>并发进程不能同时进入临界区</li>
-</ul>
-<p><strong>设计临界区访问机制的四个原则</strong>:</p>
-<ul>
-<li>忙则等待：当临界区忙时，其他进程必须在临界区外等待</li>
-<li>空闲让进：当无进程处于临界区时，任何<strong>有权进程</strong>可进入临界区</li>
-<li>有限等待：进程进入临界区的请求应在<strong>有限时间</strong>内得到满足</li>
-<li><ul>
-<li>所以临界区不能设置太多或者太小，应该刚好包括有限资源，以方便其他等待的进程能<strong>尽可能的达到</strong>接近临界区的位置</li>
-</ul>
-</li>
-<li>让权等待：等待进程放弃CPU，让其他进程有机会得到CPU（？）</li>
-</ul>
-<h3 id="42-锁机制"><a href="#4-2-锁机制" class="headerlink" title="4.2 锁机制"></a>4.2 锁机制</h3><p>基本原理：</p>
-<ul>
-<li>设置一个<strong>标志</strong>S;</li>
-<li><ul>
-<li>表明临界资源<strong>可用</strong>还是<strong>不可用</strong></li>
-</ul>
-</li>
-<li><strong>进入</strong>临界区之前检查标志是否可用</li>
-<li><ul>
-<li>若为不可用状态：进程在临界区之外等待</li>
-</ul>
-</li>
-<li><ul>
-<li>若为可用状态：访问临界资源，且将标志修改为不可用</li>
-</ul>
-</li>
-<li><strong>退出</strong>临界区时将标志修改为可用状态</li>
-</ul>
-<h2 id="5-同步和p-v操作"><a href="#5-同步和P-V操作" class="headerlink" title="5. 同步和P-V操作"></a>5. 同步和P-V操作</h2><h3 id="51-同步和互斥的概念"><a href="#5-1-同步和互斥的概念" class="headerlink" title="5.1 同步和互斥的概念"></a>5.1 同步和互斥的概念</h3><p>互斥：多个进程由于<strong>共享了独占性资源</strong>，必须协调各进程对资源的存取顺序：确保没有任何两个或以上的进程<strong>同时进行存取操作</strong>。</p>
-<ul>
-<li>互斥和资源共享相关</li>
-<li>资源：临界资源</li>
-<li>存取操作区域：临界区域</li>
-</ul>
-<p>同步：若干<strong>合作进程</strong>为了完成一个共同的任务，需要相互协调运行步伐，一个进程<strong>开始某个操作</strong>之前必须要求另一个进程<strong>已经完成</strong>某个操作，否则前面的进程只能<strong>等待</strong></p>
-<h3 id="52-p-v操作概念"><a href="#5-2-P-V操作概念" class="headerlink" title="5.2 P-V操作概念"></a>5.2 P-V操作概念</h3><p>信号灯的概念：是一种卓有成效的<strong>进程同步机制</strong>。</p>
-<p>进程在运行过程中<strong>受信号灯的状态控制</strong>，并能<strong>改变信号灯状态</strong></p>
-<ul>
-<li>进程受控制：信号灯的状态可以<strong>阻塞</strong>或<strong>唤醒</strong>进程</li>
-<li>改变信号灯：信号灯的<strong>状态</strong>可以被进程<strong>改变</strong></li>
-</ul>
-<h3 id="53-p-v操作解决互斥问题"><a href="#5-3-P-V操作解决互斥问题" class="headerlink" title="5.3 P-V操作解决互斥问题"></a>5.3 P-V操作解决互斥问题</h3><p><strong>实质是实现对临界区的互斥访问</strong>，允许最多1个进程处于临界区</p>
-<p><code>mutex=1</code><br>应用过程：</p>
-<ul>
-<li>进入临界区之前先执行P操作  （上锁）</li>
-<li>离开临界区之后再执行V操作  （开锁）</li>
-</ul>
-<h3 id="54-p-v操作解决同步问题"><a href="#5-4-P-V操作解决同步问题" class="headerlink" title="5.4 P-V操作解决同步问题"></a>5.4 P-V操作解决同步问题</h3><p>同步机制实质：</p>
-<ul>
-<li>运行条件不满足时，能让进程<strong>暂停</strong></li>
-<li>运行条件满足时，能让进程立即<strong>继续</strong></li>
-</ul>
-<p>P-V操作应用于进程同步的基本思路</p>
-<ul>
-<li>暂停当前进程：在<strong>关键操作之前</strong>执行<strong>P</strong>操作</li>
-<li><ul>
-<li>必要时可暂停</li>
-</ul>
-</li>
-<li>继续进程：在<strong>关键操作之后</strong>执行<strong>V</strong>操作</li>
-<li><ul>
-<li>必要时唤醒合作进程</li>
-</ul>
-</li>
-<li>定义<strong>有意义</strong>的信号量<strong>S</strong>，并设置合适的<strong>初值</strong></li>
-<li><ul>
-<li>信号量S能明确的表示<strong>运行条件</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="55-经典同步问题"><a href="#5-5-经典同步问题" class="headerlink" title="5.5 经典同步问题"></a>5.5 经典同步问题</h3><p>生产者和消费者问题：一群<strong>生产者</strong>向一群<strong>消费者</strong>提供<strong>产品（数据）</strong>，共享缓冲区。</p>
-<h2 id="6-windows和linux同步机制"><a href="#6-Windows和Linux同步机制" class="headerlink" title="6. Windows和Linux同步机制"></a>6. Windows和Linux同步机制</h2><h2 id="7-进程通信"><a href="#7-进程通信" class="headerlink" title="7. 进程通信"></a>7. 进程通信</h2><h3 id="71-匿名管道通信"><a href="#7-1-匿名管道通信" class="headerlink" title="7.1 匿名管道通信"></a>7.1 匿名管道通信</h3><p><strong>管道定义(pipe)：</strong>管道是进程间的一种通信机制。一个进程（A）可以通过管道把数据传输给另一个进程（B）。A向管道输入数据，B从管道读取数据。<br>A -&gt; (输入数据)-&gt; 管道 -&gt; (读取数据) -&gt; B</p>
-<h3 id="linux信号通信"><a href="#Linux信号通信" class="headerlink" title="Linux信号通信"></a>Linux信号通信</h3><p>信号的概念：</p>
-<ul>
-<li>信号是Linux进程间一种重要的<strong>通信机制</strong></li>
-<li>信号是向进程发送的<strong>一个通知</strong>，通知某个事件已发送</li>
-<li>收到信号的进程可以<strong>立即执行</strong>指定的操作</li>
-<li>信号的发出可以是进程，也可以是系统（含硬件）</li>
-</ul>
 
       
     </div>
@@ -897,7 +682,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/07/Java/Java%E5%AE%9E%E9%AA%8C-%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BF%86%E6%B8%B8%E6%88%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -911,101 +696,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">语法分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-15 16:45:38 / 修改时间：16:56:16" itemprop="dateCreated datePublished" datetime="2022-03-15T16:45:38+08:00">2022-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>306</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="语法分析器功能"><a href="#语法分析器功能" class="headerlink" title="语法分析器功能"></a>语法分析器功能</h2><p>在<strong>词法分析</strong>出的单词符号串基础上分析并判别程序的结构<strong>是否符合语法规则</strong></p>
-<h2 id="语法分析器分类"><a href="#语法分析器分类" class="headerlink" title="语法分析器分类"></a>语法分析器分类</h2><p>可分为<strong>自上而下分析法</strong>和<strong>自下而上分析法</strong>。</p>
-<p>程序 -&gt; 下<br>语言 -&gt; 开始符<br>文法 -&gt; 上</p>
-<p>自上而下分析：<strong>是从文法的开始符号出发，试图推导出句子。</strong> 它要解决的关键问题是在对某一个非终结符进行推导时，选择以它为左部的多个产生式的中的哪一个。 <strong><em>推导</em></strong></p>
-<p>自下而上分析：<strong>是从输入符号串出发，试图归约到文法的开始符号。</strong> 分析过程中，每次选择与某个产生式右部符号串相同的一个子串进行归约。它要解决的关键问题是如何确定一个可归约的子串。 <strong><em>归约</em></strong></p>
-<h2 id="自上而下分析法"><a href="#自上而下分析法" class="headerlink" title="自上而下分析法"></a>自上而下分析法</h2><p>问题：</p>
-<ol>
-<li><strong>回溯问题</strong></li>
-<li>虚假匹配问题</li>
-<li>最终报告分析不成功，难于知道输入的语法具体错误在哪</li>
-<li></li>
-<li><h2 id="自下而上分析法"><a href="#自下而上分析法" class="headerlink" title="自下而上分析法"></a>自下而上分析法</h2></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hestar">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hestar's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/" class="post-title-link" itemprop="url">操作系统用户界面</a>
+            <a href="/2022/04/07/Java/Java%E5%AE%9E%E9%AA%8C-%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BF%86%E6%B8%B8%E6%88%8F/" class="post-title-link" itemprop="url">Java实验-六级单词记忆游戏</a>
         </h2>
 
         <div class="post-meta">
@@ -1015,329 +706,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-14 16:28:31" itemprop="dateCreated datePublished" datetime="2022-03-14T16:28:31+08:00">2022-03-14</time>
+              <time title="创建时间：2022-04-07 13:31:50" itemprop="dateCreated datePublished" datetime="2022-04-07T13:31:50+08:00">2022-04-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-15 20:05:42" itemprop="dateModified" datetime="2022-03-15T20:05:42+08:00">2022-03-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>856</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h2><h3 id="bios"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>实模式（实地址模式 ，REAL MODE）:</p>
-<ul>
-<li>程序按照8086寻址方法访问0h~FFFFFh(1MB)空间</li>
-<li>寻址方式：物理地址（20位）&#x3D; 段地址 ：偏移地址</li>
-<li>CPU单任务运行</li>
-</ul>
-<p>保护模式（内存保护模式，PROTECT MODE）</p>
-<ul>
-<li>寻址方式：段</li>
-<li>虚拟地址，进程，封闭空间</li>
-<li>应用程序和操作系统的运行环境都被<strong>保护</strong></li>
-<li>CPU支持多任务</li>
-</ul>
-<p>实模式存取的1M空间：</p>
-<ul>
-<li>前面640K：00000~9FFFF 基本内存</li>
-<li>中间128K：A0000~BFFFF 显卡显存</li>
-<li>末尾256K：C0000~FFFFF <strong>BIOS</strong></li>
-<li><ul>
-<li>C0000~C7FFF:显示卡BIOS</li>
-</ul>
-</li>
-<li><ul>
-<li>C8000~CBFFF:IDE控制器BIOS</li>
-</ul>
-</li>
-<li><ul>
-<li>F0000~FFFFF：最后64KB，<strong>系统BIOS</strong><h2 id="操作系统生成"><a href="#操作系统生成" class="headerlink" title="操作系统生成"></a>操作系统生成</h2>满足特定硬件环境和用户需要，<strong>组装</strong>和<strong>构建</strong>操作系统过程</li>
-</ul>
-</li>
-</ul>
-<p>操作系统生成的主要步骤</p>
-<ul>
-<li>根据硬件环境&#x2F;用户要求配置功能模块和构造参数</li>
-<li><strong>构建OS的映像</strong></li>
-</ul>
-<p>操作系统的生成前提：</p>
-<ul>
-<li>操作系统有可拆装模块构成</li>
-<li>有交互式工具</li>
-<li>有映像构建（build）工具<h2 id="操作系统用户界面"><a href="#操作系统用户界面" class="headerlink" title="操作系统用户界面"></a>操作系统用户界面</h2><h3 id="用户界面的概念"><a href="#用户界面的概念" class="headerlink" title="用户界面的概念"></a>用户界面的概念</h3>定义：OS提供给用户操作计算机的机制，又称用户接口</li>
-</ul>
-<p>分类：</p>
-<ul>
-<li>操作界面</li>
-<li><ul>
-<li><strong>图形用户接口</strong>（GUI，Graphic User Interface）：窗口，图标，菜单，按钮，鼠标（消息，事件）</li>
-</ul>
-</li>
-<li><ul>
-<li><strong>键盘命令</strong>（COMMAND）：在控制台环境下接受键盘输入的命令，分为普通命令、批处理程序、shell</li>
-</ul>
-</li>
-<li>系统调用（System Call,系统功能调用，程序界面）</li>
-</ul>
-<h3 id="shell脚本编程"><a href="#Shell脚本编程" class="headerlink" title="Shell脚本编程"></a>Shell脚本编程</h3><p>脚本（Script）通过类似程序的方式执行具有一定逻辑顺序的<strong>命令序列</strong>完成较复杂的功能和人机交互。</p>
-<ul>
-<li>脚本程序保存在<strong>文本文件</strong>中</li>
-<li>脚本程序是Shell命令语句的集合</li>
-<li>Shell脚本程序由Shell环境解释执行</li>
-<li>执行Shell脚本文件需要具有可执行属性（x）.</li>
-<li><ul>
-<li><code>Chmod +x MyScript.sh</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><p>定义：操作系统<strong>内核</strong>为应用程序提供的<strong>服务&#x2F;函数</strong></p>
-<p>特点：</p>
-<ul>
-<li>一般涉及和性资源或硬件的操作，</li>
-<li>且运行于<strong>核态</strong></li>
-<li>每个系统调用具有唯一编号：ID</li>
-<li>调用程序过程会产生<strong>中断</strong>:自愿中断</li>
-<li>高级程序语言中使用隐式的系统调用</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hestar">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hestar's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">操作系统的逻辑结构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-03-14 10:53:36 / 修改时间：16:26:57" itemprop="dateCreated datePublished" datetime="2022-03-14T10:53:36+08:00">2022-03-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>618</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>操作系统的逻辑结构指<strong>OS的设计和实现思路</strong>,可分为以下三种：</p>
-<ol>
-<li>整体式结构：以<strong>模块</strong>为基本单位<ul>
-<li>特点：</li>
-<li><ul>
-<li>模块设计、编码和调试独立</li>
-</ul>
-</li>
-<li><ul>
-<li>模块调用自由</li>
-</ul>
-</li>
-<li><ul>
-<li>魔魁啊通信多以<strong>全局变量</strong>形式完成</li>
-</ul>
-</li>
-<li>缺点：</li>
-<li><ul>
-<li>信息传递随意，维护和更新困难</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>层次式结构：例如TCP&#x2F;IP协议栈。p所有功能模块按照<strong>调用次序</strong>排成若干层，相邻层间只有<strong>单向依赖</strong>或<strong>单向调用</strong><br><img src="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/2022-03-14-11-03-53.png" alt="操作系统的层次结构"></li>
-<li>微内核结构（客户&#x2F;服务器结构）：操作系统 &#x3D; 微内核 + 核外服务器<ul>
-<li>微内核:足够小，提供OS最基本的核心功能和服务</li>
-<li>核外服务器：完成OS的绝大部分服务器功能</li>
-</ul>
-</li>
-</ol>
-<h2 id="cpu的态"><a href="#CPU的态" class="headerlink" title="CPU的态"></a>CPU的态</h2><p>CPU的工作状态，对资源和指令使用权限的描述</p>
-<h3 id="特权指令"><a href="#特权指令" class="headerlink" title="特权指令"></a>特权指令</h3><p>不能被用户随意的使用，只能由CPU亲自使用</p>
-<ul>
-<li>由用户态转到核态</li>
-<li>LGDT&#x2F;LIDT：装载特殊寄存器</li>
-<li>CLTS：清除任务开关标志</li>
-<li>STI&#x2F;CTI：允许和禁止中断</li>
-<li>HALT：停止CPU的工作</li>
-<li>从核态转回用户态</li>
-</ul>
-<h3 id="态的分类"><a href="#态的分类" class="headerlink" title="态的分类"></a>态的分类</h3><p>核态（Kernel mode)</p>
-<ul>
-<li>能够访问所有资源和执行所有指令</li>
-<li>管理程序OS内核</li>
-</ul>
-<p>用户态（User mode）</p>
-<ul>
-<li>仅能访问部分资源，其他资源受限</li>
-<li>用户程序</li>
-</ul>
-<p>管态（superVisor mode）</p>
-<h2 id="中断机制"><a href="#中断机制" class="headerlink" title="中断机制"></a>中断机制</h2><p><strong>中断，指CPU对突发的外部事件的反应过程或机制</strong>。CPU收到<strong>外部信号</strong>（中断信号）后，停止当前工作，专区专利该事件，处理完毕后回到原来工作的<strong>中断处</strong>（断点）继续原来的工作。</p>
-<p><strong>引入中断的目的：</strong></p>
-<ul>
-<li>实现并发活动</li>
-<li>实现实时处理</li>
-<li>故障自动处理</li>
-</ul>
-<p><strong>中断响应的实质：</strong></p>
-<ul>
-<li>交换指令执行地址</li>
-<li>交换CPU的态</li>
-<li>工作</li>
-<li><ul>
-<li>现场保护和恢复</li>
-</ul>
-</li>
-<li><ul>
-<li>参数传递（通信）</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hestar">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hestar's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/" class="post-title-link" itemprop="url">面向对象的基本特征</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-09 19:03:38" itemprop="dateCreated datePublished" datetime="2022-03-09T19:03:38+08:00">2022-03-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-21 19:24:05" itemprop="dateModified" datetime="2022-03-21T19:24:05+08:00">2022-03-21</time>
+                <time title="修改时间：2022-04-21 09:09:57" itemprop="dateModified" datetime="2022-04-21T09:09:57+08:00">2022-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1355,14 +731,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>548</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -1374,83 +750,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Java中的面向对象基本特征是：封装、继承、多态</p>
-<h2 id="封装encapsulation"><a href="#封装（Encapsulation）" class="headerlink" title="封装（Encapsulation）"></a>封装（Encapsulation）</h2><p>包、访问控制符</p>
-<h3 id="11-包"><a href="#1-1-包" class="headerlink" title="1.1 包"></a>1.1 包</h3><ol>
-<li>包的封装：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> pack.sonpack. </span><br></pre></td></tr></table></figure>
-将该文件下的类放入pack.sonpack包</li>
-<li>包的使用<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pack.sonpack.*</span><br></pre></td></tr></table></figure>
-即引用pack.sonpack下所有的类。<strong>引入包时并不会将子包中的类一起引入</strong></li>
-</ol>
-<h3 id="12-访问控制符"><a href="#1-2-访问控制符" class="headerlink" title="1.2 访问控制符"></a>1.2 访问控制符</h3><p><strong>private:</strong> 仅能在类内访问<br><strong>default:</strong> private + 同一个包内访问<br><strong>protected:</strong> default + 包外子类访问<br><strong>public:</strong> protected + 包外非子类访问</p>
-<h2 id="继承inherition"><a href="#继承（inherition）" class="headerlink" title="继承（inherition）"></a>继承（inherition）</h2><p>C++： class 子类 : [访问控制符] 父类 {}<br>Java: class 子类 extends 父类 {}</p>
-<p>重写的作用：针对某些子类进行个性化设计<br>继承的本质：</p>
-<ul>
-<li>从现象上看，子类实例化之前，系统为这个子类对象单独实例化一个相应的父类对象。（每个子类构造函数调用之前，父类构造函数都会自动调用）</li>
-<li>从本质上：子类和父类就是一种组合关系，只是底层用继承的编译器使得其使用起来更加方便</li>
+          <h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
+<li>数据库模块<ul>
+<li>六级单词库：单词全拼、单词属性、单词释义提示</li>
+<li>用户信息：用户名、密码、历史成绩</li>
+<li>成绩记忆：分为两个表，一个为已掌握单词表，另一个为未掌握单词表，都有单词全拼和用户两个属性（*）</li>
 </ul>
-<p>组合关系，从强到弱：<br>最强：继承</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>父类中的非私有成员都可以在子类全范围内重用。</p>
-<p>次之：成员级别组合，A类定义为B类的成员，A和B的生命周期相同</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A a=<span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">    <span class="comment">//其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    B(<span class="type">int</span> w)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;父类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> <span class="keyword">extends</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A(<span class="type">int</span> w)&#123;</span><br><span class="line">        <span class="built_in">super</span>(w);    <span class="comment">/*必须写在第一行*/</span></span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="多态polymorphism"><a href="#多态（Polymorphism）" class="headerlink" title="多态（Polymorphism）"></a>多态（Polymorphism）</h2><p>静态多态性：重载（Overload）。<strong>同一个</strong>函数名称，在<strong>不同实参</strong>传入情况下，呈现<strong>不同功能</strong><br>静态：一个函数名称，但是还是要编写多个函数体</p>
-<p>动态多态性：<strong>父类引用可以指向子类对象</strong>，例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dialog show&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        Dialog d=<span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">        <span class="comment">//C++: Dialog *d=new FontDialog();</span></span><br><span class="line">        <span class="comment">//C++: 父类指针指向子类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>性质</strong>：父类引用调用重写成员时，调用的是重写子类成员</p>
-<p><strong>推论</strong>：</p>
-<ol>
-<li><p>函数定义父类形参，以子类对象作为实参传入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(Dialog d)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">fun(<span class="keyword">new</span> <span class="title class_">FontDialog</span>())</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>函数定义返回父类形参，以子类对象实际返回</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line">Dialog <span class="title function_">fun</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">Dialog d=fun();</span><br></pre></td></tr></table></figure>
-<p>多态性体现在：一个父类引用，在不同子类对象被指向的情况下，完成相应子类的功能。</p>
+<li>Server模块：<br> 一客户端一线程，或者是利用线程池处理高并发问题<br> 传送数据可以用序列化一次性传输多种数据<br> 客户端之间可以相互连接，以便同步双方实时游戏数据<ul>
+<li>匹配功能：监听连接到服务器的两个用户，并完成他们之间的匹配</li>
+<li>数据传输：传递六级单词、以及部分用户信息、游戏进行时的信息（将一端游戏信息同步至对手端）</li>
+<li><ul>
+<li>封装读写函数</li>
+</ul>
+</li>
+<li><ul>
+<li>分辨读写内容及类型</li>
+</ul>
+</li>
+</ul>
 </li>
 </ol>
-<p>该思想是软件支持“<strong>不修改源代码的情况下，能够二次开发</strong>”以及“<strong>模块可拼装</strong>”的基础。将两个业务类的关系变远，这就叫做软件工程中的“低耦合”。</p>
-<h3 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h3><p>抽象函数：在函数签名增加<code>abstract</code>关键字，该函数原则上要被重写，（可以理解为用来<strong>规范编程</strong>，确保某些方法必须要重写）。</p>
-<ol>
-<li>含有抽象函数的类，叫<strong>抽象类</strong>，用<code>abstract</code>来修饰</li>
-<li>抽象函数必须被子类重写，除非该子类也是个抽象类</li>
-<li>抽象函数没有函数体（类似于C++中的纯虚函数）</li>
-<li>抽象类<strong>不能被实例化</strong></li>
-</ol>
-<p>练习：</p>
-<ol>
-<li>抽象类中可否有普通函数？<strong>可以</strong></li>
-<li>抽象类中可否写构造函数？<strong>可以</strong></li>
-<li>抽象类不能被实例化，那它的构造函数和普通函数有什么用？ <strong>构造函数可以在子类中初始化某些变量；普通函数可以被子类重用</strong></li>
-<li>抽象函数必须被重写吗？ <strong>不一定，如果子类也是个抽象类的话</strong></li>
-</ol>
-<blockquote>
-<p>抽象类、抽象函数是一种：<strong>标准化手段</strong> 。</p>
-</blockquote>
-<h3 id="接口interface"><a href="#接口（interface）" class="headerlink" title="接口（interface）"></a>接口（interface）</h3><p>interface和抽象类类似，只不过<strong>它里面所有函数只能是抽象函数，所有的变量只能是常量</strong>。</p>
-<p>性质：</p>
-<ol>
-<li>接口中所有的函数都说抽象函数，变量只能是常量。<code>abstract</code>可以省略</li>
-<li>接口中所有的成员的都是<code>public</code>。所以<code>public</code>也可以省略</li>
-<li>接口中所有的变量都是常量,并且是静态常量</li>
-<li>一个类最多只能继承1个抽象类，但是可以实现（implements）多个接口，用逗号隔开。</li>
-</ol>
-<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><ul>
-<li>在类前面加final，该类不能有子类</li>
-<li>成员函数前加final，该函数不能被重写</li>
-<li>成员变量前加final，为常量，必须事先赋值，不能再次赋值</li>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ol>
+<li>client模块：<ul>
+<li>登录注册：向服务端发送请求或传递注册信息</li>
+<li>接受单词信息</li>
+<li>传送游戏进行时的信息：得分失分信息</li>
 </ul>
-<h2 id="object类"><a href="#object类" class="headerlink" title="object类"></a>object类</h2><p>在Java中定义一个类时，如果没有用extends明确标明直接父类，那么该类默认继承object类。</p>
-<p><strong>Java中任何一个类都是object的子类</strong></p>
-<p>该类有两个小作用：</p>
-<ol>
-<li>object类中，有一个toString方法，可以给子类一个以字符串展示的机会</li>
-<li>object类中，有一个equals方法，可以给予子类对象一个可以比较的机会<ul>
-<li>两个对象除非，指向同一个内存，否则，&#x3D;&#x3D;判断，为false </li>
-<li>若要判断两个对象内容是否相等，应该使用equals方法</li>
+</li>
+<li>游戏模块：<ul>
+<li>单词描述降落</li>
+<li>成绩展示：本地成绩、对手成绩</li>
+<li>成绩记忆：已掌握与未掌握单词本地存储</li>
+</ul>
+</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><ol>
+<li>数据库模块：MySQL+DAO设计模式</li>
+<li>Server模块：不断循环监听接口，凑够两个socket之后，单独开一个线程进行数据传送</li>
+</ol>
+<h3 id="客户端"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h3><ol>
+<li>client模块</li>
+<li>游戏模块：首先应该一共有三个界面：登录界面、匹配界面、游戏界面<ul>
+<li>登录界面ui元素：账号文本框、密码文本框、登录按钮、注册按钮</li>
+<li>匹配界面ui元素：匹配按钮、匹配窗口</li>
+<li>游戏界面：单词面板、输入面板、成绩展示（本地的、远端的）</li>
 </ul>
 </li>
 </ol>
@@ -1473,7 +817,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/06/Java/Java-IO%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1487,7 +831,91 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/" class="post-title-link" itemprop="url">物理层</a>
+            <a href="/2022/04/06/Java/Java-IO%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Java IO操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-06 19:10:59 / 修改时间：19:34:43" itemprop="dateCreated datePublished" datetime="2022-04-06T19:10:59+08:00">2022-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>31</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>如何用Java来包装文件<br>java.io.File: 封装文件信息</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/CS144/lab0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hestar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hestar's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/05/CS144/lab0/" class="post-title-link" itemprop="url">lab0</a>
         </h2>
 
         <div class="post-meta">
@@ -1497,14 +925,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-08 13:58:09" itemprop="dateCreated datePublished" datetime="2022-03-08T13:58:09+08:00">2022-03-08</time>
+              <time title="创建时间：2022-04-05 20:50:05" itemprop="dateCreated datePublished" datetime="2022-04-05T20:50:05+08:00">2022-04-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-11 15:39:59" itemprop="dateModified" datetime="2022-03-11T15:39:59+08:00">2022-03-11</time>
+                <time title="修改时间：2022-04-06 15:51:13" itemprop="dateModified" datetime="2022-04-06T15:51:13+08:00">2022-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1512,7 +940,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                  <a href="/categories/CS144/" itemprop="url" rel="index"><span itemprop="name">CS144</span></a>
                 </span>
             </span>
 
@@ -1541,78 +969,241 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="物理层基本概念"><a href="#物理层基本概念" class="headerlink" title="物理层基本概念"></a>物理层基本概念</h2><ol>
-<li><strong>位置</strong>： 物理层是网络体系结构中的最底层</li>
-<li><strong>功能</strong>：规定如何再连接各个计算机之间比特流的传输</li>
-<li></li>
+          <p>主要是两部分：</p>
+<h2 id="webget函数"><a href="#webget函数" class="headerlink" title="webget函数"></a>webget函数</h2><ol>
+<li>webget：就是模拟一个浏览器，对远端的一个服务器发出http请求，主要按照最简单的三段式结构<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+需要注意的点是<strong>每一行结尾是以”\r\n”结束的</strong>，且最后一行留空，并且lab0文档中指出<code>Make sure to read and print all the output from the server until the socket reaches “EOF” (end of file)—a single call to read is not enough.</code> 确保全部读完，并且很明显一个read并不够。这段换什么意思呢？我们在Linux终端上创建了一个HTTP请求，在进行三次握手之后，连接建立，我们的最后一句<code>Connection: close</code>意思是告诉服务器，接受到我的http请求文件后可以直接断开连接了。所以在服务器向远端传送数据，直到传送完毕之后，直接断开连接，但是我们仅仅只read()一次是无法读完全部数据的，因为我们不知道服务器什么时候写完所有数据也不知道服务器什么时候能把所有回复数据传送到本地，所以需要加判定<code>while(!tcpSocket.eof())</code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TCPSocket tcpSocket;</span><br><span class="line">    tcpSocket.<span class="built_in">connect</span>(<span class="built_in">Address</span>(host,<span class="string">&quot;http&quot;</span>));</span><br><span class="line">    tcpSocket.<span class="built_in">write</span>(<span class="string">&quot;GET &quot;</span>+path+<span class="string">&quot; HTTP/1.1\r\n&quot;</span>+<span class="string">&quot;Host: &quot;</span>+host+<span class="string">&quot;\r\nConnection: close\r\n\r\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(!tcpSocket.<span class="built_in">eof</span>())&#123;</span><br><span class="line">        cout&lt;&lt;tcpSocket.<span class="built_in">read</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="物理层常用标准"><a href="#物理层常用标准" class="headerlink" title="物理层常用标准"></a>物理层常用标准</h3><p><strong>点对点通信线路</strong><br><strong>广播通信线路</strong>：一条公共通信线路连接多个节点</p>
-<h2 id="物理层数据通信"><a href="#物理层数据通信" class="headerlink" title="物理层数据通信"></a>物理层数据通信</h2><h3 id="波特率和比特率之间的关系"><a href="#波特率和比特率之间的关系" class="headerlink" title="波特率和比特率之间的关系"></a>波特率和比特率之间的关系</h3><h3 id="信道的最大数据传输速率"><a href="#信道的最大数据传输速率" class="headerlink" title="信道的最大数据传输速率"></a>信道的最大数据传输速率</h3><p>无噪声有限带宽信道的最大数据传输率公式</p>
-<p>奈奎斯特定理</p>
-<ul>
-<li>最大数据传输率 &#x3D; 2H log<sub>2</sub>V (bps)</li>
-<li>H指带宽</li>
-</ul>
-<p>随机噪声出现的大小用信噪比（信号功率S与噪声功率N之比）来衡量， 10log<sub>10</sub>S&#x2F;N,单位分贝</p>
-<p>香农定理</p>
-<ul>
-<li>带宽为H赫兹，信噪比为S&#x2F;N的任意信道的最大数据传输率为: Hlog<sub>2</sub>(1+S&#x2F;N)（bps）</li>
-<li>此式由信息论获得，具有普遍意义</li>
-</ul>
-<h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p>源点 -&gt; 发送器 -&gt; 传输系统 -&gt; 接收器 -&gt; 目标<br>PC   -&gt; 调制解调器 -&gt; 公用电话网 -&gt; 调制解调器 -&gt; PC机<br>数字比特流  -&gt;  模拟信号   -&gt;   模拟信号   -&gt;  数字比特流</p>
-<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p>串行和并行传输</p>
-<ul>
-<li>串行传输： 指数据在一个信道上按位依次传输的方式</li>
-<li><ul>
-<li>所需线路少，投资省，线路利用率搞</li>
-</ul>
-</li>
-<li><ul>
-<li>收发之间，适合远距离传输</li>
-</ul>
-</li>
-<li>并行传输：</li>
-<li>- </li>
-<li><ul>
-<li></li>
-</ul>
-</li>
-</ul>
-<p>按照数据信号在信道上的<strong>传送方向与时间</strong>的关系可分为：单工（类似广播）、半双工（一方占用信道）、全双工</p>
-<p>按照<strong>发&#x2F;收连两端实现同步</strong>的方法，传输方式可分为两类： 异步传输和同步传输。</p>
-<ul>
-<li>异步：发送器和接收器的时钟不同步</li>
-<li>同步：发送器和接收器的时钟是同步的</li>
-</ul>
-<h3 id="数据编码技术"><a href="#数据编码技术" class="headerlink" title="数据编码技术"></a>数据编码技术</h3><p>研究数据在信号传输过程中如何进行编码（变换）<br>常用的几种编码方式：</p>
+<h2 id="bytestream类"><a href="#byteStream类" class="headerlink" title="byteStream类"></a>byteStream类</h2><p>在计算机网络中，我们的ip协议是一个简单的协议，它所能保证的东西很少，在进行比特传输时，我们的传输流是<code>a reliable byte stream</code>，它无法保证稳定，即在传输出错时（重传、错传、漏传），无法监测出，并且不会对其进行处理。但它仍会尽力去处理，即writer把所有要写的都写入我们的byteStream，但reader不一定全部读出，因为我们的capacity有限。</p>
+<blockquote>
+<p>有个坑点，没注意看的可能会一直错。<code>bytes_read()</code>方法的描述是 <code>Total number of bytes popped</code>。所有pop的字节，而不仅仅只是被读出的。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/04/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hestar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hestar's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/04/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">Java多线程开发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-04 19:02:34 / 修改时间：19:46:39" itemprop="dateCreated datePublished" datetime="2022-04-04T19:02:34+08:00">2022-04-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>600</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>进程（Process）：操作系统中能够“同时”运行的多个应用程序，实际上在底层是“分时”（时间片轮转）<br>线程（Thread）：一个应用程序中，能够“同时”运行的多个任务，比如：在线播放（一边下载，一边播放），实际上，在底层是“分时”（时间片轮转）。</p>
+<p>针对Java语言，我们讲解线程，如果是讲解进程，在操作系统中。</p>
+<p>实现线程的两种方法：</p>
 <ol>
-<li>不归零制码（NRZ: Non-Return to Zero）</li>
-</ol>
-<ul>
-<li>原理</li>
-</ul>
-<ol start="2">
-<li>曼彻斯特码（Manchester）,也称相位编码。分逢1跳变和逢0跳变。</li>
-<li>差分曼彻斯特码（Diffential Manchster）</li>
-</ol>
-<h3 id="频带传输"><a href="#频带传输" class="headerlink" title="频带传输"></a>频带传输</h3><p>三种调制技术：载波Asin(wt+)的三个特性幅度、频率、相位</p>
-<ul>
-<li>调幅(ASK)：</li>
-<li>调频(FSK):</li>
-<li>调相(PSK):</li>
-</ul>
-<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>传输介质是指发送器与接收器之间的物理通路可分为两大类：</p>
-<ul>
-<li>导引型传输介质：指电磁波被导向沿着某一媒体传播，包括</li>
-<li><ul>
-<li>双绞线、同轴电缆</li>
-</ul>
+<li><p>让需要实现线程的类，继承java.lang.Thread类，将需要实现线程的代码，放在从Thread类中重写的run函数内。最后开启线程，用线程对象的start()方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一步：继承Thread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Downloader</span> <span class="keyword">extends</span> <span class="title class_">java</span>.lang.Thread&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    Downloader d=<span class="keyword">new</span> <span class="title class_">Downloader</span>();</span><br><span class="line">    d.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题：用了多线程，多个任务完成得比以前快，是不是说明多线程让CPU运行更快了呢？不是。只是让CPU的利用率提高了。</p>
 </li>
-<li>非导引型传输介质：并不沿着某一确定通道传播</li>
+<li><p>让需要实现的线程的类，实现java.lang.Runnable接口；将需要实现的类实现Runnable接口，重写run函数。然后实例化线程，将类的对象传入线程的构造函数，再调用线程的start方法。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hestar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hestar's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">文件管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-31 09:32:58" itemprop="dateCreated datePublished" datetime="2022-03-31T09:32:58+08:00">2022-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-04 09:05:12" itemprop="dateModified" datetime="2022-04-04T09:05:12+08:00">2022-04-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>617</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文件系统概念"><a href="#文件系统概念" class="headerlink" title="文件系统概念"></a>文件系统概念</h2><p>文件定义：文件是计算机信息存取的一种重要组织形式</p>
+<p>文件系统：</p>
+<ul>
+<li>定义：负责管理文件的机构称为文件系统</li>
+<li>功能：负责文件的创立、撤销、读写、修改、复制和存取控制等，并管理存文件的存储设备</li>
+<li>文件系统的目标是让用户以文件名的方式访问文件</li>
 </ul>
-<h2 id="无线与卫星通信"><a href="#无线与卫星通信" class="headerlink" title="无线与卫星通信"></a>无线与卫星通信</h2><h3 id="无线通信的基本概念"><a href="#无线通信的基本概念" class="headerlink" title="无线通信的基本概念"></a>无线通信的基本概念</h3><h3 id="无线通信系统分类"><a href="#无线通信系统分类" class="headerlink" title="无线通信系统分类"></a>无线通信系统分类</h3><h3 id="卫星通信的基本概念"><a href="#卫星通信的基本概念" class="headerlink" title="卫星通信的基本概念"></a>卫星通信的基本概念</h3><p>卫星通信的基本特点<br>传播时延长</p>
-<h2 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h2><p>信道资源是有限的，实际网络中，多对用户往往需要利用信道资源传输信息，不同的信号同时在同一信道中传输会产生严重的相互干扰，导致传输失败<br><strong>复用</strong>：技术的目的是：允许用户使用一个共享信道进行通信，避免相互干扰，降低成本，提高利用率。<br><img src="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png" alt="复用示意图"></p>
-<h3 id="频分复用fdm"><a href="#频分复用（FDM）" class="headerlink" title="频分复用（FDM）"></a>频分复用（FDM）</h3><p>频分复用是一种讲多路基带信号调制到不同</p>
+<blockquote>
+<p>现代操作系统中文件都是流式文件，由应用程序解释和处理</p>
+</blockquote>
+<p>文件的存取方法：</p>
+<ul>
+<li>顺序存取：按文件信息项排列顺序依次存取。文件打开时，读写指针指向第一个信息项，然后每存取一个信息项，读写指针依次+1</li>
+<li>随机存取：直接存取，存取操作时指定存取的位置</li>
+</ul>
+<h2 id="文件的物理结构"><a href="#文件的物理结构" class="headerlink" title="文件的物理结构"></a>文件的物理结构</h2><p>概念：</p>
+<ul>
+<li>文件物理结构是指文件在存储设备上的存储方式</li>
+<li>强调合理利用存储空间，并缩短I&#x2F;O存取时间</li>
+</ul>
+<p>类型：</p>
+<ul>
+<li>连续文件</li>
+<li>索引结构</li>
+<li>串联文件</li>
+</ul>
+<h3 id="连续文件"><a href="#连续文件" class="headerlink" title="连续文件"></a>连续文件</h3><p>概念：</p>
+<ul>
+<li>文件按逻辑块的顺序存放在硬盘<strong>连续的</strong>物理存储块中</li>
+<li>文件目录记录文件长度（块数）和第一个存储块的块号</li>
+</ul>
+<p>特点：文件建立时给出文件的最大长度并登记文件起始位置。<br>缺点：</p>
+<ul>
+<li>文件不易动态增长（需预留空间，造成浪费。需重新分配和移动）</li>
+<li>不利于文件插入和删除</li>
+<li>外部碎片问题</li>
+</ul>
+<h3 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h3><p>概念：文件存放在不连续的存储块中。建立<strong>索引表</strong>记录文件逻辑块和物理存储块的对应关系</p>
+<p>特点：</p>
+<ul>
+<li>文件&#x3D;索引区+数据区</li>
+<li>先访问索引，再访问数据</li>
+<li>支持顺序存取和随机存取</li>
+<li>支持文件动态增长、插入、删除</li>
+</ul>
+<h3 id="串联文件"><a href="#串联文件" class="headerlink" title="串联文件"></a>串联文件</h3><p>文件存放在不连续的存储块中。<br>每个存储块有一个指针，指向下一个存储块。<br>文件目录：指明文件名和第一个存储块的块号</p>
+<p>应用：FAT文件系统（File Allocation Table）</p>
 
       
     </div>
@@ -1631,7 +1222,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1697,14 +1288,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -1730,7 +1325,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1739,12 +1334,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">25k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">23 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
@@ -1794,6 +1389,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   

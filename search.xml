@@ -1,6 +1,444 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Javascript基础</title>
+    <url>/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>简单介绍一下JavaScript内置对象，使用最多的有以下4个：</p>
+<ol>
+<li><strong>window:</strong> 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。</li>
+<li><strong>document</strong>：负责操作浏览器载入的文档（html文件），从属window。</li>
+<li><strong>history</strong>：可以代替后退（前进）按钮访问历史记录，从属window。</li>
+<li><strong>location</strong>：访问地址栏，也从属window。</li>
+</ol>
+<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><p>window对象作用如下。</p>
+<h3 id="11-出现提示框"><a href="#1-1-出现提示框" class="headerlink" title="1.1 出现提示框"></a>1.1 出现提示框</h3><p>window对象可以跳出提示框。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;内容&quot;</span>)：出现消息框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;内容&quot;</span>)：出现确认框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;内容&quot;</span>):出现输入框</span><br></pre></td></tr></table></figure>
+<p><strong>实例：</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//消息框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;我是消息框&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//确认框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;你确认要确认吗？&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//输入框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;麻烦输入一下&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>结果：</strong></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png" alt="消息框"></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-41-43.png" alt="确认框"></p>
+<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-42-03.png" alt="输入框"></p>
+<h3 id="12-打卡-关闭窗口"><a href="#1-2-打卡、关闭窗口" class="headerlink" title="1.2 打卡、关闭窗口"></a>1.2 打卡、关闭窗口</h3><p>window对象还用于控制窗口的状态和开&#x2F;关。打开窗口使用<code>window.open()</code>函数，关闭窗口使用<code>window.close()</code>，控制窗口状态可以设置改变<code>window.statue</code>属性。</p>
+<h3 id="13-定时器"><a href="#1-3-定时器" class="headerlink" title="1.3 定时器"></a>1.3 定时器</h3><p>window对象负责管理和控制页面的定时器，定时器的作用是让某个函数隔一段时间之后运行一次，格式如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">timer=<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="string">&quot;需要运行的函数&quot;</span>,<span class="string">&quot;时间（毫秒计）&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="built_in">clearTimeout</span>(timer);<span class="comment">//清楚定时器</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-history对象"><a href="#2-history对象" class="headerlink" title="2. history对象"></a>2. history对象</h2><p>history对象包含用户的浏览历史等信息，使用这个对象是因为它可以代替前进（后退）按钮访问历史记录，该对象从属window。</p>
+<p>常用的函数如下。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">history.<span class="title function_">back</span>():返回上一页，相当于单击浏览器上的后退按钮。</span><br><span class="line">history.<span class="title function_">forward</span>():返回下一页，相当于单击浏览器上的前进按钮。</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(n):n为整数，正数表示向前前进n格页面，负数表示后退。</span><br></pre></td></tr></table></figure>
+<h2 id="3-document对象"><a href="#3-document对象" class="headerlink" title="3. document对象"></a>3. document对象</h2><p>document对象同样从属window，功能如下。</p>
+<h3 id="31-在网页上输出"><a href="#3-1-在网页上输出" class="headerlink" title="3.1 在网页上输出"></a>3.1 在网页上输出</h3><p>在网页输出方面，最常见的函数是<code>writeln()</code>。</p>
+<h3 id="32-设置网页的属性"><a href="#3-2-设置网页的属性" class="headerlink" title="3.2 设置网页的属性"></a>3.2 设置网页的属性</h3><p>使用document对象可以进行一些简单网页属性的设置，例如页面的标题、颜色等，并且可以得到网页的某些属性，例如地址。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">title</span>:获取当前网页标题</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>:获取当前网页的地址</span><br></pre></td></tr></table></figure>
+<h3 id="33-访问文档元素特别是表单元素"><a href="#3-3-访问文档元素，特别是表单元素" class="headerlink" title="3.3 访问文档元素，特别是表单元素"></a>3.3 访问文档元素，特别是表单元素</h3><p>使用document对象可以访问文档中的元素（例如图片、表单、表单中的控件），前提是元素的name属性是确定的。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;txt1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    text=<span class="variable language_">document</span>.<span class="property">form1</span>.<span class="property">txt1</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-location对象"><a href="#4-location对象" class="headerlink" title="4. location对象"></a>4. location对象</h2><p>location对象可以访问浏览器的地址栏，它也从属window，其最常见的功能就是转到另一个网页，跳转方法是修改location对象的href属性。</p>
+]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>socket编程</title>
+    <url>/2023/03/27/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="1-socket地址"><a href="#1-socket地址" class="headerlink" title="1. socket地址"></a>1. socket地址</h2><h3 id="11-网络字节序和主机字节序"><a href="#1-1-网络字节序和主机字节序" class="headerlink" title="1.1 网络字节序和主机字节序"></a>1.1 网络字节序和主机字节序</h3><p>首先计算机中存储数据分<strong>小端存储</strong>和<strong>大端存储</strong>，大端存储是将一个整数的高位字节存在低位地址内存中，小端存储相反。</p>
+<p>由于最初不同主机具有不同的字节序，为了统一网络传输的标准，将<strong>大端字节序设为网络字节序</strong>，所以所有的主机在从网络中发送数据时，需要进行字节序转换，将主机字节序转换成网络字节序。</p>
+<p>Linux提供了如下4种函数来完成主机字节序和网络字节序的转换：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="comment">// host to net </span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">htonl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> hostlong )</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> <span class="title function_">htons</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> hostshort )</span>;</span><br><span class="line"><span class="comment">// net to host</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">ntohl</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> netlong )</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> <span class="title function_">ntohs</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> netshort )</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-socket地址结构"><a href="#1-2-socket地址结构" class="headerlink" title="1.2 socket地址结构"></a>1.2 socket地址结构</h3><p>TCP&#x2F;IP协议族有<code>sockaddr_in</code>和<code>sockaddr_in6</code>两种专用socket地址结构体，它们分别用于IPv4和IPv6。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">    <span class="comment">// 地址族：AF_INET</span></span><br><span class="line">    <span class="type">sa_family_t</span> sin_family;</span><br><span class="line">    <span class="comment">// 端口号，要用网络字节序表示</span></span><br><span class="line">    <span class="type">u_int16_t</span> sin_port;</span><br><span class="line">    <span class="comment">// IPv4地址结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IPv4地址结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span>&#123;</span></span><br><span class="line">    <span class="type">u_int32_t</span> s_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个<code>sockaddr_in</code>结构有3个部分：</p>
+<pre class="mermaid">graph LR
+A(sockaddr_in) --> B(地址族 sin_family)
+A --> C(端口号 sin_port)
+A --> D(IPv4地址结构 sin_addr)</pre>
+
+<p>​    <code>sa_family</code>成员是地址族类型的变量，地址族（address family）通常与协议族（protocol family）类型对应：</p>
+<table>
+<thead>
+<tr>
+<th align="center">协议族</th>
+<th align="center">地址族</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PF_UNIX</td>
+<td align="center">AF_UNIX</td>
+<td align="center">UNIX本地域协议族</td>
+</tr>
+<tr>
+<td align="center">PF_INET</td>
+<td align="center">AF_INET</td>
+<td align="center">TCP&#x2F;IPv4协议族</td>
+</tr>
+<tr>
+<td align="center">PF_INET6</td>
+<td align="center">AF_INET6</td>
+<td align="center">TCP&#x2F;IPv6协议族</td>
+</tr>
+</tbody></table>
+<h3 id="13-ip地址转换函数"><a href="#1-3-IP地址转换函数" class="headerlink" title="1.3 IP地址转换函数"></a>1.3 IP地址转换函数</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;arp/inet.h&gt;</span></span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	Convert from presentation format of an Internet number in buffer</span></span><br><span class="line"><span class="comment">   starting at src to the binary network format and store result for</span></span><br><span class="line"><span class="comment">   interface type AF in buffer starting at dst.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">inet_pton</span><span class="params">( <span class="type">int</span> af , <span class="type">const</span> <span class="type">char</span> *src , <span class="type">void</span>* dst)</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* <span class="title function_">inet_ntop</span><span class="params">( <span class="type">int</span> af , <span class="type">const</span> <span class="type">void</span>* src , <span class="type">char</span>* dst , <span class="type">socklen_t</span> cnt)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-socket创建"><a href="#2-socket创建" class="headerlink" title="2. socket创建"></a>2. socket创建</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// domain为协议族变量，如PF_INET</span></span><br><span class="line"><span class="comment">// type指定服务类型，有SOCK_STREAM和SOCK_UGRAM</span></span><br><span class="line"><span class="comment">// protocol一般为0</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain , <span class="type">int</span> type , <span class="type">int</span> protocol)</span>; </span><br></pre></td></tr></table></figure>
+
+<p>在Linux中一切皆为文件，所以socket创建后为一个可读、可写、可控制的文件描述符fd。</p>
+<h2 id="3-socket命名"><a href="#3-socket命名" class="headerlink" title="3. socket命名"></a>3. socket命名</h2><p>创建socket时，我们给它指定了地址族，但是并没有指定使用该地址族的具体socket地址，所以我们需要将一个socket与一个具体的socket地址绑定。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">bind</span><span class="params">(<span class="type">int</span> sockfd , <span class="type">const</span> <span class="keyword">struct</span> sockaddr* my_addr , <span class="type">socklen_t</span> addrlen)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在服务器程序中，我们通常要命名socket，因为只有命名后客户端才能知道如何连接它。客户端通常不需要命名socket，而是采用匿名方式，使用操作系统自动分配的socket地址。</p>
+<h2 id="4-socket监听"><a href="#4-socket监听" class="headerlink" title="4. socket监听"></a>4. socket监听</h2><p>socket命名后，如果需要接收客户端的连接，需要通过系统调用来创建一个<strong>监听队列</strong>，该队列中存放所有待处理socket连接的客户连接。该队列可以规定长度，确认同一时间内容，监听队列中能存放多少连接，当队列满后，对于其他请求的socket会拒绝建立连接。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="comment">// backlog参数是指处于完全连接状态（ESTABLISHED）的socket上限</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">listen</span><span class="params">( <span class="type">int</span> sockfd,<span class="type">int</span> backlog)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-接收连接"><a href="#5-接收连接" class="headerlink" title="5. 接收连接"></a>5. 接收连接</h2><p>socket建立监听状态后，成功连接的客户端socket被存储在监听队列中，我们可以通过accept()方法按顺序取出。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sockfd参数是执行过listen系统调用的监听socket</span></span><br><span class="line"><span class="comment">// addr参数用来获取被连接接受的远端socket地址</span></span><br><span class="line"><span class="comment">// 返回一个新的连接socket</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">accept</span><span class="params">(<span class="type">int</span> sockfd , <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> *addrlen)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>现考虑如下问题</strong>：如果监听队列中处于ESTABLISHED状态的连接对应的客户端出现网络异常，或者提前退出，那么服务器对这个连接执行的accept调用是否成功？</p>
+<p>成功，accept仍会返回一个socket连接。<strong>accept只是从监听队列中取出连接</strong>，TCP协议三次握手的建立成功与否在于操作系统的进行，当成功建立连接时，操作系统会将成功的连接放入监听队列等待取出使用，而不论连接处于何种状态，更不关心任何网络状况</p>
+<h2 id="6-发起连接"><a href="#6-发起连接" class="headerlink" title="6. 发起连接"></a>6. 发起连接</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 成功时返回0，失败时返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *serv_addr, <span class="type">socklen_t</span> addrlen</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-关闭连接"><a href="#7-关闭连接" class="headerlink" title="7. 关闭连接"></a>7. 关闭连接</h2><p>关闭一个连接实际上就是关闭该连接对应的socket，这可以通过如下关闭普通文件描述符的系统调用来完成。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// fd参数是待关闭的socket</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> sockfd)</span></span><br></pre></td></tr></table></figure>
+
+<p>不过，<strong>close系统调用并非总是立即关闭一个连接</strong>，而是将fd的引用计数-1。只有当fd的引用计数为0时，才能真正关闭连接。多进程程序中，一次fork系统调用默认将父进程打开的socket的引用计数+1，因此我们必须在父进程和子进程中都对该socket执行close调用才能将连接关闭。</p>
+<p>​    <strong>个人理解</strong>：在Linux系统中，父进程和子进程共享某些资源，这些资源也包括打开的文件描述符，那么为了能够让子进程也使用文件描述符，那么文件描述符的关闭就应该由父子进程同时决定，否则会造成资源调度的问题。所以规定只有fd引用归零是完全销毁文件描述符，而这需要父子进程都不在需要使用fd之后，即父子进程都对fd执行close调用。</p>
+<p>​    <strong>如果无论如何都要立即终止连接</strong>，可以使用<code>shutdown</code>系统调用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// howto参数决定了shutdown的行为</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">shutdown</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> howto)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th align="center">shutdown可选值</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SHUT_RD</td>
+<td align="center">关闭sockfd上读的这一半。应用程序不能再针对socket文件描述符执行读操作，并且该socket接受缓冲区中的数据都被丢弃</td>
+</tr>
+<tr>
+<td align="center">SHUT_WR</td>
+<td align="center">关闭sockfd上写的这一半。sockfd的发送缓冲区中的数据会在真正关闭连接之前全部发送出去，应用程序不可再对该socket文件描述符执行写操作</td>
+</tr>
+<tr>
+<td align="center">SHUT_RDWR</td>
+<td align="center">同时关闭读和写</td>
+</tr>
+</tbody></table>
+<p><img src="/2023/03/27/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/socket%E7%BC%96%E7%A8%8B/image-20230413190331919.png" alt="image-20230413190331919"></p>
+]]></content>
+      <categories>
+        <category>Linux网络编程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>lab0</title>
+    <url>/2022/04/05/CS144/lab0/</url>
+    <content><![CDATA[<p>主要是两部分：</p>
+<h2 id="webget函数"><a href="#webget函数" class="headerlink" title="webget函数"></a>webget函数</h2><ol>
+<li>webget：就是模拟一个浏览器，对远端的一个服务器发出http请求，主要按照最简单的三段式结构<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.baidu.com</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+需要注意的点是<strong>每一行结尾是以”\r\n”结束的</strong>，且最后一行留空，并且lab0文档中指出<code>Make sure to read and print all the output from the server until the socket reaches “EOF” (end of file)—a single call to read is not enough.</code> 确保全部读完，并且很明显一个read并不够。这段换什么意思呢？我们在Linux终端上创建了一个HTTP请求，在进行三次握手之后，连接建立，我们的最后一句<code>Connection: close</code>意思是告诉服务器，接受到我的http请求文件后可以直接断开连接了。所以在服务器向远端传送数据，直到传送完毕之后，直接断开连接，但是我们仅仅只read()一次是无法读完全部数据的，因为我们不知道服务器什么时候写完所有数据也不知道服务器什么时候能把所有回复数据传送到本地，所以需要加判定<code>while(!tcpSocket.eof())</code><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">TCPSocket tcpSocket;</span><br><span class="line">    tcpSocket.<span class="built_in">connect</span>(<span class="built_in">Address</span>(host,<span class="string">&quot;http&quot;</span>));</span><br><span class="line">    tcpSocket.<span class="built_in">write</span>(<span class="string">&quot;GET &quot;</span>+path+<span class="string">&quot; HTTP/1.1\r\n&quot;</span>+<span class="string">&quot;Host: &quot;</span>+host+<span class="string">&quot;\r\nConnection: close\r\n\r\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(!tcpSocket.<span class="built_in">eof</span>())&#123;</span><br><span class="line">        cout&lt;&lt;tcpSocket.<span class="built_in">read</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="bytestream类"><a href="#byteStream类" class="headerlink" title="byteStream类"></a>byteStream类</h2><p>在计算机网络中，我们的ip协议是一个简单的协议，它所能保证的东西很少，在进行比特传输时，我们的传输流是<code>a reliable byte stream</code>，它无法保证稳定，即在传输出错时（重传、错传、漏传），无法监测出，并且不会对其进行处理。但它仍会尽力去处理，即writer把所有要写的都写入我们的byteStream，但reader不一定全部读出，因为我们的capacity有限。</p>
+<blockquote>
+<p>有个坑点，没注意看的可能会一直错。<code>bytes_read()</code>方法的描述是 <code>Total number of bytes popped</code>。所有pop的字节，而不仅仅只是被读出的。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>CS144</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java IO操作</title>
+    <url>/2022/04/06/Java/Java-IO%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<ol>
+<li>如何用Java来包装文件<br>java.io.File: 封装文件信息</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java:基础知识</title>
+    <url>/2022/02/26/Java/Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="java的三个版本"><a href="#Java的三个版本" class="headerlink" title="Java的三个版本"></a>Java的三个版本</h2><p>在多年的发展中，java的应用产生了三个开发版本：</p>
+<ol>
+<li>JavaSE: Java Standard Edition，Java技术标准版，以界面程序，Java小程序和其它一些典型的应用为目标。</li>
+<li>JavaEE: Java Enterprise Edition，Java技术企业版，以服务器端程序和企业软件的开发为目标。</li>
+<li>JavaME: Java Micro Edition，Java技术微型版，为小型设备，独立设备，互联移动设备，嵌入式设备程序开发而设计。</li>
+</ol>
+<p>我们常用的是JavaSE</p>
+<h2 id="jvm-jre-jdk的区别"><a href="#JVM、JRE、JDK的区别" class="headerlink" title="JVM、JRE、JDK的区别"></a>JVM、JRE、JDK的区别</h2><ul>
+<li>JVM: Java Virtual Machine，即Java虚拟机。</li>
+<li>JRE: Java Runtime Environment，指Java运行环境。JRE包括JVM和Java核心类库。</li>
+<li>JDK: Java Development Kit，指Java开发工具包，包括JRE和Java开发工具（javac.exe&#x2F;jar.exe）。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java多线程开发</title>
+    <url>/2022/04/04/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<p>进程（Process）：操作系统中能够“同时”运行的多个应用程序，实际上在底层是“分时”（时间片轮转）<br>线程（Thread）：一个应用程序中，能够“同时”运行的多个任务，比如：在线播放（一边下载，一边播放），实际上，在底层是“分时”（时间片轮转）。</p>
+<p>针对Java语言，我们讲解线程，如果是讲解进程，在操作系统中。</p>
+<p>实现线程的两种方法：</p>
+<ol>
+<li><p>让需要实现线程的类，继承java.lang.Thread类，将需要实现线程的代码，放在从Thread类中重写的run函数内。最后开启线程，用线程对象的start()方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//第一步：继承Thread</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Downloader</span> <span class="keyword">extends</span> <span class="title class_">java</span>.lang.Thread&#123;</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    Downloader d=<span class="keyword">new</span> <span class="title class_">Downloader</span>();</span><br><span class="line">    d.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题：用了多线程，多个任务完成得比以前快，是不是说明多线程让CPU运行更快了呢？不是。只是让CPU的利用率提高了。</p>
+</li>
+<li><p>让需要实现的线程的类，实现java.lang.Runnable接口；将需要实现的类实现Runnable接口，重写run函数。然后实例化线程，将类的对象传入线程的构造函数，再调用线程的start方法。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java实验-六级单词记忆游戏</title>
+    <url>/2022/04/07/Java/Java%E5%AE%9E%E9%AA%8C-%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BF%86%E6%B8%B8%E6%88%8F/</url>
+    <content><![CDATA[<h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
+<li>数据库模块<ul>
+<li>六级单词库：单词全拼、单词属性、单词释义提示</li>
+<li>用户信息：用户名、密码、历史成绩</li>
+<li>成绩记忆：分为两个表，一个为已掌握单词表，另一个为未掌握单词表，都有单词全拼和用户两个属性（*）</li>
+</ul>
+</li>
+<li>Server模块：<br> 一客户端一线程，或者是利用线程池处理高并发问题<br> 传送数据可以用序列化一次性传输多种数据<br> 客户端之间可以相互连接，以便同步双方实时游戏数据<ul>
+<li>匹配功能：监听连接到服务器的两个用户，并完成他们之间的匹配</li>
+<li>数据传输：传递六级单词、以及部分用户信息、游戏进行时的信息（将一端游戏信息同步至对手端）</li>
+<li><ul>
+<li>封装读写函数</li>
+</ul>
+</li>
+<li><ul>
+<li>分辨读写内容及类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ol>
+<li>client模块：<ul>
+<li>登录注册：向服务端发送请求或传递注册信息</li>
+<li>接受单词信息</li>
+<li>传送游戏进行时的信息：得分失分信息</li>
+</ul>
+</li>
+<li>游戏模块：<ul>
+<li>单词描述降落</li>
+<li>成绩展示：本地成绩、对手成绩</li>
+<li>成绩记忆：已掌握与未掌握单词本地存储</li>
+</ul>
+</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><ol>
+<li>数据库模块：MySQL+DAO设计模式</li>
+<li>Server模块：不断循环监听接口，凑够两个socket之后，单独开一个线程进行数据传送</li>
+</ol>
+<h3 id="客户端"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h3><ol>
+<li>client模块</li>
+<li>游戏模块：首先应该一共有三个界面：登录界面、匹配界面、游戏界面<ul>
+<li>登录界面ui元素：账号文本框、密码文本框、登录按钮、注册按钮</li>
+<li>匹配界面ui元素：匹配按钮、匹配窗口</li>
+<li>游戏界面：单词面板、输入面板、成绩展示（本地的、远端的）</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java画图</title>
+    <url>/2022/04/25/Java/Java%E7%94%BB%E5%9B%BE/</url>
+    <content><![CDATA[<p>用控件组成的界面，一般叫做：高级界面<br>纯粹用绘图方式组成界面，一般叫做：低级界面</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Java语言核心包</title>
+    <url>/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/</url>
+    <content><![CDATA[<h2 id="javalang包"><a href="#java-lang包" class="headerlink" title="java.lang包"></a>java.lang包</h2><p>时Java中最基础的核心包，里面包含……</p>
+<h3 id="javalangmath"><a href="#Java-lang-Math" class="headerlink" title="Java.lang.Math"></a>Java.lang.Math</h3><h3 id="javalangstring"><a href="#Java-lang-String" class="headerlink" title="Java.lang.String"></a>Java.lang.String</h3><p>直接赋值时，系统为了节省内存，用的是<strong>池机制</strong></p>
+<p><strong>如何判断字符串内容是否相等？</strong></p>
+<ul>
+<li>显然，不能使用 &#x3D;&#x3D; </li>
+<li>所以需要使用equals进行判断。</li>
+</ul>
+<h3 id="javalangstringbuffer类"><a href="#Java-lang-StringBuffer类" class="headerlink" title="Java.lang.StringBuffer类"></a>Java.lang.StringBuffer类</h3><p>负责字符串处理，是自变型字符串，操作之后，自己变化。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s1.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s1不变</span></span><br><span class="line">StringBuffer s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s2.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s2为“中南大学”</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="javautil包"><a href="#Java-util包" class="headerlink" title="Java.util包"></a>Java.util包</h2><p>最重要的是：Java集合框架（变长数组）<br>三类：</p>
+<ol>
+<li><p>List类：一维变长数组，元素有位置，可重复</p>
+<ul>
+<li>ArrayList：底层用数组存储</li>
+<li>LinkedList:底层用链表存储</li>
+<li>Vector：实现了多线程的安全</li>
+</ul>
+</li>
+<li><p>Set类：一维变长数组，元素无位置信息，不可重复</p>
+</li>
+<li><p>Map类：二维变长数组</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>用Swing开发GUI程序</title>
+    <url>/2022/04/11/Java/%E7%94%A8Swing%E5%BC%80%E5%8F%91GUI%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<p>Swing；Java中的一个报，负责开发GUI程序<br>GUI：图形用户界面，一般指可视化桌面系统中的应用程序<br>Windows视窗：从字符界面拓展到图形界面</p>
+<p>常见图形界面基本结构：</p>
+<ol>
+<li>界面（容器、窗口</li>
+<li>控件（界面上的元素组件，如按钮、文本框等）</li>
+<li>事件响应（相应功能）</li>
+<li>渲染（颜色、字体）</li>
+</ol>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>提供整个界面空间。</p>
+<ol>
+<li>框架界面：javax.swing.JFrame</li>
+<li>窗口界面：javax.swing.JWindow</li>
+<li>对话框界面：javax.swing.JDialog</li>
+</ol>
+<h2 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h2><p>Java中，容器还有：面板 javax.swing.JPanal 一般我们在界面</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>任何控件都可以设置背景颜色和前景颜色。</p>
+<ul>
+<li>背景颜色：setBackgrounp</li>
+<li>前景颜色：setForegrounp</li>
+</ul>
+<ol>
+<li>颜色：java.awt.Color</li>
+<li>字体：Java.awt.Font,但凡是有字的控件，都有setFont</li>
+<li>图标：java.awt.Icon,并不是所有控件可以放图标。很多控件都可以设置图标，如按钮、静态文本等。但比如文本框就不能</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>用TCP开发网络应用程序</title>
+    <url>/2022/05/02/Java/%E7%94%A8TCP%E5%BC%80%E5%8F%91%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<p>TCP:传输控制协议 面向连接 　打电话<br>UDP：数据包协议　面向数据包　发短信<br>网络应用程序：微信、QQ</p>
+<p>基础概念：<br>C&#x2F;S模式：客户端&#x2F;服务器 客户安装应用程序，和服务器通信<br>B&#x2F;S模式：浏览器&#x2F;服务器 客户端安装浏览器，和服务器通信</p>
+]]></content>
+      <tags>
+        <tag>categories</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面向对象的基本特征</title>
+    <url>/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/</url>
+    <content><![CDATA[<p>Java中的面向对象基本特征是：封装、继承、多态</p>
+<h2 id="封装encapsulation"><a href="#封装（Encapsulation）" class="headerlink" title="封装（Encapsulation）"></a>封装（Encapsulation）</h2><p>包、访问控制符</p>
+<h3 id="11-包"><a href="#1-1-包" class="headerlink" title="1.1 包"></a>1.1 包</h3><ol>
+<li>包的封装：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> pack.sonpack. </span><br></pre></td></tr></table></figure>
+将该文件下的类放入pack.sonpack包</li>
+<li>包的使用<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pack.sonpack.*</span><br></pre></td></tr></table></figure>
+即引用pack.sonpack下所有的类。<strong>引入包时并不会将子包中的类一起引入</strong></li>
+</ol>
+<h3 id="12-访问控制符"><a href="#1-2-访问控制符" class="headerlink" title="1.2 访问控制符"></a>1.2 访问控制符</h3><p><strong>private:</strong> 仅能在类内访问<br><strong>default:</strong> private + 同一个包内访问<br><strong>protected:</strong> default + 包外子类访问<br><strong>public:</strong> protected + 包外非子类访问</p>
+<h2 id="继承inherition"><a href="#继承（inherition）" class="headerlink" title="继承（inherition）"></a>继承（inherition）</h2><p>C++： class 子类 : [访问控制符] 父类 {}<br>Java: class 子类 extends 父类 {}</p>
+<p>重写的作用：针对某些子类进行个性化设计<br>继承的本质：</p>
+<ul>
+<li>从现象上看，子类实例化之前，系统为这个子类对象单独实例化一个相应的父类对象。（每个子类构造函数调用之前，父类构造函数都会自动调用）</li>
+<li>从本质上：子类和父类就是一种组合关系，只是底层用继承的编译器使得其使用起来更加方便</li>
+</ul>
+<p>组合关系，从强到弱：<br>最强：继承</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>父类中的非私有成员都可以在子类全范围内重用。</p>
+<p>次之：成员级别组合，A类定义为B类的成员，A和B的生命周期相同</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A a=<span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">    <span class="comment">//其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    B(<span class="type">int</span> w)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;父类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> <span class="keyword">extends</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A(<span class="type">int</span> w)&#123;</span><br><span class="line">        <span class="built_in">super</span>(w);    <span class="comment">/*必须写在第一行*/</span></span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多态polymorphism"><a href="#多态（Polymorphism）" class="headerlink" title="多态（Polymorphism）"></a>多态（Polymorphism）</h2><p>静态多态性：重载（Overload）。<strong>同一个</strong>函数名称，在<strong>不同实参</strong>传入情况下，呈现<strong>不同功能</strong><br>静态：一个函数名称，但是还是要编写多个函数体</p>
+<p>动态多态性：<strong>父类引用可以指向子类对象</strong>，例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dialog show&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        Dialog d=<span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">        <span class="comment">//C++: Dialog *d=new FontDialog();</span></span><br><span class="line">        <span class="comment">//C++: 父类指针指向子类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>性质</strong>：父类引用调用重写成员时，调用的是重写子类成员</p>
+<p><strong>推论</strong>：</p>
+<ol>
+<li><p>函数定义父类形参，以子类对象作为实参传入</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(Dialog d)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">fun(<span class="keyword">new</span> <span class="title class_">FontDialog</span>())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数定义返回父类形参，以子类对象实际返回</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line">Dialog <span class="title function_">fun</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">Dialog d=fun();</span><br></pre></td></tr></table></figure>
+<p>多态性体现在：一个父类引用，在不同子类对象被指向的情况下，完成相应子类的功能。</p>
+</li>
+</ol>
+<p>该思想是软件支持“<strong>不修改源代码的情况下，能够二次开发</strong>”以及“<strong>模块可拼装</strong>”的基础。将两个业务类的关系变远，这就叫做软件工程中的“低耦合”。</p>
+<h3 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h3><p>抽象函数：在函数签名增加<code>abstract</code>关键字，该函数原则上要被重写，（可以理解为用来<strong>规范编程</strong>，确保某些方法必须要重写）。</p>
+<ol>
+<li>含有抽象函数的类，叫<strong>抽象类</strong>，用<code>abstract</code>来修饰</li>
+<li>抽象函数必须被子类重写，除非该子类也是个抽象类</li>
+<li>抽象函数没有函数体（类似于C++中的纯虚函数）</li>
+<li>抽象类<strong>不能被实例化</strong></li>
+</ol>
+<p>练习：</p>
+<ol>
+<li>抽象类中可否有普通函数？<strong>可以</strong></li>
+<li>抽象类中可否写构造函数？<strong>可以</strong></li>
+<li>抽象类不能被实例化，那它的构造函数和普通函数有什么用？ <strong>构造函数可以在子类中初始化某些变量；普通函数可以被子类重用</strong></li>
+<li>抽象函数必须被重写吗？ <strong>不一定，如果子类也是个抽象类的话</strong></li>
+</ol>
+<blockquote>
+<p>抽象类、抽象函数是一种：<strong>标准化手段</strong> 。</p>
+</blockquote>
+<h3 id="接口interface"><a href="#接口（interface）" class="headerlink" title="接口（interface）"></a>接口（interface）</h3><p>interface和抽象类类似，只不过<strong>它里面所有函数只能是抽象函数，所有的变量只能是常量</strong>。</p>
+<p>性质：</p>
+<ol>
+<li>接口中所有的函数都说抽象函数，变量只能是常量。<code>abstract</code>可以省略</li>
+<li>接口中所有的成员的都是<code>public</code>。所以<code>public</code>也可以省略</li>
+<li>接口中所有的变量都是常量,并且是静态常量</li>
+<li>一个类最多只能继承1个抽象类，但是可以实现（implements）多个接口，用逗号隔开。</li>
+</ol>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><ul>
+<li>在类前面加final，该类不能有子类</li>
+<li>成员函数前加final，该函数不能被重写</li>
+<li>成员变量前加final，为常量，必须事先赋值，不能再次赋值</li>
+</ul>
+<h2 id="object类"><a href="#object类" class="headerlink" title="object类"></a>object类</h2><p>在Java中定义一个类时，如果没有用extends明确标明直接父类，那么该类默认继承object类。</p>
+<p><strong>Java中任何一个类都是object的子类</strong></p>
+<p>该类有两个小作用：</p>
+<ol>
+<li>object类中，有一个toString方法，可以给子类一个以字符串展示的机会</li>
+<li>object类中，有一个equals方法，可以给予子类对象一个可以比较的机会<ul>
+<li>两个对象除非，指向同一个内存，否则，&#x3D;&#x3D;判断，为false </li>
+<li>若要判断两个对象内容是否相等，应该使用equals方法</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python基础知识</title>
     <url>/2022/02/26/Python/Python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="11-整型"><a href="#1-1-整型" class="headerlink" title="1.1 整型"></a>1.1 整型</h3><p>如<code>1</code>，<code>424</code>，<code>3344</code>等</p>
@@ -62,44 +500,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Javascript基础</title>
-    <url>/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p>简单介绍一下JavaScript内置对象，使用最多的有以下4个：</p>
-<ol>
-<li><strong>window:</strong> 负责操作浏览器窗口，负责窗口的状态、开&#x2F;闭合。</li>
-<li><strong>document</strong>：负责操作浏览器载入的文档（html文件），从属window。</li>
-<li><strong>history</strong>：可以代替后退（前进）按钮访问历史记录，从属window。</li>
-<li><strong>location</strong>：访问地址栏，也从属window。</li>
-</ol>
-<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><p>window对象作用如下。</p>
-<h3 id="11-出现提示框"><a href="#1-1-出现提示框" class="headerlink" title="1.1 出现提示框"></a>1.1 出现提示框</h3><p>window对象可以跳出提示框。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;内容&quot;</span>)：出现消息框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;内容&quot;</span>)：出现确认框</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;内容&quot;</span>):出现输入框</span><br></pre></td></tr></table></figure>
-<p><strong>实例：</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//消息框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">alert</span>(<span class="string">&quot;我是消息框&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//确认框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">confirm</span>(<span class="string">&quot;你确认要确认吗？&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//输入框</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="title function_">prompt</span>(<span class="string">&quot;麻烦输入一下&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>结果：</strong></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-37-17.png" alt="消息框"></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-41-43.png" alt="确认框"></p>
-<p><img src="/2022/03/01/JavaWeb/Javascript%E5%9F%BA%E7%A1%80/2022-03-01-20-42-03.png" alt="输入框"></p>
-<h3 id="12-打卡-关闭窗口"><a href="#1-2-打卡、关闭窗口" class="headerlink" title="1.2 打卡、关闭窗口"></a>1.2 打卡、关闭窗口</h3><p>window对象还用于控制窗口的状态和开&#x2F;关。打开窗口使用<code>window.open()</code>函数，关闭窗口使用<code>window.close()</code>，控制窗口状态可以设置改变<code>window.statue</code>属性。</p>
-<h3 id="13-定时器"><a href="#1-3-定时器" class="headerlink" title="1.3 定时器"></a>1.3 定时器</h3><p>window对象负责管理和控制页面的定时器，定时器的作用是让某个函数隔一段时间之后运行一次，格式如下。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">timer=<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="string">&quot;需要运行的函数&quot;</span>,<span class="string">&quot;时间（毫秒计）&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="built_in">clearTimeout</span>(timer);<span class="comment">//清楚定时器</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-history对象"><a href="#2-history对象" class="headerlink" title="2. history对象"></a>2. history对象</h2><p>history对象包含用户的浏览历史等信息，使用这个对象是因为它可以代替前进（后退）按钮访问历史记录，该对象从属window。</p>
-<p>常用的函数如下。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">history.<span class="title function_">back</span>():返回上一页，相当于单击浏览器上的后退按钮。</span><br><span class="line">history.<span class="title function_">forward</span>():返回下一页，相当于单击浏览器上的前进按钮。</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(n):n为整数，正数表示向前前进n格页面，负数表示后退。</span><br></pre></td></tr></table></figure>
-<h2 id="3-document对象"><a href="#3-document对象" class="headerlink" title="3. document对象"></a>3. document对象</h2><p>document对象同样从属window，功能如下。</p>
-<h3 id="31-在网页上输出"><a href="#3-1-在网页上输出" class="headerlink" title="3.1 在网页上输出"></a>3.1 在网页上输出</h3><p>在网页输出方面，最常见的函数是<code>writeln()</code>。</p>
-<h3 id="32-设置网页的属性"><a href="#3-2-设置网页的属性" class="headerlink" title="3.2 设置网页的属性"></a>3.2 设置网页的属性</h3><p>使用document对象可以进行一些简单网页属性的设置，例如页面的标题、颜色等，并且可以得到网页的某些属性，例如地址。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">title</span>:获取当前网页标题</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">location</span>:获取当前网页的地址</span><br></pre></td></tr></table></figure>
-<h3 id="33-访问文档元素特别是表单元素"><a href="#3-3-访问文档元素，特别是表单元素" class="headerlink" title="3.3 访问文档元素，特别是表单元素"></a>3.3 访问文档元素，特别是表单元素</h3><p>使用document对象可以访问文档中的元素（例如图片、表单、表单中的控件），前提是元素的name属性是确定的。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;txt1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    text=<span class="variable language_">document</span>.<span class="property">form1</span>.<span class="property">txt1</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4-location对象"><a href="#4-location对象" class="headerlink" title="4. location对象"></a>4. location对象</h2><p>location对象可以访问浏览器的地址栏，它也从属window，其最常见的功能就是转到另一个网页，跳转方法是修改location对象的href属性。</p>
-]]></content>
-      <categories>
-        <category>JavaWeb</category>
-      </categories>
-  </entry>
-  <entry>
     <title>turtle库的简单使用</title>
     <url>/2022/02/26/Python/turtle%E5%BA%93%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="turtle库基本介绍"><a href="#turtle库基本介绍" class="headerlink" title="turtle库基本介绍"></a>turtle库基本介绍</h2><p>turtle库是turtle绘图体系的python实现。<br>可以将turtle理解为一直”海龟”，它在窗体的正中心，在画布上游走，走过的轨迹形成了绘制的图形。”海龟”由程序控制，可以变换颜色，该改变宽度等。</p>
@@ -124,52 +524,6 @@
 ]]></content>
       <categories>
         <category>Python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Java:基础知识</title>
-    <url>/2022/02/26/Java/Java-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="java的三个版本"><a href="#Java的三个版本" class="headerlink" title="Java的三个版本"></a>Java的三个版本</h2><p>在多年的发展中，java的应用产生了三个开发版本：</p>
-<ol>
-<li>JavaSE: Java Standard Edition，Java技术标准版，以界面程序，Java小程序和其它一些典型的应用为目标。</li>
-<li>JavaEE: Java Enterprise Edition，Java技术企业版，以服务器端程序和企业软件的开发为目标。</li>
-<li>JavaME: Java Micro Edition，Java技术微型版，为小型设备，独立设备，互联移动设备，嵌入式设备程序开发而设计。</li>
-</ol>
-<p>我们常用的是JavaSE</p>
-<h2 id="jvm-jre-jdk的区别"><a href="#JVM、JRE、JDK的区别" class="headerlink" title="JVM、JRE、JDK的区别"></a>JVM、JRE、JDK的区别</h2><ul>
-<li>JVM: Java Virtual Machine，即Java虚拟机。</li>
-<li>JRE: Java Runtime Environment，指Java运行环境。JRE包括JVM和Java核心类库。</li>
-<li>JDK: Java Development Kit，指Java开发工具包，包括JRE和Java开发工具（javac.exe&#x2F;jar.exe）。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>计算机网络概述</title>
-    <url>/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/</url>
-    <content><![CDATA[<h2 id="1-互联网的组成"><a href="#1-互联网的组成" class="headerlink" title="1. 互联网的组成"></a>1. 互联网的组成</h2><p>互联网的拓扑结构虽然非常复杂，但从其工作方式上看，可以划分为以下两大块：</p>
-<ul>
-<li><strong>边缘部分</strong>：由所有连接在互联网上的主机组成。这部分是<strong>用户直接使用的</strong>，用来进行通信（传送数据、音频或视频）和资源共享</li>
-<li><strong>核心部分</strong>：由大量网络和连接这些网络的路由器组成。这部分是为<strong>边缘部分提供服务的</strong>（提供连通性和交换）</li>
-</ul>
-<h3 id="11-互联网的边缘部分"><a href="#1-1-互联网的边缘部分" class="headerlink" title="1.1 互联网的边缘部分"></a>1.1 互联网的边缘部分</h3><p>处在互联网边缘的部分就是连接在互联网上的所有主机。这些主机又称为<strong>端系统(end system)<strong>。端系统的拥有者可以是个人，也可以是单位（如学校，企业，政府机关等），也可以是某个ISP（即ISP不仅仅是向端系统提供服务，它也可以拥有一些端系统）。边缘部分利用核心部分所提供的服务，使众多主机之间的能够互相</strong>通信</strong>并交换或共享信息。</p>
-<p><strong>计算机间的通信</strong>，通常指：“运行在主机A上的某个程序和运行在主机B上的另一个程序进行通信”。由于“进程”就是“运行着的程序”，也就是说：<strong>“主机A上的某个进程和主机B上的另一个进程进行通信”</strong>。通信方式通常可以划分为两大类：<strong>客户&#x2F;服务器方式（C&#x2F;S方式）</strong> 和 <strong>对等方式（P2P方式）</strong>。</p>
-<h3 id="12-互联网核心部分"><a href="#1-2-互联网核心部分" class="headerlink" title="1.2 互联网核心部分"></a>1.2 互联网核心部分</h3><p>核心部分的功能是：向网络边缘部分的大量主机提供<strong>连通性</strong>，使<strong>边缘部分中的任何一台主机都能与其他主机通信</strong>。</p>
-<p>在网络核心部分起特殊作用的是<strong>路由器(router)<strong>，它是一种专用计算机（但不叫做主机）。路由器是实现</strong>分组交换(packet switching)<strong>的关键构件，其任务是</strong>转发收到的分组</strong>。下面介绍三种交换方式。</p>
-<h4 id="121-电路交换"><a href="#1-2-1-电路交换" class="headerlink" title="1.2.1 电路交换"></a>1.2.1 电路交换</h4><p><img src="/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/2022-02-27-13-52-49.png" alt="电路交换"><br>在使用电路交换通话之前，必须先拨号请求建立连接。当被叫用户听到交换机送来的振铃音并摘机后，才能建立一条连接，也就是一条<strong>专用的物理通路</strong>。通话完毕挂机后，交换机释放刚才使用的这条专用物理通路。所以<strong>电路交换</strong>的流程为：</p>
-<p><strong>建立连接</strong>（占用通信资源） $\Longrightarrow$ <strong>通话</strong>（一直占用通信资源） $\Longrightarrow$ <strong>释放连接</strong>（归还通信资源）</p>
-<p>特点：<strong>在通话的全部时间内，通话的两个用户始终占用端到端的通信资源</strong></p>
-<p>缺点：<strong>线路的传输效率很低</strong>。这是因为计算机数据是突发式的出现在传输线路上的，<strong>真正用来传输数据的时间反而很少</strong>，已被用户占用的通信线路资源在大部分时间里是空闲的。例如，当用户阅读终端屏幕上的信息或用键盘输入和编辑一份文件时，或计算机正在处理而尚未返回结果时，宝贵的通信线路资源并未被利用而是被浪费了。</p>
-<h4 id="122-报文交换"><a href="#1-2-2-报文交换" class="headerlink" title="1.2.2 报文交换"></a>1.2.2 报文交换</h4><p>报文交换是以<strong>报文</strong>为数据交换的单位，报文携带有目标地址、源地址等信息，在交换结点采用<strong>存储转发</strong>的传输方式。</p>
-<ul>
-<li><strong>无须建立连接</strong>。报文交换不需要为通信双方预先建立一条专用的通信线路，不存在建立连接时延，用户可以随时发送报文。</li>
-<li><strong>动态分配线路</strong>。当发送方把报文交给交换设备时，交换设备先存储整个报文，然后选择一条合适的空闲线路，将报文发送出去。</li>
-</ul>
-<h4 id="123-分组交换"><a href="#1-2-3-分组交换" class="headerlink" title="1.2.3 分组交换"></a>1.2.3 分组交换</h4>]]></content>
-      <categories>
-        <category>计算机网络</category>
       </categories>
   </entry>
   <entry>
@@ -261,225 +615,6 @@
       </categories>
   </entry>
   <entry>
-    <title>链路层</title>
-    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%93%BE%E8%B7%AF%E5%B1%82/</url>
-    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>数据链路层在协议栈中的位置<br>向下：：<br>向上：</p>
-<p>功能：</p>
-<ul>
-<li><strong>封装成帧（Framing）</strong>：将比特流划分成“帧”的主要目的是为了检测和纠正物理层在比特传输中的可能出现的错误，数据链路层功能需借助“帧”的各个域来实现</li>
-<li><strong>差错控制（Error Control）</strong>：要处理传输中出现的差错，如位错误、丢失</li>
-<li><strong>流量控制（FLow Control）</strong>：确保发送方的发送速率，不大于接收方的处理速率</li>
-</ul>
-<p>服务：</p>
-<h2 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h2><p>关键问题： 接收方必须能从物理层接受的比特流中明确区分出一帧的开始和结束。这个问题被称为<strong>帧同步或帧界定</strong></p>
-<ul>
-<li>选择何种<strong>定界符</strong>，定界符出现在数据部分如何处理。</li>
-</ul>
-<p>封装成帧方式：</p>
-<ol>
-<li><strong>字节计数法</strong>：帧开始的数，表示该帧有多长。<strong>仅能用于无差错传输的情形</strong>，不健壮，很少使用。<br> <strong>3</strong> 1 2 3 <strong>4</strong> 1234</li>
-<li><strong>带字符填充的定界符法</strong>：定界符（FLAG），一个特殊的字节，比如<code>0111 1110</code>，即<code>0x7e</code>，<strong>用于区分前后两个不同的帧</strong>。<ul>
-<li>发送方：检查有效载荷，进行字节填充，若在有效荷载中<strong>发现定界符</strong>，则在前加入<strong>转义字节</strong></li>
-<li>接收方：去除头部的Flag后，对有效荷载进行检测，<strong>收到ESC转义字节后</strong>，将后一字节<strong>无条件成为有效载荷</strong>。找到真正的定界符后，进行处理，得到处理后的真正有效荷载。</li>
-</ul>
-</li>
-<li><strong>带比特填充的定界符法</strong>：<ul>
-<li>发送方检查有效载荷，若在有效载荷中出现连续5个1，则直接插入一个0比特</li>
-<li>接收方处理，若出现连续的<strong>5个1</strong>，若下一比特为0，则为有效载荷，直接丢弃0比特；若下一比特为1，则为定界符，一帧结束</li>
-</ul>
-</li>
-</ol>
-<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><p><strong>信道的噪声导致数据传输问题</strong></p>
-<ul>
-<li>差错：数据发生错误</li>
-<li></li>
-<li>丢失：接收方未收到</li>
-<li>乱序：先发后到，后发先到</li>
-<li>重复，一次发送，多次接受</li>
-</ul>
-<p><strong>解决方案</strong>：差错检测与纠正，确认重传</p>
-<h3 id="如何解决信道传输差错问题"><a href="#如何解决信道传输差错问题：" class="headerlink" title="如何解决信道传输差错问题："></a>如何解决信道传输差错问题：</h3><ul>
-<li>通常采用<strong>增加冗余信息</strong>（或称校验信息）的策略</li>
-</ul>
-<p>目标：保证一定差错检测和纠错能力的前提下，如何减少冗余信息</p>
-<h3 id="差错检测和纠正概述"><a href="#差错检测和纠正概述" class="headerlink" title="差错检测和纠正概述"></a>差错检测和纠正概述</h3><p>检错码</p>
-<ul>
-<li>在被发送的数据块中，包含一些荣誉信息，但这些信息只能是接收方</li>
-</ul>
-<h2 id="基本的数据链路层协议"><a href="#基本的数据链路层协议" class="headerlink" title="基本的数据链路层协议"></a>基本的数据链路层协议</h2>]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>物理层</title>
-    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/</url>
-    <content><![CDATA[<h2 id="物理层基本概念"><a href="#物理层基本概念" class="headerlink" title="物理层基本概念"></a>物理层基本概念</h2><ol>
-<li><strong>位置</strong>： 物理层是网络体系结构中的最底层</li>
-<li><strong>功能</strong>：规定如何再连接各个计算机之间比特流的传输</li>
-<li></li>
-</ol>
-<h3 id="物理层常用标准"><a href="#物理层常用标准" class="headerlink" title="物理层常用标准"></a>物理层常用标准</h3><p><strong>点对点通信线路</strong><br><strong>广播通信线路</strong>：一条公共通信线路连接多个节点</p>
-<h2 id="物理层数据通信"><a href="#物理层数据通信" class="headerlink" title="物理层数据通信"></a>物理层数据通信</h2><h3 id="波特率和比特率之间的关系"><a href="#波特率和比特率之间的关系" class="headerlink" title="波特率和比特率之间的关系"></a>波特率和比特率之间的关系</h3><h3 id="信道的最大数据传输速率"><a href="#信道的最大数据传输速率" class="headerlink" title="信道的最大数据传输速率"></a>信道的最大数据传输速率</h3><p>无噪声有限带宽信道的最大数据传输率公式</p>
-<p>奈奎斯特定理</p>
-<ul>
-<li>最大数据传输率 &#x3D; 2H log<sub>2</sub>V (bps)</li>
-<li>H指带宽</li>
-</ul>
-<p>随机噪声出现的大小用信噪比（信号功率S与噪声功率N之比）来衡量， 10log<sub>10</sub>S&#x2F;N,单位分贝</p>
-<p>香农定理</p>
-<ul>
-<li>带宽为H赫兹，信噪比为S&#x2F;N的任意信道的最大数据传输率为: Hlog<sub>2</sub>(1+S&#x2F;N)（bps）</li>
-<li>此式由信息论获得，具有普遍意义</li>
-</ul>
-<h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p>源点 -&gt; 发送器 -&gt; 传输系统 -&gt; 接收器 -&gt; 目标<br>PC   -&gt; 调制解调器 -&gt; 公用电话网 -&gt; 调制解调器 -&gt; PC机<br>数字比特流  -&gt;  模拟信号   -&gt;   模拟信号   -&gt;  数字比特流</p>
-<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p>串行和并行传输</p>
-<ul>
-<li>串行传输： 指数据在一个信道上按位依次传输的方式</li>
-<li><ul>
-<li>所需线路少，投资省，线路利用率搞</li>
-</ul>
-</li>
-<li><ul>
-<li>收发之间，适合远距离传输</li>
-</ul>
-</li>
-<li>并行传输：</li>
-<li>- </li>
-<li><ul>
-<li></li>
-</ul>
-</li>
-</ul>
-<p>按照数据信号在信道上的<strong>传送方向与时间</strong>的关系可分为：单工（类似广播）、半双工（一方占用信道）、全双工</p>
-<p>按照<strong>发&#x2F;收连两端实现同步</strong>的方法，传输方式可分为两类： 异步传输和同步传输。</p>
-<ul>
-<li>异步：发送器和接收器的时钟不同步</li>
-<li>同步：发送器和接收器的时钟是同步的</li>
-</ul>
-<h3 id="数据编码技术"><a href="#数据编码技术" class="headerlink" title="数据编码技术"></a>数据编码技术</h3><p>研究数据在信号传输过程中如何进行编码（变换）<br>常用的几种编码方式：</p>
-<ol>
-<li>不归零制码（NRZ: Non-Return to Zero）</li>
-</ol>
-<ul>
-<li>原理</li>
-</ul>
-<ol start="2">
-<li>曼彻斯特码（Manchester）,也称相位编码。分逢1跳变和逢0跳变。</li>
-<li>差分曼彻斯特码（Diffential Manchster）</li>
-</ol>
-<h3 id="频带传输"><a href="#频带传输" class="headerlink" title="频带传输"></a>频带传输</h3><p>三种调制技术：载波Asin(wt+)的三个特性幅度、频率、相位</p>
-<ul>
-<li>调幅(ASK)：</li>
-<li>调频(FSK):</li>
-<li>调相(PSK):</li>
-</ul>
-<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>传输介质是指发送器与接收器之间的物理通路可分为两大类：</p>
-<ul>
-<li>导引型传输介质：指电磁波被导向沿着某一媒体传播，包括</li>
-<li><ul>
-<li>双绞线、同轴电缆</li>
-</ul>
-</li>
-<li>非导引型传输介质：并不沿着某一确定通道传播</li>
-</ul>
-<h2 id="无线与卫星通信"><a href="#无线与卫星通信" class="headerlink" title="无线与卫星通信"></a>无线与卫星通信</h2><h3 id="无线通信的基本概念"><a href="#无线通信的基本概念" class="headerlink" title="无线通信的基本概念"></a>无线通信的基本概念</h3><h3 id="无线通信系统分类"><a href="#无线通信系统分类" class="headerlink" title="无线通信系统分类"></a>无线通信系统分类</h3><h3 id="卫星通信的基本概念"><a href="#卫星通信的基本概念" class="headerlink" title="卫星通信的基本概念"></a>卫星通信的基本概念</h3><p>卫星通信的基本特点<br>传播时延长</p>
-<h2 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h2><p>信道资源是有限的，实际网络中，多对用户往往需要利用信道资源传输信息，不同的信号同时在同一信道中传输会产生严重的相互干扰，导致传输失败<br><strong>复用</strong>：技术的目的是：允许用户使用一个共享信道进行通信，避免相互干扰，降低成本，提高利用率。<br><img src="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png" alt="复用示意图"></p>
-<h3 id="频分复用fdm"><a href="#频分复用（FDM）" class="headerlink" title="频分复用（FDM）"></a>频分复用（FDM）</h3><p>频分复用是一种讲多路基带信号调制到不同</p>
-]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>面向对象的基本特征</title>
-    <url>/2022/03/09/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81/</url>
-    <content><![CDATA[<p>Java中的面向对象基本特征是：封装、继承、多态</p>
-<h2 id="封装encapsulation"><a href="#封装（Encapsulation）" class="headerlink" title="封装（Encapsulation）"></a>封装（Encapsulation）</h2><p>包、访问控制符</p>
-<h3 id="11-包"><a href="#1-1-包" class="headerlink" title="1.1 包"></a>1.1 包</h3><ol>
-<li>包的封装：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> pack.sonpack. </span><br></pre></td></tr></table></figure>
-将该文件下的类放入pack.sonpack包</li>
-<li>包的使用<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pack.sonpack.*</span><br></pre></td></tr></table></figure>
-即引用pack.sonpack下所有的类。<strong>引入包时并不会将子包中的类一起引入</strong></li>
-</ol>
-<h3 id="12-访问控制符"><a href="#1-2-访问控制符" class="headerlink" title="1.2 访问控制符"></a>1.2 访问控制符</h3><p><strong>private:</strong> 仅能在类内访问<br><strong>default:</strong> private + 同一个包内访问<br><strong>protected:</strong> default + 包外子类访问<br><strong>public:</strong> protected + 包外非子类访问</p>
-<h2 id="继承inherition"><a href="#继承（inherition）" class="headerlink" title="继承（inherition）"></a>继承（inherition）</h2><p>C++： class 子类 : [访问控制符] 父类 {}<br>Java: class 子类 extends 父类 {}</p>
-<p>重写的作用：针对某些子类进行个性化设计<br>继承的本质：</p>
-<ul>
-<li>从现象上看，子类实例化之前，系统为这个子类对象单独实例化一个相应的父类对象。（每个子类构造函数调用之前，父类构造函数都会自动调用）</li>
-<li>从本质上：子类和父类就是一种组合关系，只是底层用继承的编译器使得其使用起来更加方便</li>
-</ul>
-<p>组合关系，从强到弱：<br>最强：继承</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>父类中的非私有成员都可以在子类全范围内重用。</p>
-<p>次之：成员级别组合，A类定义为B类的成员，A和B的生命周期相同</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A a=<span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">    <span class="comment">//其他代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    B(<span class="type">int</span> w)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;父类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> <span class="keyword">extends</span> <span class="title class_">B</span>&#123;</span><br><span class="line">    A(<span class="type">int</span> w)&#123;</span><br><span class="line">        <span class="built_in">super</span>(w);    <span class="comment">/*必须写在第一行*/</span></span><br><span class="line">        System.out.println(<span class="string">&quot;子类构造函数&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="多态polymorphism"><a href="#多态（Polymorphism）" class="headerlink" title="多态（Polymorphism）"></a>多态（Polymorphism）</h2><p>静态多态性：重载（Overload）。<strong>同一个</strong>函数名称，在<strong>不同实参</strong>传入情况下，呈现<strong>不同功能</strong><br>静态：一个函数名称，但是还是要编写多个函数体</p>
-<p>动态多态性：<strong>父类引用可以指向子类对象</strong>，例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dialog show&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FontDialog</span> <span class="keyword">extends</span> <span class="title class_">Dialog</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        Dialog d=<span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">        <span class="comment">//C++: Dialog *d=new FontDialog();</span></span><br><span class="line">        <span class="comment">//C++: 父类指针指向子类对象</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>性质</strong>：父类引用调用重写成员时，调用的是重写子类成员</p>
-<p><strong>推论</strong>：</p>
-<ol>
-<li><p>函数定义父类形参，以子类对象作为实参传入</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(Dialog d)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">fun(<span class="keyword">new</span> <span class="title class_">FontDialog</span>())</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数定义返回父类形参，以子类对象实际返回</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line">Dialog <span class="title function_">fun</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FontDialog</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">Dialog d=fun();</span><br></pre></td></tr></table></figure>
-<p>多态性体现在：一个父类引用，在不同子类对象被指向的情况下，完成相应子类的功能。</p>
-</li>
-</ol>
-<p>该思想是软件支持“<strong>不修改源代码的情况下，能够二次开发</strong>”以及“<strong>模块可拼装</strong>”的基础。将两个业务类的关系变远，这就叫做软件工程中的“低耦合”。</p>
-<h3 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h3><p>抽象函数：在函数签名增加<code>abstract</code>关键字，该函数原则上要被重写，（可以理解为用来<strong>规范编程</strong>，确保某些方法必须要重写）。</p>
-<ol>
-<li>含有抽象函数的类，叫<strong>抽象类</strong>，用<code>abstract</code>来修饰</li>
-<li>抽象函数必须被子类重写，除非该子类也是个抽象类</li>
-<li>抽象函数没有函数体（类似于C++中的纯虚函数）</li>
-<li>抽象类<strong>不能被实例化</strong></li>
-</ol>
-<p>练习：</p>
-<ol>
-<li>抽象类中可否有普通函数？<strong>可以</strong></li>
-<li>抽象类中可否写构造函数？<strong>可以</strong></li>
-<li>抽象类不能被实例化，那它的构造函数和普通函数有什么用？ <strong>构造函数可以在子类中初始化某些变量；普通函数可以被子类重用</strong></li>
-<li>抽象函数必须被重写吗？ <strong>不一定，如果子类也是个抽象类的话</strong></li>
-</ol>
-<blockquote>
-<p>抽象类、抽象函数是一种：<strong>标准化手段</strong> 。</p>
-</blockquote>
-<h3 id="接口interface"><a href="#接口（interface）" class="headerlink" title="接口（interface）"></a>接口（interface）</h3><p>interface和抽象类类似，只不过<strong>它里面所有函数只能是抽象函数，所有的变量只能是常量</strong>。</p>
-<p>性质：</p>
-<ol>
-<li>接口中所有的函数都说抽象函数，变量只能是常量。<code>abstract</code>可以省略</li>
-<li>接口中所有的成员的都是<code>public</code>。所以<code>public</code>也可以省略</li>
-<li>接口中所有的变量都是常量,并且是静态常量</li>
-<li>一个类最多只能继承1个抽象类，但是可以实现（implements）多个接口，用逗号隔开。</li>
-</ol>
-<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><ul>
-<li>在类前面加final，该类不能有子类</li>
-<li>成员函数前加final，该函数不能被重写</li>
-<li>成员变量前加final，为常量，必须事先赋值，不能再次赋值</li>
-</ul>
-<h2 id="object类"><a href="#object类" class="headerlink" title="object类"></a>object类</h2><p>在Java中定义一个类时，如果没有用extends明确标明直接父类，那么该类默认继承object类。</p>
-<p><strong>Java中任何一个类都是object的子类</strong></p>
-<p>该类有两个小作用：</p>
-<ol>
-<li>object类中，有一个toString方法，可以给子类一个以字符串展示的机会</li>
-<li>object类中，有一个equals方法，可以给予子类对象一个可以比较的机会<ul>
-<li>两个对象除非，指向同一个内存，否则，&#x3D;&#x3D;判断，为false </li>
-<li>若要判断两个对象内容是否相等，应该使用equals方法</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>操作系统用户界面</title>
     <url>/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/</url>
     <content><![CDATA[<h2 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h2><h3 id="bios"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>实模式（实地址模式 ，REAL MODE）:</p>
@@ -563,11 +698,148 @@
       </categories>
   </entry>
   <entry>
+    <title>存储管理</title>
+    <url>/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="存储管理的功能"><a href="#存储管理的功能" class="headerlink" title="存储管理的功能"></a>存储管理的功能</h2><h3 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h3><p>把程序中的地址（虚拟地址&#x2F;逻辑地址）变成内存的真实地址（实地址）的过程<br>地址重定位，地址重映射</p>
+<h4 id="固定地址映射"><a href="#固定地址映射" class="headerlink" title="固定地址映射"></a>固定地址映射</h4><ul>
+<li>固定地址映射：<strong>编程或编译时</strong>确定逻辑地址和物理地址映射关系。</li>
+</ul>
+<p>特点：程序<strong>加载时</strong>必须放在内存中，容易产生冲突，运行失败</p>
+<h4 id="静态地址映射"><a href="#静态地址映射" class="headerlink" title="静态地址映射"></a>静态地址映射</h4><p>定义：程序<strong>装入时</strong>有操作系统完成逻辑地址到物理地址的映射</p>
+<p>基本概念：</p>
+<ul>
+<li>逻辑地址 VA（virtual addr）</li>
+<li>装入基址 BA （base addr）</li>
+<li>物理地址 MA （Memory addr）<br> MA &#x3D; BA + VA</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>程序运行之前确定映射关系</li>
+<li>程序<strong>装入后不能移动</strong></li>
+<li><ul>
+<li>如果移动必须放回原来位置</li>
+</ul>
+</li>
+<li>程序占用<strong>连续的</strong>内存空间</li>
+</ul>
+<h4 id="动态地址映射"><a href="#动态地址映射" class="headerlink" title="动态地址映射"></a>动态地址映射</h4><p>定义：在程序执行过程中把逻辑地址转换为物理地址。例如：MOV AX，[500]; 访问500单元时。映射过程与静态地址映射相同</p>
+<p>特点：</p>
+<ul>
+<li>程序占用的内存空间可动态变化，要求即使更新基址</li>
+<li>程序不要求占用连续的内存空间，每段放置基址BA系统应该知道</li>
+<li>便于多个进程共享代码</li>
+</ul>
+<h3 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h3><h3 id="内存分配功能"><a href="#内存分配功能" class="headerlink" title="内存分配功能"></a>内存分配功能</h3><p>为程序运行分配足够的内存空间<br>需要解决的问题：</p>
+<ul>
+<li>放置策略：程序调入内存时将其放置在哪个内存区</li>
+<li>调入策略：何时把药运行的代码和药访问的数据调入内存</li>
+<li>淘汰策略：内存空间不够时，腾出空间</li>
+</ul>
+<h3 id="存储保护功能"><a href="#存储保护功能" class="headerlink" title="存储保护功能"></a>存储保护功能</h3><p>保证在内存中的多道程序只能在给定的存储区域内活动并互不干扰：防止访问越界，防止访问越权</p>
+<p>方法：界址寄存器</p>
+<ul>
+<li>在cpu中设置一对下线寄存器和上限寄存器存放程序在内存中的下限地址和上限地址</li>
+</ul>
+<h2 id="物理内存管理"><a href="#物理内存管理" class="headerlink" title="物理内存管理"></a>物理内存管理</h2><h3 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h3><h4 id="单一区存储管理不分区存储管理"><a href="#单一区存储管理（不分区存储管理）" class="headerlink" title="单一区存储管理（不分区存储管理）"></a>单一区存储管理（不分区存储管理）</h4><p>用户去不分区，完全被一个程序占用</p>
+<h4 id="分区存储管理"><a href="#分区存储管理-1" class="headerlink" title="分区存储管理"></a>分区存储管理</h4><ul>
+<li>把用户区内存划分为若干大小不等的分区，供不同程序使用</li>
+<li>适合单用户单任务系统</li>
+</ul>
+<p>固定分区：每个分区位置固定，不再改变。系统要维护分区表<br>动态分区：存在内存碎片</p>
+<p>下面具体讨论如何在动态分区保证内存碎片合理利用</p>
+<h3 id="空闲区表如何排序放置策略"><a href="#空闲区表如何排序——放置策略" class="headerlink" title="空闲区表如何排序——放置策略"></a>空闲区表如何排序——放置策略</h3><p>放置策略（空闲区表排序原则）</p>
+<ul>
+<li>首次适应算法：按空闲区位置（首址）排序递增排序</li>
+<li>：按空闲区位置（首址）递减排序</li>
+<li>最佳适应算法：按空闲区大小的递增排序</li>
+<li>最坏适应算法：按空闲区大小的递减排序</li>
+</ul>
+<h3 id="分区的回收"><a href="#分区的回收" class="headerlink" title="分区的回收"></a>分区的回收</h3><p>功能：回收程序释放分区（释放区），登记到空闲区表中，以便再分配</p>
+<p>回收算法：</p>
+<ul>
+<li>要考虑释放区与现有空闲区<strong>是否相邻</strong>？</li>
+<li>若释放去与现有空闲区不相邻，则直接插入空闲区表</li>
+<li>若释放去与现有空闲区相邻，则于空闲区合并后更新空闲区表</li>
+</ul>
+<h3 id="内存覆盖技术"><a href="#内存覆盖技术" class="headerlink" title="内存覆盖技术"></a>内存覆盖技术</h3><p>目的：在<strong>较小的</strong>内存空间中运行较大的程序</p>
+<p>内存分区：</p>
+<ul>
+<li>常驻区：被某段单独切固定的占用，可划分为多个</li>
+<li>覆盖区：能被多端共用（覆盖），可划分为多个</li>
+</ul>
+<p>缺点：编程复杂，程序员划分程序模块并确定覆盖关系</p>
+<h3 id="内存交换技术"><a href="#内存交换技术" class="headerlink" title="内存交换技术"></a>内存交换技术</h3><p>原理：内存不够时把进程写到磁盘，当进程要运行时重新写回内存</p>
+<h3 id="内存碎片"><a href="#内存碎片" class="headerlink" title="内存碎片"></a>内存碎片</h3><p>过小的空闲区，难实际利用。内存碎片会降低内存区的利用率。</p>
+<blockquote>
+<p><strong>动态分区时，最佳适应法最容易产生碎片</strong><br>因为内存反复分配和分隔，容易产生较小的难以利用的内存碎片</p>
+</blockquote>
+<p>碎片问题的解决：</p>
+<ol>
+<li>规定门限值：分隔空闲区时，若剩余部分小于门限值，则此空闲区不进行分隔，而是全部分配给用户。（不算多此一举吗？）</li>
+<li>内存拼接技术：将所有空闲区集中一起构成一个大的空闲区</li>
+<li>解除程序占用<strong>连续内存</strong>才能运行的限制：让程序运行在不连续的内存地址。</li>
+</ol>
+<h2 id="虚拟内存管理"><a href="#虚拟内存管理-1" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h2><p>基本目标：</p>
+<ul>
+<li>使得大的程序能在较小的内存中运行</li>
+<li>使得多个程序能在较小的内存中运行</li>
+<li>使得多个程序并发运行时地址不冲突</li>
+<li>使得内存利用效率高：无碎片，共享方便</li>
+</ul>
+<p>实现思路：在程序运行时，只把当前必要的很小一部分代码和数据装入内存中，其余代码和数据需要时再装入。不再运行的代码和数据及时从内存删除。</p>
+<p>典型虚拟内存管理方式：</p>
+<ul>
+<li>页式虚拟存储管理</li>
+<li>段式虚拟存储管理</li>
+<li>段页式虚拟存储管理</li>
+</ul>
+<h3 id="页式虚拟内存管理的概念"><a href="#页式虚拟内存管理的概念" class="headerlink" title="页式虚拟内存管理的概念"></a>页式虚拟内存管理的概念</h3><p>概念：把进程空间和内存空间划成等大小的小片</p>
+<ul>
+<li>进程的小片—— <strong>页</strong>（虚拟页或页面）</li>
+<li>内存的小片—— **（物理页）</li>
+</ul>
+<p>进程装入和使用内存的原则：</p>
+<ul>
+<li>内存以<strong>页框</strong>为单位分配使用</li>
+<li>进程以<strong>页</strong>为单位装入内存</li>
+</ul>
+<h4 id="页表和页式地址的映射"><a href="#页表和页式地址的映射" class="headerlink" title="页表和页式地址的映射"></a>页表和页式地址的映射</h4><p>虚拟地址（VA）可以分解成<strong>页号</strong>P和<strong>页内偏移</strong>W<br>页号（P）: VA所处页的编号&#x3D;VA&#x2F;页的大小<br>页内偏移：VA在所处页中的偏移&#x3D;VA % 页的大小</p>
+<p>页面映射表：记录<strong>页</strong>与<strong>页框</strong>之间的<strong>对应关系</strong></p>
+<h3 id="快表技术和页面共享技术"><a href="#快表技术和页面共享技术" class="headerlink" title="快表技术和页面共享技术"></a>快表技术和页面共享技术</h3><h4 id="快表机制cache"><a href="#快表机制（Cache）" class="headerlink" title="快表机制（Cache）"></a>快表机制（Cache）</h4><p>快表概念：</p>
+<ul>
+<li>慢表：页表放在内存中</li>
+<li>快表：页表放在cache中</li>
+</ul>
+<h4 id="页面共享技术"><a href="#页面共享技术" class="headerlink" title="页面共享技术"></a>页面共享技术</h4><p>页面共享原理：</p>
+<ul>
+<li>在不同进程的页表中填上<strong>相同的页框号</strong>，多个进程能访问相同的内存空间，从而实现<strong>页面共享</strong>。</li>
+<li><strong>共享页面</strong>在内存只有<strong>一份</strong>真实存储，节省内存</li>
+</ul>
+<h3 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h3><p><img src="/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/2022-03-30-20-15-30.png" alt="缺页的情况"></p>
+<p>扩充有<strong>中断位</strong>和辅存地址的页表</p>
+<p>缺页中断：在地址映射过程中，当所要访问的目的页不在内存时，则系统产生异常中断 —— 缺页中断</p>
+<h3 id="页面淘汰策略"><a href="#页面淘汰策略" class="headerlink" title="页面淘汰策略"></a>页面淘汰策略</h3><p>淘汰策略：选择淘汰哪一页的规则称为淘汰策略</p>
+<p>页面抖动：页面在内存和辅存间频繁交换的现象。“抖动”会导致系统效率下降</p>
+<p>好的淘汰策略：具有较低的缺页率，页面抖动较少<br>常用的淘汰算法：</p>
+<ul>
+<li>最佳算法（OPT算法）:淘汰以后<strong>不再需要</strong>或<strong>最远的将来</strong>才会用到的页面。理论最佳，实际无法实现</li>
+<li>先进先出淘汰算法（FIFO算法）：淘汰在<strong>内存中停留时间最长</strong>的页面。</li>
+<li>最久未使用淘汰算法（LRU算法）：淘汰<strong>最长时间未被使用</strong>的页面。</li>
+<li>最不经常使用算法（LFU算法）：选择到当前时间为止被访问次数最少的页面。</li>
+</ul>
+<h3 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h3><p>进程分段：把进程按<strong>逻辑意义</strong>划分位多个段，每段有段名，进程由多段组成</p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
     <title>操作系统的逻辑结构</title>
     <url>/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>操作系统的逻辑结构指<strong>OS的设计和实现思路</strong>,可分为以下三种：</p>
 <ol>
-<li>整体式结构：以<strong>模块</strong>为基本单位<ul>
+<li><p>整体式结构：以<strong>模块</strong>为基本单位</p>
+<ul>
 <li>特点：</li>
 <li><ul>
 <li>模块设计、编码和调试独立</li>
@@ -588,13 +860,18 @@
 </li>
 </ul>
 </li>
-<li>层次式结构：例如TCP&#x2F;IP协议栈。p所有功能模块按照<strong>调用次序</strong>排成若干层，相邻层间只有<strong>单向依赖</strong>或<strong>单向调用</strong><br><img src="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/2022-03-14-11-03-53.png" alt="操作系统的层次结构"></li>
-<li>微内核结构（客户&#x2F;服务器结构）：操作系统 &#x3D; 微内核 + 核外服务器<ul>
+<li><p>层次式结构：例如TCP&#x2F;IP协议栈。p所有功能模块按照<strong>调用次序</strong>排成若干层，相邻层间只有<strong>单向依赖</strong>或<strong>单向调用</strong></p>
+</li>
+</ol>
+  <img src="/2022/03/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84/2022-03-14-11-03-53.png" alt="操作系统的层次结构" style="zoom: 67%;">
+
+<ol start="3">
+<li>微内核结构（客户&#x2F;服务器结构）：操作系统 &#x3D; 微内核 + 核外服务器</li>
+</ol>
+<ul>
 <li>微内核:足够小，提供OS最基本的核心功能和服务</li>
 <li>核外服务器：完成OS的绝大部分服务器功能</li>
 </ul>
-</li>
-</ol>
 <h2 id="cpu的态"><a href="#CPU的态" class="headerlink" title="CPU的态"></a>CPU的态</h2><p>CPU的工作状态，对资源和指令使用权限的描述</p>
 <h3 id="特权指令"><a href="#特权指令" class="headerlink" title="特权指令"></a>特权指令</h3><p>不能被用户随意的使用，只能由CPU亲自使用</p>
 <ul>
@@ -637,6 +914,61 @@
 </ul>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>文件管理</title>
+    <url>/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h2 id="文件系统概念"><a href="#文件系统概念" class="headerlink" title="文件系统概念"></a>文件系统概念</h2><p>文件定义：文件是计算机信息存取的一种重要组织形式</p>
+<p>文件系统：</p>
+<ul>
+<li>定义：负责管理文件的机构称为文件系统</li>
+<li>功能：负责文件的创立、撤销、读写、修改、复制和存取控制等，并管理存文件的存储设备</li>
+<li>文件系统的目标是让用户以文件名的方式访问文件</li>
+</ul>
+<blockquote>
+<p>现代操作系统中文件都是流式文件，由应用程序解释和处理</p>
+</blockquote>
+<p>文件的存取方法：</p>
+<ul>
+<li>顺序存取：按文件信息项排列顺序依次存取。文件打开时，读写指针指向第一个信息项，然后每存取一个信息项，读写指针依次+1</li>
+<li>随机存取：直接存取，存取操作时指定存取的位置</li>
+</ul>
+<h2 id="文件的物理结构"><a href="#文件的物理结构" class="headerlink" title="文件的物理结构"></a>文件的物理结构</h2><p>概念：</p>
+<ul>
+<li>文件物理结构是指文件在存储设备上的存储方式</li>
+<li>强调合理利用存储空间，并缩短I&#x2F;O存取时间</li>
+</ul>
+<p>类型：</p>
+<ul>
+<li>连续文件</li>
+<li>索引结构</li>
+<li>串联文件</li>
+</ul>
+<h3 id="连续文件"><a href="#连续文件" class="headerlink" title="连续文件"></a>连续文件</h3><p>概念：</p>
+<ul>
+<li>文件按逻辑块的顺序存放在硬盘<strong>连续的</strong>物理存储块中</li>
+<li>文件目录记录文件长度（块数）和第一个存储块的块号</li>
+</ul>
+<p>特点：文件建立时给出文件的最大长度并登记文件起始位置。<br>缺点：</p>
+<ul>
+<li>文件不易动态增长（需预留空间，造成浪费。需重新分配和移动）</li>
+<li>不利于文件插入和删除</li>
+<li>外部碎片问题</li>
+</ul>
+<h3 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h3><p>概念：文件存放在不连续的存储块中。建立<strong>索引表</strong>记录文件逻辑块和物理存储块的对应关系</p>
+<p>特点：</p>
+<ul>
+<li>文件&#x3D;索引区+数据区</li>
+<li>先访问索引，再访问数据</li>
+<li>支持顺序存取和随机存取</li>
+<li>支持文件动态增长、插入、删除</li>
+</ul>
+<h3 id="串联文件"><a href="#串联文件" class="headerlink" title="串联文件"></a>串联文件</h3><p>文件存放在不连续的存储块中。<br>每个存储块有一个指针，指向下一个存储块。<br>文件目录：指明文件名和第一个存储块的块号</p>
+<p>应用：FAT文件系统（File Allocation Table）</p>
 ]]></content>
       <categories>
         <category>操作系统</category>
@@ -846,6 +1178,175 @@
       </categories>
   </entry>
   <entry>
+    <title>网络流量的捕获</title>
+    <url>/2022/04/11/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E7%9A%84%E6%8D%95%E8%8E%B7/</url>
+    <content><![CDATA[<h2 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h2><p>混杂模式：工作在混杂模式下的网卡接受所有流过网卡的帧，无论目的地址是否为本机地址。</p>
+<blockquote>
+<p>一般计算机网卡都工作在非混杂模式下，此时网卡只接受来自网络端口的目的地址指向自己的数据。当网卡工作在混杂模式下是，网卡将来自接口的所有数据都捕获并交给相应的驱动程序</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>信息安全实验</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>计算机网络概述</title>
+    <url>/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<h2 id="1-互联网的组成"><a href="#1-互联网的组成" class="headerlink" title="1. 互联网的组成"></a>1. 互联网的组成</h2><p>互联网的拓扑结构虽然非常复杂，但从其工作方式上看，可以划分为以下两大块：</p>
+<ul>
+<li><strong>边缘部分</strong>：由所有连接在互联网上的主机组成。这部分是<strong>用户直接使用的</strong>，用来进行通信（传送数据、音频或视频）和资源共享</li>
+<li><strong>核心部分</strong>：由大量网络和连接这些网络的路由器组成。这部分是为<strong>边缘部分提供服务的</strong>（提供连通性和交换）</li>
+</ul>
+<h3 id="11-互联网的边缘部分"><a href="#1-1-互联网的边缘部分" class="headerlink" title="1.1 互联网的边缘部分"></a>1.1 互联网的边缘部分</h3><p>处在互联网边缘的部分就是连接在互联网上的所有主机。这些主机又称为<strong>端系统(end system)<strong>。端系统的拥有者可以是个人，也可以是单位（如学校，企业，政府机关等），也可以是某个ISP（即ISP不仅仅是向端系统提供服务，它也可以拥有一些端系统）。边缘部分利用核心部分所提供的服务，使众多主机之间的能够互相</strong>通信</strong>并交换或共享信息。</p>
+<p><strong>计算机间的通信</strong>，通常指：“运行在主机A上的某个程序和运行在主机B上的另一个程序进行通信”。由于“进程”就是“运行着的程序”，也就是说：<strong>“主机A上的某个进程和主机B上的另一个进程进行通信”</strong>。通信方式通常可以划分为两大类：<strong>客户&#x2F;服务器方式（C&#x2F;S方式）</strong> 和 <strong>对等方式（P2P方式）</strong>。</p>
+<h3 id="12-互联网核心部分"><a href="#1-2-互联网核心部分" class="headerlink" title="1.2 互联网核心部分"></a>1.2 互联网核心部分</h3><p>核心部分的功能是：向网络边缘部分的大量主机提供<strong>连通性</strong>，使<strong>边缘部分中的任何一台主机都能与其他主机通信</strong>。</p>
+<p>在网络核心部分起特殊作用的是<strong>路由器(router)<strong>，它是一种专用计算机（但不叫做主机）。路由器是实现</strong>分组交换(packet switching)<strong>的关键构件，其任务是</strong>转发收到的分组</strong>。下面介绍三种交换方式。</p>
+<h4 id="121-电路交换"><a href="#1-2-1-电路交换" class="headerlink" title="1.2.1 电路交换"></a>1.2.1 电路交换</h4><p><img src="/2022/02/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%A6%82%E8%BF%B0/2022-02-27-13-52-49.png" alt="电路交换"><br>在使用电路交换通话之前，必须先拨号请求建立连接。当被叫用户听到交换机送来的振铃音并摘机后，才能建立一条连接，也就是一条<strong>专用的物理通路</strong>。通话完毕挂机后，交换机释放刚才使用的这条专用物理通路。所以<strong>电路交换</strong>的流程为：</p>
+<p><strong>建立连接</strong>（占用通信资源） $\Longrightarrow$ <strong>通话</strong>（一直占用通信资源） $\Longrightarrow$ <strong>释放连接</strong>（归还通信资源）</p>
+<p>特点：<strong>在通话的全部时间内，通话的两个用户始终占用端到端的通信资源</strong></p>
+<p>缺点：<strong>线路的传输效率很低</strong>。这是因为计算机数据是突发式的出现在传输线路上的，<strong>真正用来传输数据的时间反而很少</strong>，已被用户占用的通信线路资源在大部分时间里是空闲的。例如，当用户阅读终端屏幕上的信息或用键盘输入和编辑一份文件时，或计算机正在处理而尚未返回结果时，宝贵的通信线路资源并未被利用而是被浪费了。</p>
+<h4 id="122-报文交换"><a href="#1-2-2-报文交换" class="headerlink" title="1.2.2 报文交换"></a>1.2.2 报文交换</h4><p>报文交换是以<strong>报文</strong>为数据交换的单位，报文携带有目标地址、源地址等信息，在交换结点采用<strong>存储转发</strong>的传输方式。</p>
+<ul>
+<li><strong>无须建立连接</strong>。报文交换不需要为通信双方预先建立一条专用的通信线路，不存在建立连接时延，用户可以随时发送报文。</li>
+<li><strong>动态分配线路</strong>。当发送方把报文交给交换设备时，交换设备先存储整个报文，然后选择一条合适的空闲线路，将报文发送出去。</li>
+</ul>
+<h4 id="123-分组交换"><a href="#1-2-3-分组交换" class="headerlink" title="1.2.3 分组交换"></a>1.2.3 分组交换</h4>]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>物理层</title>
+    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/</url>
+    <content><![CDATA[<h2 id="物理层基本概念"><a href="#物理层基本概念" class="headerlink" title="物理层基本概念"></a>物理层基本概念</h2><ol>
+<li><strong>位置</strong>： 物理层是网络体系结构中的最底层</li>
+<li><strong>功能</strong>：规定如何再连接各个计算机之间比特流的传输</li>
+<li></li>
+</ol>
+<h3 id="物理层常用标准"><a href="#物理层常用标准" class="headerlink" title="物理层常用标准"></a>物理层常用标准</h3><p><strong>点对点通信线路</strong><br><strong>广播通信线路</strong>：一条公共通信线路连接多个节点</p>
+<h2 id="物理层数据通信"><a href="#物理层数据通信" class="headerlink" title="物理层数据通信"></a>物理层数据通信</h2><h3 id="波特率和比特率之间的关系"><a href="#波特率和比特率之间的关系" class="headerlink" title="波特率和比特率之间的关系"></a>波特率和比特率之间的关系</h3><h3 id="信道的最大数据传输速率"><a href="#信道的最大数据传输速率" class="headerlink" title="信道的最大数据传输速率"></a>信道的最大数据传输速率</h3><p>无噪声有限带宽信道的最大数据传输率公式</p>
+<p>奈奎斯特定理</p>
+<ul>
+<li>最大数据传输率 &#x3D; 2H log<sub>2</sub>V (bps)</li>
+<li>H指带宽</li>
+</ul>
+<p>随机噪声出现的大小用信噪比（信号功率S与噪声功率N之比）来衡量， 10log<sub>10</sub>S&#x2F;N,单位分贝</p>
+<p>香农定理</p>
+<ul>
+<li>带宽为H赫兹，信噪比为S&#x2F;N的任意信道的最大数据传输率为: Hlog<sub>2</sub>(1+S&#x2F;N)（bps）</li>
+<li>此式由信息论获得，具有普遍意义</li>
+</ul>
+<h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p>源点 -&gt; 发送器 -&gt; 传输系统 -&gt; 接收器 -&gt; 目标<br>PC   -&gt; 调制解调器 -&gt; 公用电话网 -&gt; 调制解调器 -&gt; PC机<br>数字比特流  -&gt;  模拟信号   -&gt;   模拟信号   -&gt;  数字比特流</p>
+<h3 id="传输方式"><a href="#传输方式" class="headerlink" title="传输方式"></a>传输方式</h3><p>串行和并行传输</p>
+<ul>
+<li>串行传输： 指数据在一个信道上按位依次传输的方式</li>
+<li><ul>
+<li>所需线路少，投资省，线路利用率搞</li>
+</ul>
+</li>
+<li><ul>
+<li>收发之间，适合远距离传输</li>
+</ul>
+</li>
+<li>并行传输：</li>
+<li>- </li>
+<li><ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<p>按照数据信号在信道上的<strong>传送方向与时间</strong>的关系可分为：单工（类似广播）、半双工（一方占用信道）、全双工</p>
+<p>按照<strong>发&#x2F;收连两端实现同步</strong>的方法，传输方式可分为两类： 异步传输和同步传输。</p>
+<ul>
+<li>异步：发送器和接收器的时钟不同步</li>
+<li>同步：发送器和接收器的时钟是同步的</li>
+</ul>
+<h3 id="数据编码技术"><a href="#数据编码技术" class="headerlink" title="数据编码技术"></a>数据编码技术</h3><p>研究数据在信号传输过程中如何进行编码（变换）<br>常用的几种编码方式：</p>
+<ol>
+<li>不归零制码（NRZ: Non-Return to Zero）</li>
+</ol>
+<ul>
+<li>原理</li>
+</ul>
+<ol start="2">
+<li>曼彻斯特码（Manchester）,也称相位编码。分逢1跳变和逢0跳变。</li>
+<li>差分曼彻斯特码（Diffential Manchster）</li>
+</ol>
+<h3 id="频带传输"><a href="#频带传输" class="headerlink" title="频带传输"></a>频带传输</h3><p>三种调制技术：载波Asin(wt+)的三个特性幅度、频率、相位</p>
+<ul>
+<li>调幅(ASK)：</li>
+<li>调频(FSK):</li>
+<li>调相(PSK):</li>
+</ul>
+<h2 id="传输介质"><a href="#传输介质" class="headerlink" title="传输介质"></a>传输介质</h2><p>传输介质是指发送器与接收器之间的物理通路可分为两大类：</p>
+<ul>
+<li>导引型传输介质：指电磁波被导向沿着某一媒体传播，包括</li>
+<li><ul>
+<li>双绞线、同轴电缆</li>
+</ul>
+</li>
+<li>非导引型传输介质：并不沿着某一确定通道传播</li>
+</ul>
+<h2 id="无线与卫星通信"><a href="#无线与卫星通信" class="headerlink" title="无线与卫星通信"></a>无线与卫星通信</h2><h3 id="无线通信的基本概念"><a href="#无线通信的基本概念" class="headerlink" title="无线通信的基本概念"></a>无线通信的基本概念</h3><h3 id="无线通信系统分类"><a href="#无线通信系统分类" class="headerlink" title="无线通信系统分类"></a>无线通信系统分类</h3><h3 id="卫星通信的基本概念"><a href="#卫星通信的基本概念" class="headerlink" title="卫星通信的基本概念"></a>卫星通信的基本概念</h3><p>卫星通信的基本特点<br>传播时延长</p>
+<h2 id="多路复用技术"><a href="#多路复用技术" class="headerlink" title="多路复用技术"></a>多路复用技术</h2><p>信道资源是有限的，实际网络中，多对用户往往需要利用信道资源传输信息，不同的信号同时在同一信道中传输会产生严重的相互干扰，导致传输失败<br><strong>复用</strong>：技术的目的是：允许用户使用一个共享信道进行通信，避免相互干扰，降低成本，提高利用率。<br><img src="/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%89%A9%E7%90%86%E5%B1%82/2022-03-11-15-39-02.png" alt="复用示意图"></p>
+<h3 id="频分复用fdm"><a href="#频分复用（FDM）" class="headerlink" title="频分复用（FDM）"></a>频分复用（FDM）</h3><p>频分复用是一种讲多路基带信号调制到不同</p>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>链路层</title>
+    <url>/2022/03/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%93%BE%E8%B7%AF%E5%B1%82/</url>
+    <content><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>数据链路层在协议栈中的位置<br>向下：：<br>向上：</p>
+<p>功能：</p>
+<ul>
+<li><strong>封装成帧（Framing）</strong>：将比特流划分成“帧”的主要目的是为了检测和纠正物理层在比特传输中的可能出现的错误，数据链路层功能需借助“帧”的各个域来实现</li>
+<li><strong>差错控制（Error Control）</strong>：要处理传输中出现的差错，如位错误、丢失</li>
+<li><strong>流量控制（FLow Control）</strong>：确保发送方的发送速率，不大于接收方的处理速率</li>
+</ul>
+<p>服务：</p>
+<h2 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h2><p>关键问题： 接收方必须能从物理层接受的比特流中明确区分出一帧的开始和结束。这个问题被称为<strong>帧同步或帧界定</strong></p>
+<ul>
+<li>选择何种<strong>定界符</strong>，定界符出现在数据部分如何处理。</li>
+</ul>
+<p>封装成帧方式：</p>
+<ol>
+<li><strong>字节计数法</strong>：帧开始的数，表示该帧有多长。<strong>仅能用于无差错传输的情形</strong>，不健壮，很少使用。<br> <strong>3</strong> 1 2 3 <strong>4</strong> 1234</li>
+<li><strong>带字符填充的定界符法</strong>：定界符（FLAG），一个特殊的字节，比如<code>0111 1110</code>，即<code>0x7e</code>，<strong>用于区分前后两个不同的帧</strong>。<ul>
+<li>发送方：检查有效载荷，进行字节填充，若在有效荷载中<strong>发现定界符</strong>，则在前加入<strong>转义字节</strong></li>
+<li>接收方：去除头部的Flag后，对有效荷载进行检测，<strong>收到ESC转义字节后</strong>，将后一字节<strong>无条件成为有效载荷</strong>。找到真正的定界符后，进行处理，得到处理后的真正有效荷载。</li>
+</ul>
+</li>
+<li><strong>带比特填充的定界符法</strong>：<ul>
+<li>发送方检查有效载荷，若在有效载荷中出现连续5个1，则直接插入一个0比特</li>
+<li>接收方处理，若出现连续的<strong>5个1</strong>，若下一比特为0，则为有效载荷，直接丢弃0比特；若下一比特为1，则为定界符，一帧结束</li>
+</ul>
+</li>
+</ol>
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><p><strong>信道的噪声导致数据传输问题</strong></p>
+<ul>
+<li>差错：数据发生错误</li>
+<li></li>
+<li>丢失：接收方未收到</li>
+<li>乱序：先发后到，后发先到</li>
+<li>重复，一次发送，多次接受</li>
+</ul>
+<p><strong>解决方案</strong>：差错检测与纠正，确认重传</p>
+<h3 id="如何解决信道传输差错问题"><a href="#如何解决信道传输差错问题：" class="headerlink" title="如何解决信道传输差错问题："></a>如何解决信道传输差错问题：</h3><ul>
+<li>通常采用<strong>增加冗余信息</strong>（或称校验信息）的策略</li>
+</ul>
+<p>目标：保证一定差错检测和纠错能力的前提下，如何减少冗余信息</p>
+<h3 id="差错检测和纠正概述"><a href="#差错检测和纠正概述" class="headerlink" title="差错检测和纠正概述"></a>差错检测和纠正概述</h3><p>检错码</p>
+<ul>
+<li>在被发送的数据块中，包含一些荣誉信息，但这些信息只能是接收方</li>
+</ul>
+<h2 id="基本的数据链路层协议"><a href="#基本的数据链路层协议" class="headerlink" title="基本的数据链路层协议"></a>基本的数据链路层协议</h2>]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
     <title>语法分析</title>
     <url>/2022/03/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<h2 id="语法分析器功能"><a href="#语法分析器功能" class="headerlink" title="语法分析器功能"></a>语法分析器功能</h2><p>在<strong>词法分析</strong>出的单词符号串基础上分析并判别程序的结构<strong>是否符合语法规则</strong></p>
@@ -861,179 +1362,6 @@
 <li></li>
 <li><h2 id="自下而上分析法"><a href="#自下而上分析法" class="headerlink" title="自下而上分析法"></a>自下而上分析法</h2></li>
 </ol>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Java语言核心包</title>
-    <url>/2022/03/21/Java/Java%E8%AF%AD%E8%A8%80%E6%A0%B8%E5%BF%83%E5%8C%85/</url>
-    <content><![CDATA[<h2 id="javalang包"><a href="#java-lang包" class="headerlink" title="java.lang包"></a>java.lang包</h2><p>时Java中最基础的核心包，里面包含……</p>
-<h3 id="javalangmath"><a href="#Java-lang-Math" class="headerlink" title="Java.lang.Math"></a>Java.lang.Math</h3><h3 id="javalangstring"><a href="#Java-lang-String" class="headerlink" title="Java.lang.String"></a>Java.lang.String</h3><p>直接赋值时，系统为了节省内存，用的是<strong>池机制</strong></p>
-<p><strong>如何判断字符串内容是否相等？</strong></p>
-<ul>
-<li>显然，不能使用 &#x3D;&#x3D; </li>
-<li>所以需要使用equals进行判断。</li>
-</ul>
-<h3 id="javalangstringbuffer类"><a href="#Java-lang-StringBuffer类" class="headerlink" title="Java.lang.StringBuffer类"></a>Java.lang.StringBuffer类</h3><p>负责字符串处理，是自变型字符串，操作之后，自己变化。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s1.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s1不变</span></span><br><span class="line">StringBuffer s1=<span class="string">&quot;CSU&quot;</span>;</span><br><span class="line">s2.replace(<span class="string">&quot;CSU&quot;</span>,<span class="string">&quot;中南大学&quot;</span>);<span class="comment">//s2为“中南大学”</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="javautil包"><a href="#Java-util包" class="headerlink" title="Java.util包"></a>Java.util包</h2><p>最重要的是：Java集合框架（变长数组）<br>三类：</p>
-<ol>
-<li><p>List类：一维变长数组，元素有位置，可重复</p>
-<ul>
-<li>ArrayList：底层用数组存储</li>
-<li>LinkedList:底层用链表存储</li>
-<li>Vector：实现了多线程的安全</li>
-</ul>
-</li>
-<li><p>Set类：一维变长数组，元素无位置信息，不可重复</p>
-</li>
-<li><p>Map类：二维变长数组</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>post</title>
-    <url>/2022/03/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>存储管理</title>
-    <url>/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h2 id="存储管理的功能"><a href="#存储管理的功能" class="headerlink" title="存储管理的功能"></a>存储管理的功能</h2><h3 id="地址映射"><a href="#地址映射" class="headerlink" title="地址映射"></a>地址映射</h3><p>把程序中的地址（虚拟地址&#x2F;逻辑地址）变成内存的真实地址（实地址）的过程<br>地址重定位，地址重映射</p>
-<h4 id="固定地址映射"><a href="#固定地址映射" class="headerlink" title="固定地址映射"></a>固定地址映射</h4><ul>
-<li>固定地址映射：<strong>编程或编译时</strong>确定逻辑地址和物理地址映射关系。</li>
-</ul>
-<p>特点：程序<strong>加载时</strong>必须放在内存中，容易产生冲突，运行失败</p>
-<h4 id="静态地址映射"><a href="#静态地址映射" class="headerlink" title="静态地址映射"></a>静态地址映射</h4><p>定义：程序<strong>装入时</strong>有操作系统完成逻辑地址到物理地址的映射</p>
-<p>基本概念：</p>
-<ul>
-<li>逻辑地址 VA（virtual addr）</li>
-<li>装入基址 BA （base addr）</li>
-<li>物理地址 MA （Memory addr）<br> MA &#x3D; BA + VA</li>
-</ul>
-<p>特点：</p>
-<ul>
-<li>程序运行之前确定映射关系</li>
-<li>程序<strong>装入后不能移动</strong></li>
-<li><ul>
-<li>如果移动必须放回原来位置</li>
-</ul>
-</li>
-<li>程序占用<strong>连续的</strong>内存空间</li>
-</ul>
-<h4 id="动态地址映射"><a href="#动态地址映射" class="headerlink" title="动态地址映射"></a>动态地址映射</h4><p>定义：在程序执行过程中把逻辑地址转换为物理地址。例如：MOV AX，[500]; 访问500单元时。映射过程与静态地址映射相同</p>
-<p>特点：</p>
-<ul>
-<li>程序占用的内存空间可动态变化，要求即使更新基址</li>
-<li>程序不要求占用连续的内存空间，每段放置基址BA系统应该知道</li>
-<li>便于多个进程共享代码</li>
-</ul>
-<h3 id="虚拟内存管理"><a href="#虚拟内存管理" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h3><h3 id="内存分配功能"><a href="#内存分配功能" class="headerlink" title="内存分配功能"></a>内存分配功能</h3><p>为程序运行分配足够的内存空间<br>需要解决的问题：</p>
-<ul>
-<li>放置策略：程序调入内存时将其放置在哪个内存区</li>
-<li>调入策略：何时把药运行的代码和药访问的数据调入内存</li>
-<li>淘汰策略：内存空间不够时，腾出空间</li>
-</ul>
-<h3 id="存储保护功能"><a href="#存储保护功能" class="headerlink" title="存储保护功能"></a>存储保护功能</h3><p>保证在内存中的多道程序只能在给定的存储区域内活动并互不干扰：防止访问越界，防止访问越权</p>
-<p>方法：界址寄存器</p>
-<ul>
-<li>在cpu中设置一对下线寄存器和上限寄存器存放程序在内存中的下限地址和上限地址</li>
-</ul>
-<h2 id="物理内存管理"><a href="#物理内存管理" class="headerlink" title="物理内存管理"></a>物理内存管理</h2><h3 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h3><h4 id="单一区存储管理不分区存储管理"><a href="#单一区存储管理（不分区存储管理）" class="headerlink" title="单一区存储管理（不分区存储管理）"></a>单一区存储管理（不分区存储管理）</h4><p>用户去不分区，完全被一个程序占用</p>
-<h4 id="分区存储管理"><a href="#分区存储管理-1" class="headerlink" title="分区存储管理"></a>分区存储管理</h4><ul>
-<li>把用户区内存划分为若干大小不等的分区，供不同程序使用</li>
-<li>适合单用户单任务系统</li>
-</ul>
-<p>固定分区：每个分区位置固定，不再改变。系统要维护分区表<br>动态分区：存在内存碎片</p>
-<p>下面具体讨论如何在动态分区保证内存碎片合理利用</p>
-<h3 id="空闲区表如何排序放置策略"><a href="#空闲区表如何排序——放置策略" class="headerlink" title="空闲区表如何排序——放置策略"></a>空闲区表如何排序——放置策略</h3><p>放置策略（空闲区表排序原则）</p>
-<ul>
-<li>首次适应算法：按空闲区位置（首址）排序递增排序</li>
-<li>：按空闲区位置（首址）递减排序</li>
-<li>最佳适应算法：按空闲区大小的递增排序</li>
-<li>最坏适应算法：按空闲区大小的递减排序</li>
-</ul>
-<h3 id="分区的回收"><a href="#分区的回收" class="headerlink" title="分区的回收"></a>分区的回收</h3><p>功能：回收程序释放分区（释放区），登记到空闲区表中，以便再分配</p>
-<p>回收算法：</p>
-<ul>
-<li>要考虑释放区与现有空闲区<strong>是否相邻</strong>？</li>
-<li>若释放去与现有空闲区不相邻，则直接插入空闲区表</li>
-<li>若释放去与现有空闲区相邻，则于空闲区合并后更新空闲区表</li>
-</ul>
-<h3 id="内存覆盖技术"><a href="#内存覆盖技术" class="headerlink" title="内存覆盖技术"></a>内存覆盖技术</h3><p>目的：在<strong>较小的</strong>内存空间中运行较大的程序</p>
-<p>内存分区：</p>
-<ul>
-<li>常驻区：被某段单独切固定的占用，可划分为多个</li>
-<li>覆盖区：能被多端共用（覆盖），可划分为多个</li>
-</ul>
-<p>缺点：编程复杂，程序员划分程序模块并确定覆盖关系</p>
-<h3 id="内存交换技术"><a href="#内存交换技术" class="headerlink" title="内存交换技术"></a>内存交换技术</h3><p>原理：内存不够时把进程写到磁盘，当进程要运行时重新写回内存</p>
-<h3 id="内存碎片"><a href="#内存碎片" class="headerlink" title="内存碎片"></a>内存碎片</h3><p>过小的空闲区，难实际利用。内存碎片会降低内存区的利用率。</p>
-<blockquote>
-<p><strong>动态分区时，最佳适应法最容易产生碎片</strong><br>因为内存反复分配和分隔，容易产生较小的难以利用的内存碎片</p>
-</blockquote>
-<p>碎片问题的解决：</p>
-<ol>
-<li>规定门限值：分隔空闲区时，若剩余部分小于门限值，则此空闲区不进行分隔，而是全部分配给用户。（不算多此一举吗？）</li>
-<li>内存拼接技术：将所有空闲区集中一起构成一个大的空闲区</li>
-<li>解除程序占用<strong>连续内存</strong>才能运行的限制：让程序运行在不连续的内存地址。</li>
-</ol>
-<h2 id="虚拟内存管理"><a href="#虚拟内存管理-1" class="headerlink" title="虚拟内存管理"></a>虚拟内存管理</h2><p>基本目标：</p>
-<ul>
-<li>使得大的程序能在较小的内存中运行</li>
-<li>使得多个程序能在较小的内存中运行</li>
-<li>使得多个程序并发运行时地址不冲突</li>
-<li>使得内存利用效率高：无碎片，共享方便</li>
-</ul>
-<p>实现思路：在程序运行时，只把当前必要的很小一部分代码和数据装入内存中，其余代码和数据需要时再装入。不再运行的代码和数据及时从内存删除。</p>
-<p>典型虚拟内存管理方式：</p>
-<ul>
-<li>页式虚拟存储管理</li>
-<li>段式虚拟存储管理</li>
-<li>段页式虚拟存储管理</li>
-</ul>
-<h3 id="页式虚拟内存管理的概念"><a href="#页式虚拟内存管理的概念" class="headerlink" title="页式虚拟内存管理的概念"></a>页式虚拟内存管理的概念</h3><p>概念：把进程空间和内存空间划成等大小的小片</p>
-<ul>
-<li>进程的小片—— <strong>页</strong>（虚拟页或页面）</li>
-<li>内存的小片—— **（物理页）</li>
-</ul>
-<p>进程装入和使用内存的原则：</p>
-<ul>
-<li>内存以<strong>页框</strong>为单位分配使用</li>
-<li>进程以<strong>页</strong>为单位装入内存</li>
-</ul>
-<h4 id="页表和页式地址的映射"><a href="#页表和页式地址的映射" class="headerlink" title="页表和页式地址的映射"></a>页表和页式地址的映射</h4><p>虚拟地址（VA）可以分解成<strong>页号</strong>P和<strong>页内偏移</strong>W<br>页号（P）: VA所处页的编号&#x3D;VA&#x2F;页的大小<br>页内偏移：VA在所处页中的偏移&#x3D;VA % 页的大小</p>
-<p>页面映射表：记录<strong>页</strong>与<strong>页框</strong>之间的<strong>对应关系</strong></p>
-<h3 id="快表技术和页面共享技术"><a href="#快表技术和页面共享技术" class="headerlink" title="快表技术和页面共享技术"></a>快表技术和页面共享技术</h3><h4 id="快表机制cache"><a href="#快表机制（Cache）" class="headerlink" title="快表机制（Cache）"></a>快表机制（Cache）</h4><p>快表概念：</p>
-<ul>
-<li>慢表：页表放在内存中</li>
-<li>快表：页表放在cache中</li>
-</ul>
-<h4 id="页面共享技术"><a href="#页面共享技术" class="headerlink" title="页面共享技术"></a>页面共享技术</h4><p>页面共享原理：</p>
-<ul>
-<li>在不同进程的页表中填上<strong>相同的页框号</strong>，多个进程能访问相同的内存空间，从而实现<strong>页面共享</strong>。</li>
-<li><strong>共享页面</strong>在内存只有<strong>一份</strong>真实存储，节省内存</li>
-</ul>
-<h3 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h3><p><img src="/2022/03/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/2022-03-30-20-15-30.png" alt="缺页的情况"></p>
-<p>扩充有<strong>中断位</strong>和辅存地址的页表</p>
-<p>缺页中断：在地址映射过程中，当所要访问的目的页不在内存时，则系统产生异常中断 —— 缺页中断</p>
-<h3 id="页面淘汰策略"><a href="#页面淘汰策略" class="headerlink" title="页面淘汰策略"></a>页面淘汰策略</h3><p>淘汰策略：选择淘汰哪一页的规则称为淘汰策略</p>
-<p>页面抖动：页面在内存和辅存间频繁交换的现象。“抖动”会导致系统效率下降</p>
-<p>好的淘汰策略：具有较低的缺页率，页面抖动较少<br>常用的淘汰算法：</p>
-<ul>
-<li>最佳算法（OPT算法）:淘汰以后<strong>不再需要</strong>或<strong>最远的将来</strong>才会用到的页面。理论最佳，实际无法实现</li>
-<li>先进先出淘汰算法（FIFO算法）：淘汰在<strong>内存中停留时间最长</strong>的页面。</li>
-<li>最久未使用淘汰算法（LRU算法）：淘汰<strong>最长时间未被使用</strong>的页面。</li>
-<li>最不经常使用算法（LFU算法）：选择到当前时间为止被访问次数最少的页面。</li>
-</ul>
-<h3 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h3><p>进程分段：把进程按<strong>逻辑意义</strong>划分位多个段，每段有段名，进程由多段组成</p>
 ]]></content>
       <categories>
         <category>操作系统</category>
